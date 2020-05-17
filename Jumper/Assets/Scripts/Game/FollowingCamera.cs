@@ -8,9 +8,11 @@ public class FollowingCamera : MonoBehaviour
 {
     [Header("Объект за которым следит камера")] [SerializeField]
     private Transform _transformTarget = null;
+
+    //[Header("Анимация закончилась")] public bool EndAnimtion = true;
     
-    [Header("Скрипт, который управлляет джампером")] [SerializeField]
-    private ManagingJumper _managingJumper = null;
+    //[Header("Скрипт, который управлляет джампером")] [SerializeField]
+    //private ManagingJumper _managingJumper = null;
     
     [Header("Скорость движения камеры")] [SerializeField]
     private float _speedCamera = .0f;
@@ -18,30 +20,20 @@ public class FollowingCamera : MonoBehaviour
     [Header("Разница расстояния от камеры до объекта")] [SerializeField]
     private float DifferenceDistances = .0f;
     
-    
     // Позиция камеры
     private Transform _thisTransform = null;
 
     private void Start()
     {
         _thisTransform = transform;
+        StartCoroutine(AnimationStartCamera(-1));
     }
 
-    private void Update()
-    {
-        //float distance = Vector3.Distance(new Vector3(_thisTransform.position.x, 0, _thisTransform.position.z), 
-        //    new Vector3(_transformTarget.position.x, 0, _transformTarget.position.z));
-        //print(distance);
-        
-        Vector3 targetDir = _transformTarget.position - transform.position;
-        targetDir = new Vector3(targetDir.x, 0, targetDir.z);
-        float angle = Vector3.Angle(targetDir, transform.forward);
-        // Получаем угол от середины камеры до объекта
-        //print(angle);
-        //Quaternion.Angle(Quaternion.Euler(targetDir), Quaternion.Euler(transform.forward))
-        Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 1000, Color.black);
-        Debug.DrawRay(transform.position, targetDir * 1000, Color.red);
-    }
+    // private void Update()
+    // {
+    //     Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 1000, Color.black);
+    //     Debug.DrawRay(transform.position, targetDir * 1000, Color.red);
+    // }
 
     // (Доделать поворот угла)
     private void LateUpdate()
@@ -49,30 +41,47 @@ public class FollowingCamera : MonoBehaviour
         // Позиция, до которой нужно двигаться 
         float positionEndX = _transformTarget.transform.position.x - DifferenceDistances;
         _thisTransform.localPosition = new Vector3(Mathf.MoveTowards(_thisTransform.localPosition.x, positionEndX, 
-            _managingJumper.GetSpeedUpJumper * Time.deltaTime), _thisTransform.localPosition.y, _thisTransform.localPosition.z); 
+            _speedCamera * Time.deltaTime), _thisTransform.localPosition.y, _thisTransform.localPosition.z); 
         
-        Vector3  differenceVector = _transformTarget.position - transform.position;
-        differenceVector = new Vector3(differenceVector.x, 0, differenceVector.z);
-        // Вычисляем разницу между камерой и джампером
-        float angle = Vector3.Angle(differenceVector, transform.forward);
-        //print(angleCameraY - angle);
-        //print(_transformTarget.rotation.y + ":" + Quaternion.);
-        //_thisTransform.localRotation = Quaternion.Slerp(_thisTransform.rotation, 
-        //    Quaternion.Euler(0,  GetLessAngle() - angle, 0), 2 * Time.deltaTime);
-        //_thisTransform.LookAt(_transformTarget);
     }
 
+    public IEnumerator AnimationStartCamera(float differenceX)
+    {
+        Vector3  differenceVector = _transformTarget.position - transform.position;
+        differenceVector = new Vector3(differenceVector.x, 0, differenceVector.z);
+        float angle = Vector3.Angle(differenceVector, transform.forward);
+        float resultAngleY = _thisTransform.transform.eulerAngles.y + angle;
+        if(differenceX > 0)
+            resultAngleY = _thisTransform.transform.eulerAngles.y - angle;
+        while (_thisTransform.transform.eulerAngles.y != resultAngleY)
+        {
+            differenceVector = _transformTarget.position - transform.position;
+            differenceVector = new Vector3(differenceVector.x, 0, differenceVector.z);
+            // Вычисляем разницу между камерой и джампером
+            angle = Vector3.Angle(differenceVector, transform.forward);
+            resultAngleY = _thisTransform.transform.eulerAngles.y + angle;
+            if(differenceX > 0)
+                resultAngleY = _thisTransform.transform.eulerAngles.y - angle;
+            _thisTransform.rotation = Quaternion.Slerp(Quaternion.Euler(0, _thisTransform.transform.eulerAngles.y, 0), 
+                Quaternion.Euler(0,resultAngleY, 0), 20 * Time.deltaTime);
+            yield return null;
+        }
+    }
+    
     // Возвращает актуальный угол, от 0 до 180 (Доделать)
-    private float GetLessAngle()
+    private Quaternion GetLessAngle(float angle)
     {
         float angleCameraY = _thisTransform.transform.eulerAngles.y;
+        //print(angleCameraY + ": " + (angleCameraY - angle));
+        //print(_thisTransform.transform.rotation);
+        //print(Quaternion.Euler(0, angleCameraY - angle, 0));
         // if (angleCameraY > 180)
         // {
         //     //print(angleCameraY - 360);
         //     return angleCameraY - 360;
         //}
 
-        return angleCameraY;
+        return Quaternion.Euler(0, angleCameraY - angle, 0);
     }
     
 }

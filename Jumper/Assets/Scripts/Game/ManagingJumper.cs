@@ -16,7 +16,10 @@ public class ManagingJumper : MonoBehaviour
 
     [Header("RigidBody джампера")] [SerializeField]
     private Rigidbody _rigidbodyJumper = null;
-
+    
+    //[Header("Скрипт, который управляет камерой")] [SerializeField]
+   // private FollowingCamera _followingCamera = null;
+    
     [Header("Максимальный угол наклона по модулю")] [SerializeField]
     private float _maximumAngleInclination = .0f;
 
@@ -29,14 +32,22 @@ public class ManagingJumper : MonoBehaviour
     [Header("Максимальное сжатие джампа")] [SerializeField] [Range(0f, 1f)]
     private float _maximumJumpCompression = .0f;
     
+    // Разница координат по X (Нужно для понимания, куда идет палец (Право/Влево))
+    private float _differenceX = .0f;
+
     //"Скорость поднятия на высоту джампера"
     private float _speedUpJumper = .0f;
     
     // Возвращает скорость джампера
-    public float GetSpeedUpJumper
-    {
-        get { return _speedUpJumper; }
-    }
+    // public float GetSpeedUpJumper
+    // {
+    //     get { return _speedUpJumper; }
+    // }
+    //
+    // public float GetDifferenceX
+    // {
+    //     get { return _differenceX; }
+    // }
     
     // Стартовые позиции
     private Vector2 _startingPosition = Vector2.zero;
@@ -89,6 +100,7 @@ public class ManagingJumper : MonoBehaviour
             if(!_animationTopPartJumper)
                 StartCoroutine(ReturnStartingTopJumperPosition(GetPositionTopPartJumper(), 1.5f));
             StartCoroutine(ReturnStartingTopJumperRotation());
+            //StartCoroutine(_followingCamera.AnimationCamera(_differenceX));
             InspectionGround.IsGround = false;
         }
     }
@@ -131,6 +143,8 @@ public class ManagingJumper : MonoBehaviour
     {
         float positionNowX = _mainCamera.ScreenToViewportPoint(Input.mousePosition).x;
         float differenceX = _startingPosition.x - positionNowX;
+        _differenceX = differenceX;
+
         float percentageScreenX = differenceX * 100;
         
         var angleInclination = percentageScreenX * _maximumAngleInclination / 100;
