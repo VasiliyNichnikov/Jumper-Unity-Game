@@ -40,8 +40,11 @@ public class FollowingCamera : MonoBehaviour
     {
         // Позиция, до которой нужно двигаться 
         float positionEndX = _transformTarget.transform.position.x - DifferenceDistances;
-        _thisTransform.localPosition = new Vector3(Mathf.MoveTowards(_thisTransform.localPosition.x, positionEndX, 
-            _speedCamera * Time.deltaTime), _thisTransform.localPosition.y, _thisTransform.localPosition.z); 
+        float positionEndY = _transformTarget.transform.position.y + 3;
+        _thisTransform.localPosition = Vector3.MoveTowards(_thisTransform.localPosition,
+            new Vector3(positionEndX, positionEndY, _thisTransform.localPosition.z), _speedCamera * Time.deltaTime);
+        // _thisTransform.localPosition = new Vector3(Mathf.MoveTowards(_thisTransform.localPosition.x, positionEndX, 
+        //     _speedCamera * Time.deltaTime), _thisTransform.localPosition.y, _thisTransform.localPosition.z); 
         
     }
 

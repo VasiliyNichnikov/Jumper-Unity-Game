@@ -21,6 +21,8 @@ public class GenerationMap : MonoBehaviour
     [Header("Объекты, которые создаются на сцены")] [SerializeField]
     private Object[] _objects = null;
 
+    [Header("Игрока")] [SerializeField] private GameObject _player = null;
+    
     [Header("Расстояние между объектами")] public float Offset = 0.0f;
     
     // Позиция по X
@@ -31,26 +33,36 @@ public class GenerationMap : MonoBehaviour
     private void Start()
     {
         //_positionX = 2;
-        for (int i = 0; i < _objects.Length; i++)
+        //CreateObject();
+        for (int i = 0; i < 5; i++)
         {
-            CreateObject(_objects[i]);
+            CreateObject();
         }
     }
 
-    private void CreateObject(Object classObject)
+    private void Update()
+    {
+        //print(GetNearestBlock().name);
+    }
+
+    public void CreateObject()
     {
         GameObject prefab = GetObject();
        // Vector2 sizeObject = new Vector2(classObject.Width, classObject.Width);
-        GameObject newObject = Instantiate(prefab, transform, false);
-        print(newObject.transform.localScale.x);
-        if (_lastObject != null)
-            _positionX += (_lastObject.transform.localScale.x / 2) + (newObject.transform.localScale.x / 2) + Offset;
-        else
-            _positionX += 5;
-        newObject.transform.position = new Vector3(_positionX, 1, transform.position.z);
-        _lastObject = newObject.transform; 
-        
-        //print(newObject.GetComponent<MeshFilter>().sharedMesh.bounds);
+       if (prefab != null)
+       {
+           GameObject newObject = Instantiate(prefab, transform, false);
+           newObject.name = prefab.name;
+           //print(newObject.transform.localScale.x);
+           if (_lastObject != null)
+               _positionX += (_lastObject.transform.localScale.x / 2) + (newObject.transform.localScale.x / 2) + Offset;
+           else
+               _positionX += 6;
+           newObject.transform.position = new Vector3(_positionX, newObject.transform.position.y, transform.position.z);
+           _lastObject = newObject.transform;
+       }else
+           Debug.LogError("Error. Not Found Object Block");
+       //print(newObject.GetComponent<MeshFilter>().sharedMesh.bounds);
         //float dis = Vector3.Distance(newObject.GetComponent<MeshFilter>().sharedMesh.bounds.center,
         //    newObject.GetComponent<MeshFilter>().sharedMesh.bounds.extents);
         //print(dis);
@@ -63,25 +75,73 @@ public class GenerationMap : MonoBehaviour
     // Возвращает объект, который нужно создать
     private GameObject GetObject()
     {
-        if (_inspectionGround.GetHeight() <= 3)
+        float heightBlock = 1;
+        //print(_player.transform.position.y);
+        // if (GetNearestHeightBlock() == 1) 
+        //     heightBlock = 2;
+        // else if (GetNearestHeightBlock() <= 5f && GetNearestHeightBlock() >= 4f)
+        //     heightBlock = 5;
+        switch (GetNearestHeightBlock())
         {
-            int numberRandom = UnityEngine.Random.Range(0, _objects.Length);
+            case 1:
+                heightBlock = 2;
+                break;
+            
+            case 2:
+                heightBlock = 3;
+                break;
+            
+            case 3:
+                heightBlock = 4;
+                break;
+            
+            case 4:
+                heightBlock = 1;
+                break;
+        }
+        print($"heightBlock - {heightBlock} posLastCube - {GetNearestHeightBlock()}");
+        int numberRandom = UnityEngine.Random.Range(0, _objects.Length);
+        if (_objects[numberRandom].Height <= heightBlock)
+        {
+            return _objects[numberRandom].PrefabObject;
+        }
+        else
+        {
+            numberRandom = UnityEngine.Random.Range(0, _objects.Length);
             while (true)
             {
-                if (_objects[numberRandom].Height <= 3)
+                if (_objects[numberRandom].Height <= heightBlock)
                 {
                     return _objects[numberRandom].PrefabObject;
                 }
                 numberRandom = UnityEngine.Random.Range(0, _objects.Length);
             }
-            // for (int i = 0; i < _objects.Length; i++)
-            // {
-            //     if (_objects[i].Height <= 3)
-            //         return _objects[i].PrefabObject;
-            // }
         }
+    }
+    
+    // Возвращает высоту последнего блока
+    private float GetNearestHeightBlock()
+    {
+        //GameObject objectEnd = transform.GetChild(-1).gameObject;
 
-        return null;
+        for (int i = 0; i < _objects.Length; i++)
+        {
+            if (_lastObject != null && _objects[i].Name == _lastObject.name)
+                return _objects[i].Height;
+        }
+        return 1f;
+        // float minDistance = 100.0f;
+        // GameObject resObject = null;
+        // for (int i = 0; i < transform.childCount; i++)
+        // {
+        //     float dis = Vector3.Distance(transform.GetChild(i).position, _player.transform.position);
+        //     if (dis < minDistance)
+        //     {
+        //         minDistance = dis;
+        //         resObject = transform.GetChild(i).gameObject;
+        //     }
+        // }
+        // return resObject;
     }
     
     
