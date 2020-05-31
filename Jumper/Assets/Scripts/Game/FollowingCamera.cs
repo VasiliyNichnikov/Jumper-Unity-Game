@@ -29,11 +29,11 @@ public class FollowingCamera : MonoBehaviour
         StartCoroutine(AnimationStartCamera(-1));
     }
 
-    // private void Update()
-    // {
-    //     Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 1000, Color.black);
-    //     Debug.DrawRay(transform.position, targetDir * 1000, Color.red);
-    // }
+    private void Update()
+    {
+        //Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.down) * 1000, Color.black);
+        //Debug.DrawRay(transform.position, targetDir * 1000, Color.red);
+    }
 
     // (Доделать поворот угла)
     private void LateUpdate()
