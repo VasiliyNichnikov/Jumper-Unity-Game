@@ -81,6 +81,7 @@ public class GenerationMap : MonoBehaviour
         //     heightBlock = 2;
         // else if (GetNearestHeightBlock() <= 5f && GetNearestHeightBlock() >= 4f)
         //     heightBlock = 5;
+        print($"heightBlock - {heightBlock} posLastCube - {GetNearestHeightBlock()}");
         switch (GetNearestHeightBlock())
         {
             case 1:
@@ -99,7 +100,6 @@ public class GenerationMap : MonoBehaviour
                 heightBlock = 1;
                 break;
         }
-        print($"heightBlock - {heightBlock} posLastCube - {GetNearestHeightBlock()}");
         int numberRandom = UnityEngine.Random.Range(0, _objects.Length);
         if (_objects[numberRandom].Height <= heightBlock)
         {
@@ -124,11 +124,15 @@ public class GenerationMap : MonoBehaviour
     {
         //GameObject objectEnd = transform.GetChild(-1).gameObject;
 
-        for (int i = 0; i < _objects.Length; i++)
+        if (_lastObject != null)
         {
-            if (_lastObject != null && _objects[i].Name == _lastObject.name)
-                return _objects[i].Height;
+            for (int i = 0; i < _objects.Length; i++)
+            {
+                if (_objects[i].Name == _lastObject.name)
+                    return _objects[i].Height;
+            }
         }
+        //print("End");
         return 1f;
         // float minDistance = 100.0f;
         // GameObject resObject = null;
