@@ -1,0 +1,247 @@
+fileFormatVersion: 2
+guid: 87aceab81cf7ab94f8fee9efa8b9b359
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Circle.005
+    100004: Cube
+    100006: Cube.000
+    100008: Cube.001
+    100010: Cube.003
+    100012: Cube.004
+    100014: Cube.005
+    100016: Cube.006
+    100018: Cube.007
+    100020: Cube.019
+    100022: Cube.021
+    100024: Cube.045
+    100026: Cube.054
+    100028: Cube.076
+    100030: Cube.124
+    100032: Cube.128
+    100034: Cylinder.001
+    100036: Cylinder.020
+    100038: Plane.007
+    100040: Yellow book
+    400000: //RootNode
+    400002: Circle.005
+    400004: Cube
+    400006: Cube.000
+    400008: Cube.001
+    400010: Cube.003
+    400012: Cube.004
+    400014: Cube.005
+    400016: Cube.006
+    400018: Cube.007
+    400020: Cube.019
+    400022: Cube.021
+    400024: Cube.045
+    400026: Cube.054
+    400028: Cube.076
+    400030: Cube.124
+    400032: Cube.128
+    400034: Cylinder.001
+    400036: Cylinder.020
+    400038: Plane.007
+    400040: Yellow book
+    2100000: Material.002
+    2100002: Material.003
+    2100004: Material.001
+    2100006: Material.143
+    2100008: Material.144
+    2100010: Material.142
+    2100012: Material.072
+    2100014: Material.069
+    2100016: Material.067
+    2100018: Material.068
+    2100020: Material.025
+    2100022: Material.012
+    2100024: Material.021
+    2100026: Material.116
+    2100028: Material.113
+    2100030: Material.195
+    2100032: Material.185
+    2100034: Material.189
+    2100036: Material.043
+    2100038: Material.008
+    2100040: Material.007
+    2100042: Material.023
+    2100044: Material.022
+    2100046: Material.020
+    2100048: Material.019
+    2100050: Material.018
+    2100052: Material.017
+    2100054: Material.026
+    2100056: Material.024
+    2100058: Material.028
+    2100060: Material.027
+    2100062: Material.036
+    2100064: Material.034
+    2100066: Material.035
+    2100068: Material.033
+    2100070: Green
+    2100072: Black
+    2100074: Material.032
+    2100076: Blue
+    2100078: Material.031
+    2100080: Yellow
+    2100082: Material.030
+    2100084: Material.039
+    2100086: Material.038
+    2100088: Material.037
+    2100090: Material.041
+    2100092: Material.040
+    2100094: Material.045
+    2100096: Material.044
+    2100098: Material.042
+    2100100: Material.046
+    2100102: Material.047
+    2100104: No Name
+    2300000: Circle.005
+    2300002: Cube
+    2300004: Cube.000
+    2300006: Cube.001
+    2300008: Cube.003
+    2300010: Cube.004
+    2300012: Cube.005
+    2300014: Cube.006
+    2300016: Cube.007
+    2300018: Cube.019
+    2300020: Cube.021
+    2300022: Cube.045
+    2300024: Cube.054
+    2300026: Cube.076
+    2300028: Cube.124
+    2300030: Cube.128
+    2300032: Cylinder.001
+    2300034: Cylinder.020
+    2300036: Plane.007
+    2300038: Yellow book
+    3300000: Circle.005
+    3300002: Cube
+    3300004: Cube.000
+    3300006: Cube.001
+    3300008: Cube.003
+    3300010: Cube.004
+    3300012: Cube.005
+    3300014: Cube.006
+    3300016: Cube.007
+    3300018: Cube.019
+    3300020: Cube.021
+    3300022: Cube.045
+    3300024: Cube.054
+    3300026: Cube.076
+    3300028: Cube.124
+    3300030: Cube.128
+    3300032: Cylinder.001
+    3300034: Cylinder.020
+    3300036: Plane.007
+    3300038: Yellow book
+    4300000: Cylinder.001
+    4300002: Cube.045
+    4300004: Plane.007
+    4300006: Cube.076
+    4300008: Cube.019
+    4300010: Circle.005
+    4300012: Cube.001
+    4300014: Cube.000
+    4300016: Cube.005
+    4300018: Cube
+    4300020: Cube.054
+    4300022: Cube.128
+    4300024: Yellow book
+    4300026: Cube.021
+    4300028: Cube.124
+    4300030: Cube.006
+    4300032: Cylinder.020
+    4300034: Cube.003
+    4300036: Cube.004
+    4300038: Cube.007
+    2186277476908879412: ImportLogs
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 20
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
