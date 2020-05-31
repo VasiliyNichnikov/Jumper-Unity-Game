@@ -1,32 +1,8 @@
 fileFormatVersion: 2
-guid: 79a6e389b601af7489977c05cd2fbfbe
+guid: a69f9dba96e416044a8cfb37d2346dc0
 ModelImporter:
   serializedVersion: 19300
-  internalIDToNameTable:
-  - first:
-      1: 100000
-    second: default
-  - first:
-      1: 100002
-    second: //RootNode
-  - first:
-      4: 400000
-    second: default
-  - first:
-      4: 400002
-    second: //RootNode
-  - first:
-      21: 2100000
-    second: defaultMat
-  - first:
-      23: 2300000
-    second: default
-  - first:
-      33: 3300000
-    second: default
-  - first:
-      43: 4300000
-    second: default
+  internalIDToNameTable: []
   externalObjects: {}
   materials:
     materialImportMode: 1
@@ -55,7 +31,7 @@ ModelImporter:
     extraExposedTransformPaths: []
     extraUserProperties: []
     clipAnimations: []
-    isReadable: 1
+    isReadable: 0
   meshes:
     lODScreenPercentages: []
     globalScale: 100
@@ -104,14 +80,14 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 100
+    globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   autoGenerateAvatarMappingIfUnspecified: 1
-  animationType: 0
+  animationType: 2
   humanoidOversampling: 1
   avatarSetup: 0
   additionalBone: 0

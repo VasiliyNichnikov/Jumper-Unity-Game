@@ -55,7 +55,16 @@ public class GenerationMap : MonoBehaviour
            newObject.name = prefab.name;
            //print(newObject.transform.localScale.x);
            if (_lastObject != null)
-               _positionX += (_lastObject.transform.localScale.x / 2) + (newObject.transform.localScale.x / 2) + Offset;
+           {
+               // Если объекты имеют размер 1 
+               var bounds = _lastObject.GetComponent<Collider>().bounds;
+               Vector3 end = new Vector3(Mathf.Infinity, 0, 0);
+               float x1 = bounds.ClosestPoint(end).x;
+               print(x1);
+               _positionX += x1;
+               //print(_positionX);
+               //_positionX += (_lastObject.transform.localScale.x / 2) + (newObject.transform.localScale.x / 2) + Offset;
+           }
            else
                _positionX += 6;
            newObject.transform.position = new Vector3(_positionX, newObject.transform.position.y, transform.position.z);

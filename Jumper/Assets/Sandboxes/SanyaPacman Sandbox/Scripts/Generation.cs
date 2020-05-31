@@ -47,8 +47,7 @@ public class Generation : MonoBehaviour
         var pre_last_pref = last_pref;
         last_pref = Instantiate(
             prefabs[(int)Random.Range(0, prefabs.Length)],
-            Vector3.zero,
-            new Quaternion());
+            transform, false);
         var bounds = pre_last_pref.GetComponent<Collider>().bounds;
         float x1 = bounds.ClosestPoint(end).x;
         //Debug.Log("x1= " + x1);
