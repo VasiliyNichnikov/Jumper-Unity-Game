@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using UnityEngine;
 using Random = System.Random;
+using Vector3 = UnityEngine.Vector3;
 
 public class GenerationMap : MonoBehaviour
 {
@@ -24,6 +26,10 @@ public class GenerationMap : MonoBehaviour
     [Header("Игрока")] [SerializeField] private GameObject _player = null;
     
     [Header("Расстояние между объектами")] public float Offset = 0.0f;
+
+    // Массив, который хранит полседнии 4 объекта
+    private GameObject[] _arrayCreatedObjects = new GameObject[]{null, null, null, null};
+    // Номер ячейки, куда нужно положить новый созданный объект
     
     // Позиция по X
     private float _positionX = 0.0f;
@@ -34,7 +40,7 @@ public class GenerationMap : MonoBehaviour
     {
         //_positionX = 2;
         //CreateObject();
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 20; i++)
         {
             CreateObject();
         }
@@ -46,116 +52,144 @@ public class GenerationMap : MonoBehaviour
     }
 
     public void CreateObject()
-    {
-        GameObject prefab = GetObject();
-       // Vector2 sizeObject = new Vector2(classObject.Width, classObject.Width);
-       if (prefab != null)
-       {
+    { 
+        GameObject prefab = GetObject(); 
+        if (prefab != null) 
+        {
            GameObject newObject = Instantiate(prefab, transform, false);
            newObject.name = prefab.name;
-           //print(newObject.transform.localScale.x);
            if (_lastObject != null)
            {
-               // Если объекты имеют размер 1 
-               var bounds = _lastObject.GetComponent<Collider>().bounds;
-               Vector3 end = new Vector3(Mathf.Infinity, 0, 0);
-               float x1 = bounds.ClosestPoint(end).x;
-               print(x1);
-               _positionX += x1;
-               //print(_positionX);
-               //_positionX += (_lastObject.transform.localScale.x / 2) + (newObject.transform.localScale.x / 2) + Offset;
+               _positionX += (_lastObject.GetComponent<Collider>().bounds.size.x / 2) + 
+                             (newObject.GetComponent<Collider>().bounds.size.x / 2) + Offset;
            }
            else
                _positionX += 6;
            newObject.transform.position = new Vector3(_positionX, newObject.transform.position.y, transform.position.z);
-           _lastObject = newObject.transform;
-       }else
+           _lastObject = newObject.transform; 
+        }else
            Debug.LogError("Error. Not Found Object Block");
-       //print(newObject.GetComponent<MeshFilter>().sharedMesh.bounds);
-        //float dis = Vector3.Distance(newObject.GetComponent<MeshFilter>().sharedMesh.bounds.center,
-        //    newObject.GetComponent<MeshFilter>().sharedMesh.bounds.extents);
-        //print(dis);
-        
-        //print(newObject.GetComponent<MeshFilter>().sharedMesh);
-        //newObject.GetComponentInChildren<BoxCollider>().gameObject.name =
-         //   newObject.GetComponentInChildren<BoxCollider>().gameObject.transform.lossyScale.x.ToString();
     }
 
-    // Возвращает объект, который нужно создать
+    
+    //Возвращает объект, который нужно создать
     private GameObject GetObject()
     {
-        float heightBlock = 1;
-        //print(_player.transform.position.y);
-        // if (GetNearestHeightBlock() == 1) 
-        //     heightBlock = 2;
-        // else if (GetNearestHeightBlock() <= 5f && GetNearestHeightBlock() >= 4f)
-        //     heightBlock = 5;
-        print($"heightBlock - {heightBlock} posLastCube - {GetNearestHeightBlock()}");
-        switch (GetNearestHeightBlock())
+        float distanceObjectPrefabY = 0;
+        if (_lastObject != null)
         {
-            case 1:
-                heightBlock = 2;
-                break;
-            
-            case 2:
-                heightBlock = 3;
-                break;
-            
-            case 3:
-                heightBlock = 4;
-                break;
-            
-            case 4:
-                heightBlock = 1;
-                break;
-        }
-        int numberRandom = UnityEngine.Random.Range(0, _objects.Length);
-        if (_objects[numberRandom].Height <= heightBlock)
-        {
-            return _objects[numberRandom].PrefabObject;
+            float distanceY = GetMaxHeightObjectCollider(_lastObject.gameObject);
+            // Нужна в случаи, если цикл не сможет завершится
+            int exitNum = 0;
+            while (exitNum <= 1000)
+            {
+                GameObject objectPrefab = _objects[UnityEngine.Random.Range(0, _objects.Length)].PrefabObject;
+                distanceObjectPrefabY = GetMaxHeightObjectCollider(objectPrefab);
+                float differenceHeight = Mathf.Abs(distanceObjectPrefabY - distanceY);
+                exitNum += 1;
+                print(distanceObjectPrefabY);
+                if ((differenceHeight <= 2.5f && CheckLastObjects(objectPrefab)) || (distanceY > distanceObjectPrefabY && CheckLastObjects(objectPrefab)))
+                    return objectPrefab;
+            }
+            // for (int i = 0; i < _objects.Length; i++)
+            // {
+            //     GameObject objectPrefab = _objects[i].PrefabObject;
+            //     distanceObjectPrefabY = GetMaxHeightObjectCollider(objectPrefab);
+            //     float differenceHeight = Mathf.Abs(distanceObjectPrefabY - distanceY);
+            //     if (differenceHeight <= 3 && CheckLastObjects(objectPrefab))
+            //         return objectPrefab;
+            // }
         }
         else
         {
-            numberRandom = UnityEngine.Random.Range(0, _objects.Length);
-            while (true)
+            // Нужна в случаи, если цикл не сможет завершится
+            int exitNum = 0;
+            while (exitNum <= 1000)
             {
-                if (_objects[numberRandom].Height <= heightBlock)
-                {
-                    return _objects[numberRandom].PrefabObject;
-                }
-                numberRandom = UnityEngine.Random.Range(0, _objects.Length);
+                GameObject objectPrefab = _objects[UnityEngine.Random.Range(0, _objects.Length)].PrefabObject;
+                distanceObjectPrefabY = GetMaxHeightObjectCollider(objectPrefab);
+                exitNum += 1;
+                if (distanceObjectPrefabY <= 3 && CheckLastObjects(objectPrefab))
+                    return objectPrefab;
             }
+            // for (int i = 0; i < _objects.Length; i++)
+            // {
+            //     GameObject objectPrefab = _objects[i].PrefabObject;
+            //     distanceObjectPrefabY = GetMaxHeightObjectCollider(objectPrefab);
+            //     print(distanceObjectPrefabY);
+            //     if (distanceObjectPrefabY <= 3)
+            //         return objectPrefab;
+            // }
         }
+        Debug.LogError("Не найдены объекты!");
+        return null;
+    }
+
+    private float GetMaxHeightObjectCollider(GameObject obj)
+    {
+        if (obj.GetComponent<Collider>() == null)
+        {
+            Debug.LogError("Коллайдер не найден. Ошибка");
+            return -1f;
+        }
+
+        Collider collider = obj.GetComponent<Collider>();
+        var center = collider.bounds.center;
+        var pointColliderMaxY =
+            collider.bounds.ClosestPoint(new Vector3(center.x, Mathf.Infinity, center.z));
+        float distanceObjectPrefabY = Vector3.Project(pointColliderMaxY, Vector3.up).y;
+        return distanceObjectPrefabY;
+    }
+
+    private bool CheckLastObjects(GameObject obj)
+    {
+        _arrayCreatedObjects = GetLastChildren();
+        if (_arrayCreatedObjects == null)
+            return true;
+        foreach (GameObject objList in _arrayCreatedObjects)
+        {
+            print($"ObjList: {objList.name}; Obj: {obj.name}");
+            if (objList.name == obj.name)
+                return false;
+        }
+        return true;
+    }
+
+    private GameObject[] GetLastChildren()
+    {
+        int numberChild = transform.childCount;
+        if (numberChild > 1)
+        {
+            if (numberChild > 4)
+                numberChild = 4;
+            GameObject[] arrayResult = new GameObject[numberChild];
+            for (int i = 0; i < numberChild; i++)
+            {
+                print(numberChild - i);
+                arrayResult[i] = transform.GetChild(transform.childCount - i - 1).gameObject;
+            }
+
+            return arrayResult;
+        }
+        //Debug.LogError("Недостаточно элементов в массиве.");
+        return null;
     }
     
     // Возвращает высоту последнего блока
-    private float GetNearestHeightBlock()
-    {
-        //GameObject objectEnd = transform.GetChild(-1).gameObject;
-
-        if (_lastObject != null)
-        {
-            for (int i = 0; i < _objects.Length; i++)
-            {
-                if (_objects[i].Name == _lastObject.name)
-                    return _objects[i].Height;
-            }
-        }
-        //print("End");
-        return 1f;
-        // float minDistance = 100.0f;
-        // GameObject resObject = null;
-        // for (int i = 0; i < transform.childCount; i++)
-        // {
-        //     float dis = Vector3.Distance(transform.GetChild(i).position, _player.transform.position);
-        //     if (dis < minDistance)
-        //     {
-        //         minDistance = dis;
-        //         resObject = transform.GetChild(i).gameObject;
-        //     }
-        // }
-        // return resObject;
-    }
+    // private float GetNearestHeightBlock()
+    // {
+    //     //GameObject objectEnd = transform.GetChild(-1).gameObject;
+    //
+    //     if (_lastObject != null)
+    //     {
+    //         for (int i = 0; i < _objects.Length; i++)
+    //         {
+    //             if (_objects[i].Name == _lastObject.name)
+    //                 return _objects[i].Height;
+    //         }
+    //     }
+    //     return 1f;
+    // }
     
     
 }
