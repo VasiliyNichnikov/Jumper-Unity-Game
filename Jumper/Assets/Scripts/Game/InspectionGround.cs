@@ -53,6 +53,7 @@ public class InspectionGround : MonoBehaviour
         _managingJumper.StartAnimationTopJumper();
         _managingJumper.ChangeRigidbodyKinematic(true);
         IsGround = true;
+        print(IsGround);
         //}
     }
 

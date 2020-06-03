@@ -78,8 +78,10 @@ public class ManagingJumper : MonoBehaviour
 
     private void OnMouseDrag()
     {
+        print("Drag");
         if (InspectionGround.IsGround)
         {
+            print("IsGround");
             _upperPartJumper.localPosition = new Vector3(
                 _upperPartJumper.localPosition.x, 
                 GetPositionJumper(), 

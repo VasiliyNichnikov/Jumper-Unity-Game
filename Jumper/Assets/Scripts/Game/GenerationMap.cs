@@ -12,18 +12,16 @@ public class GenerationMap : MonoBehaviour
     public class Object
     {
         [Header("Название объекта")] public string Name = "None";
-        //[Header("Высота объекта")] public float Height = 0;
-        //[Header("Ширина объекта")] public float Width = 0;
         [Header("Объект")] public GameObject PrefabObject = null;
     }
 
-    [Header("Скрипт, который находится на игроке")] [SerializeField]
-    private InspectionGround _inspectionGround = null;
+    //[Header("Скрипт, который находится на игроке")] [SerializeField]
+   // private InspectionGround _inspectionGround = null;
     
     [Header("Объекты, которые создаются на сцены")] [SerializeField]
     private Object[] _objects = null;
 
-    [Header("Игрок")] [SerializeField] private GameObject _player = null;
+    //[Header("Игрок")] [SerializeField] private GameObject _player = null;
     
     [Header("Расстояние между объектами")] public float Offset = 0.0f;
 
@@ -44,11 +42,6 @@ public class GenerationMap : MonoBehaviour
         {
             CreateObject();
         }
-    }
-
-    private void Update()
-    {
-        //print(GetNearestBlock().name);
     }
 
     public void CreateObject()
@@ -88,17 +81,10 @@ public class GenerationMap : MonoBehaviour
                 float differenceHeight = Mathf.Abs(distanceObjectPrefabY - distanceY);
                 exitNum += 1;
                 print(distanceObjectPrefabY);
-                if ((differenceHeight <= 2.5f && CheckLastObjects(objectPrefab)) || (distanceY > distanceObjectPrefabY && CheckLastObjects(objectPrefab)))
+                if ((differenceHeight <= 2.4f ||  distanceY > distanceObjectPrefabY) && CheckLastObjects(objectPrefab))
                     return objectPrefab;
             }
-            // for (int i = 0; i < _objects.Length; i++)
-            // {
-            //     GameObject objectPrefab = _objects[i].PrefabObject;
-            //     distanceObjectPrefabY = GetMaxHeightObjectCollider(objectPrefab);
-            //     float differenceHeight = Mathf.Abs(distanceObjectPrefabY - distanceY);
-            //     if (differenceHeight <= 3 && CheckLastObjects(objectPrefab))
-            //         return objectPrefab;
-            // }
+            Debug.LogError("Нет объектов (1)");
         }
         else
         {
@@ -109,22 +95,16 @@ public class GenerationMap : MonoBehaviour
                 GameObject objectPrefab = _objects[UnityEngine.Random.Range(0, _objects.Length)].PrefabObject;
                 distanceObjectPrefabY = GetMaxHeightObjectCollider(objectPrefab);
                 exitNum += 1;
-                if (distanceObjectPrefabY <= 3 && CheckLastObjects(objectPrefab))
+                if (distanceObjectPrefabY <= 3f && CheckLastObjects(objectPrefab))
                     return objectPrefab;
             }
-            // for (int i = 0; i < _objects.Length; i++)
-            // {
-            //     GameObject objectPrefab = _objects[i].PrefabObject;
-            //     distanceObjectPrefabY = GetMaxHeightObjectCollider(objectPrefab);
-            //     print(distanceObjectPrefabY);
-            //     if (distanceObjectPrefabY <= 3)
-            //         return objectPrefab;
-            // }
+            Debug.LogError("Нет объектов (2)");
         }
         Debug.LogError("Не найдены объекты!");
         return null;
     }
-
+    
+    // Возвращет высоту объекта по коллайдеру 
     private float GetMaxHeightObjectCollider(GameObject obj)
     {
         if (obj.GetComponent<Collider>() == null)
@@ -140,7 +120,8 @@ public class GenerationMap : MonoBehaviour
         float distanceObjectPrefabY = Vector3.Project(pointColliderMaxY, Vector3.up).y;
         return distanceObjectPrefabY;
     }
-
+    
+    // Проверка четырех последних блоков
     private bool CheckLastObjects(GameObject obj)
     {
         _arrayCreatedObjects = GetLastChildren();
@@ -148,13 +129,13 @@ public class GenerationMap : MonoBehaviour
             return true;
         foreach (GameObject objList in _arrayCreatedObjects)
         {
-            print($"ObjList: {objList.name}; Obj: {obj.name}");
             if (objList.name == obj.name)
                 return false;
         }
         return true;
     }
-
+    
+    // Возвращает последние 4 объекта у родителя
     private GameObject[] GetLastChildren()
     {
         int numberChild = transform.childCount;
@@ -171,25 +152,6 @@ public class GenerationMap : MonoBehaviour
 
             return arrayResult;
         }
-        //Debug.LogError("Недостаточно элементов в массиве.");
         return null;
     }
-    
-    // Возвращает высоту последнего блока
-    // private float GetNearestHeightBlock()
-    // {
-    //     //GameObject objectEnd = transform.GetChild(-1).gameObject;
-    //
-    //     if (_lastObject != null)
-    //     {
-    //         for (int i = 0; i < _objects.Length; i++)
-    //         {
-    //             if (_objects[i].Name == _lastObject.name)
-    //                 return _objects[i].Height;
-    //         }
-    //     }
-    //     return 1f;
-    // }
-    
-    
 }

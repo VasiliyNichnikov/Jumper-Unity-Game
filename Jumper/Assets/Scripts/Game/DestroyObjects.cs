@@ -28,7 +28,7 @@ public class DestroyObjects : MonoBehaviour
         if (other.tag == "Block")
         {
             print("Destroy");
-//            _generationMap.CreateObject();
+            _generationMap.CreateObject();
             Destroy(other.gameObject);
         }
     }
