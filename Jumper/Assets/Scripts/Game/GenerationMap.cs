@@ -12,8 +12,8 @@ public class GenerationMap : MonoBehaviour
     public class Object
     {
         [Header("Название объекта")] public string Name = "None";
-        [Header("Высота объекта")] public float Height = 0;
-        [Header("Ширина объекта")] public float Width = 0;
+        //[Header("Высота объекта")] public float Height = 0;
+        //[Header("Ширина объекта")] public float Width = 0;
         [Header("Объект")] public GameObject PrefabObject = null;
     }
 
@@ -23,7 +23,7 @@ public class GenerationMap : MonoBehaviour
     [Header("Объекты, которые создаются на сцены")] [SerializeField]
     private Object[] _objects = null;
 
-    [Header("Игрока")] [SerializeField] private GameObject _player = null;
+    [Header("Игрок")] [SerializeField] private GameObject _player = null;
     
     [Header("Расстояние между объектами")] public float Offset = 0.0f;
 
