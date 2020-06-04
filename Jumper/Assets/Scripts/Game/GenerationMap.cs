@@ -6,6 +6,8 @@ using UnityEngine;
 using Random = System.Random;
 using Vector3 = UnityEngine.Vector3;
 
+
+
 public class GenerationMap : MonoBehaviour
 {
     [Serializable]
@@ -36,8 +38,11 @@ public class GenerationMap : MonoBehaviour
     
     private void Start()
     {
+
         //_positionX = 2;
         //CreateObject();
+
+     
         for (int i = 0; i < 20; i++)
         {
             CreateObject();
@@ -51,11 +56,21 @@ public class GenerationMap : MonoBehaviour
         {
            GameObject newObject = Instantiate(prefab, transform, false);
            newObject.name = prefab.name;
+
            if (_lastObject != null)
            {
                _positionX += (_lastObject.GetComponent<Collider>().bounds.size.x / 2) + 
                              (newObject.GetComponent<Collider>().bounds.size.x / 2) + Offset;
            }
+
+           //print(newObject.transform.localScale.x);
+           if (_lastObject != null)             
+           {
+               _positionX += (_lastObject.GetComponent<ObjectInfo>().sizeX / 2) + 
+                             (newObject.GetComponent<ObjectInfo>().sizeX / 2) + Offset;
+           }
+
+
            else
                _positionX += 6;
            newObject.transform.position = new Vector3(_positionX, newObject.transform.position.y, transform.position.z);

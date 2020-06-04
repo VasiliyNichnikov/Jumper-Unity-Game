@@ -60,3 +60,5 @@ crashlytics-build.properties
 
 
 Jumper/Assets/Scenes/Game.unity
+
+Jumper/Assets/Sandboxes/SanyaPacman Sandbox/Scripts/Generation.cs
