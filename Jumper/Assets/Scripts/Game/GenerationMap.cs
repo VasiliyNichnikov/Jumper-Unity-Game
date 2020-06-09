@@ -83,6 +83,7 @@ public class GenerationMap : MonoBehaviour
     //Возвращает объект, который нужно создать
     private GameObject GetObject()
     {
+<<<<<<< HEAD
         float distanceObjectPrefabY = 0;
         if (_lastObject != null)
         {
@@ -100,6 +101,37 @@ public class GenerationMap : MonoBehaviour
                     return objectPrefab;
             }
             Debug.LogError("Нет объектов (1)");
+=======
+        float heightBlock = 1;
+        //print(_player.transform.position.y);
+        // if (GetNearestHeightBlock() == 1) 
+        //     heightBlock = 2;
+        // else if (GetNearestHeightBlock() <= 5f && GetNearestHeightBlock() >= 4f)
+        //     heightBlock = 5;
+        print($"heightBlock - {heightBlock} posLastCube - {GetNearestHeightBlock()}");
+        switch (GetNearestHeightBlock())
+        {
+            case 1:
+                heightBlock = 2;
+                break;
+            
+            case 2:
+                heightBlock = 3;
+                break;
+            
+            case 3:
+                heightBlock = 4;
+                break;
+            
+            case 4:
+                heightBlock = 1;
+                break;
+        }
+        int numberRandom = UnityEngine.Random.Range(0, _objects.Length);
+        if (_objects[numberRandom].Height <= heightBlock)
+        {
+            return _objects[numberRandom].PrefabObject;
+>>>>>>> master
         }
         else
         {
@@ -122,6 +154,7 @@ public class GenerationMap : MonoBehaviour
     // Возвращет высоту объекта по коллайдеру 
     private float GetMaxHeightObjectCollider(GameObject obj)
     {
+<<<<<<< HEAD
         if (obj.GetComponent<Collider>() == null)
         {
             Debug.LogError("Коллайдер не найден. Ошибка");
@@ -134,6 +167,32 @@ public class GenerationMap : MonoBehaviour
             collider.bounds.ClosestPoint(new Vector3(center.x, Mathf.Infinity, center.z));
         float distanceObjectPrefabY = Vector3.Project(pointColliderMaxY, Vector3.up).y;
         return distanceObjectPrefabY;
+=======
+        //GameObject objectEnd = transform.GetChild(-1).gameObject;
+
+        if (_lastObject != null)
+        {
+            for (int i = 0; i < _objects.Length; i++)
+            {
+                if (_objects[i].Name == _lastObject.name)
+                    return _objects[i].Height;
+            }
+        }
+        //print("End");
+        return 1f;
+        // float minDistance = 100.0f;
+        // GameObject resObject = null;
+        // for (int i = 0; i < transform.childCount; i++)
+        // {
+        //     float dis = Vector3.Distance(transform.GetChild(i).position, _player.transform.position);
+        //     if (dis < minDistance)
+        //     {
+        //         minDistance = dis;
+        //         resObject = transform.GetChild(i).gameObject;
+        //     }
+        // }
+        // return resObject;
+>>>>>>> master
     }
     
     // Проверка четырех последних блоков

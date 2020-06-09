@@ -18,10 +18,28 @@ public class InspectionGround : MonoBehaviour
         _rigidbodyJumper = GetComponent<Rigidbody>();
     }
 
+<<<<<<< HEAD
     public IEnumerator CheckGround()
+=======
+    private void Update()
+    {
+        //Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.down) * 10, Color.black);
+        RaycastHit hit;
+        
+        if (Physics.SphereCast(transform.position, 0.18f / 2, transform.TransformDirection(Vector3.down), out hit, 0.5f))
+        {
+            print(hit.collider.name);
+        }
+        
+        // Debug.DrawRay(Physics.SphereCast(transform.position, 2,  transform.TransformDirection(Vector3.forward) * 10, out hit));
+    }
+
+    private void OnCollisionEnter(Collision other)
+>>>>>>> master
     {
         while (true)
         {
+<<<<<<< HEAD
             RaycastHit hit;
             Debug.DrawRay(_thisTransform.position, _thisTransform.TransformDirection(Vector3.down) * 10, Color.black); 
             if (Physics.Raycast(_thisTransform.position, _thisTransform.TransformDirection(Vector3.down), out hit, 0.09f)) 
@@ -48,6 +66,26 @@ public class InspectionGround : MonoBehaviour
             yield return null;
         }
     }
+=======
+            //print("Ground:" + other.gameObject.name);
+        }
+    }
+    
+    private void OnCollisionStay(Collision other)
+    {
+        //if (other.collider.tag == "ground")
+        //{
+        // Vector3 targetDir = transform.position - other.transform.position;
+        // float angle = Vector3.Angle(targetDir, Vector3.right);
+        // print(angle);
+        
+        //rint(other.gameObject.name + " Enter"); 
+        _managingJumper.StartAnimationTopJumper();
+        _managingJumper.ChangeRigidbodyKinematic(true);
+        IsGround = true;
+        //}
+    }
+>>>>>>> master
 
     private void OnDrawGizmosSelected()
     {

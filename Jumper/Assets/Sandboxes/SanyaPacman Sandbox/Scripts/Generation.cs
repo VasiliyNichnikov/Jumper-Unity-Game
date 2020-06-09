@@ -9,8 +9,11 @@ public class Generation : MonoBehaviour
     public GameObject[] prefabs;
     public float min_dist_between_pref;
     public float max_dist_between_pref;
+    public float heghtDifference=1;
+    public int CountlastPrefabs;
 
     private GameObject last_pref;
+    private List<GameObject> last_objects;
     private Vector3 end;
     private Vector3 start;
 
@@ -18,6 +21,7 @@ public class Generation : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        last_objects = new List<GameObject>();   
         SpawnFirst();
         end = new Vector3(Mathf.Infinity, 0, 0);
         start = new Vector3(-Mathf.Infinity, 0, 0);       
@@ -43,14 +47,42 @@ public class Generation : MonoBehaviour
             Spawn();
         }
     }
+    GameObject getOBJ()
+    {
+        List<int> obj_indexes = new List<int>();
+        for (int i = 0; i < prefabs.Length; i++)
+        {
+            obj_indexes.Add(i);           
+        }
+        
+        while  (obj_indexes.Count > 0)
+        {
+            int i = Random.Range(0, obj_indexes.Count - 1);
+            var obj = prefabs[obj_indexes[i]];
+            if (obj.GetComponent<ObjectInfo>().sizeY - last_pref.GetComponent<ObjectInfo>().sizeY > heghtDifference||
+                last_objects.Contains(obj))
+            {                
+                obj_indexes.Remove(i);                
+            }
+            else
+                return obj;
+        }
+        Debug.Log("Ошибка, не найден подходящий объект");
+        return new GameObject();
+    }
     void Spawn()
     {  
         var pre_last_pref = last_pref;
+<<<<<<< HEAD
         last_pref = Instantiate(
             prefabs[(int)Random.Range(0, prefabs.Length)],
             transform, false);
         
         var bounds = pre_last_pref.GetComponent<Collider>().bounds;
+=======
+        var obj = getOBJ();
+        last_pref = Instantiate(obj, transform, false);
+>>>>>>> master
         var GOinfo = pre_last_pref.GetComponent<ObjectInfo>();
         float x1 = GOinfo.transform.position.x+ GOinfo.sizeX/2;
 
@@ -67,12 +99,19 @@ public class Generation : MonoBehaviour
         if (SpawnZone != null)
         {
             SpawnZone.SpawnOnZone();
+        }        
+        last_objects.Add(obj);
+        if (last_objects.Count>CountlastPrefabs)
+        {
+            last_objects.RemoveAt(0);
         }
     }
     void SpawnFirst()
     {
+        var obj = prefabs[(int)Random.Range(0, prefabs.Length)];
+        last_objects.Add(obj);
         last_pref = Instantiate(
-            prefabs[(int)Random.Range(0, prefabs.Length)],
+            obj,
             Vector3.zero,
             new Quaternion());
     }

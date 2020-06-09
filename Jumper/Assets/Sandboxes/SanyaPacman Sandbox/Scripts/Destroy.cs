@@ -15,9 +15,9 @@ public class Destroy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(player);
+        //Debug.Log(player);
         if (player == null) return;
-        Debug.Log(transform.position.x - player.transform.position.x);
+        //Debug.Log(transform.position.x - player.transform.position.x);
         if (player.transform.position.x- transform.position.x> destroy_distantion)
         {
             Destroy(gameObject);
