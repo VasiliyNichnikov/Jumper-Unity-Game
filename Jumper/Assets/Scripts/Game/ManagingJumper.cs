@@ -5,6 +5,9 @@ using UnityEngine;
 // данный класс управляет джампером 
 public class ManagingJumper : MonoBehaviour
 {
+    [Header("Скрипт, который отобразит траекторию")] [SerializeField]
+    private Trajectory _trajectory = null;
+    
     [Header("Главная камера")] [SerializeField]
     private Camera _mainCamera = null;
 
@@ -76,6 +79,12 @@ public class ManagingJumper : MonoBehaviour
     [Header("Вектор кинца")] [SerializeField]
     private Transform _vectorEnd = null;
     
+    // Джампер прыгнул
+    private bool _jump = false;
+    
+    // Максимальная высота прыжка Джампера
+    //private float _maximumHeightJumper = 0.0f;
+    
     // Дополнительные переменные
     // Стартовая позиция мыши (пальца)
      private Vector2 _startFingerPosition = Vector2.zero;
@@ -87,13 +96,27 @@ public class ManagingJumper : MonoBehaviour
         //_jumperHeightY = _jumperPartUpper.localPosition.y;
         _rigidbodyJumper = _jumper.GetComponent<Rigidbody>();
     }
-
+    
+    // Отображаем траекторию
     private void Update()
     {
-        //_jumperPartUpper.localPosition = new Vector3(_jumperPartUpper.localPosition.x, _jumperHeightY, _jumperPartUpper.localPosition.z);
-        //_jumper.transform.localRotation = Quaternion.Euler(_jumper.transform.localRotation.x, _jumper.transform.localRotation.y, -_jumperAngleZ);
+        // Вычисляем скорость
+        var percentagePositionY = 100 - GetPositionJumper() * 100;
+        //print(percentagePositionY);
+        _speedUpJumper = percentagePositionY * _maximumJumpSpeed / 100;
+        _speedUpJumper = Mathf.Clamp(_speedUpJumper, 0, _maximumJumpSpeed);
+        // Добавляем скорость
+        //print(_speedUpJumper);
+        _trajectory.ShowTrajectory(_jumper.transform.position, (_vectorEnd.position - _vectorStart.position) * _speedUpJumper, ref _jump, GetAngleJumper());
     }
-    
+
+    // private void FixedUpdate()
+    // {
+    //     if (!_jump)
+    //         _maximumHeightJumper = MaxYJumper(_jumper.transform.position, GetSpeedJumper()); 
+    //         
+    // }
+
     // Рисование кнопки для запуска джампера (Создан для тестирования)
     private void OnGUI()
     {
@@ -159,23 +182,18 @@ public class ManagingJumper : MonoBehaviour
     
     private void OnMouseUp()
     {
-        Rigidbody _rigidbodyJumper = _jumper.GetComponent<Rigidbody>();
+        //Rigidbody _rigidbodyJumper = _jumper.GetComponent<Rigidbody>();
         // Выключаем кинематику
         _rigidbodyJumper.isKinematic = false;
         // Вычисляем скорость
-        var percentagePositionY = 100 - GetPositionJumper() * 100;
-        //print(percentagePositionY);
-        _speedUpJumper = percentagePositionY * _maximumJumpSpeed / 100;
-        _speedUpJumper = Mathf.Clamp(_speedUpJumper, 0, _maximumJumpSpeed);
-        // Добавляем скорость
-        //print(_speedUpJumper);
-        _rigidbodyJumper.AddForce((_vectorEnd.position - _vectorStart.position) * _speedUpJumper);
-        StartCoroutine(ReturnStartingTopJumperPosition(2));
-       // StartCoroutine(ReturnStartingTopJumperRotation());
+        
+        _rigidbodyJumper.AddForce(GetSpeedJumper(), ForceMode.VelocityChange);
+        StartCoroutine(ReturnStartingTopJumperPosition(6));
+        StartCoroutine(ReturnStartingTopJumperRotation());
         StartCoroutine(StartCheckGround());
-        
+        _jump = true;
         // _rigidbodyJumper.AddForce(new Vector3(positionX, 1, 0) * _speedUpJumper);
-        
+
         // if (InspectionGround.IsGround)
         // {
         //     AddSpeedJumperY(GetPositionX(), GetPositionJumper());
@@ -185,6 +203,18 @@ public class ManagingJumper : MonoBehaviour
         //     //StartCoroutine(_followingCamera.AnimationCamera(_differenceX));
         //     InspectionGround.IsGround = false;
         // }
+    }
+
+    private Vector3 GetSpeedJumper()
+    {
+        var percentagePositionY = 100 - GetPositionJumper() * 100;
+        //print(percentagePositionY);
+        _speedUpJumper = percentagePositionY * _maximumJumpSpeed / 100;
+        _speedUpJumper = Mathf.Clamp(_speedUpJumper, 0, _maximumJumpSpeed);
+        // Добавляем скорость
+        //print(_speedUpJumper);
+
+        return (_vectorEnd.position - _vectorStart.position) * _speedUpJumper;
     }
     
     // Возвращает до какой позиции надо сдвигать высшую ножку джампера
@@ -239,26 +269,59 @@ public class ManagingJumper : MonoBehaviour
     {
         while (_jumperPartUpper.localPosition.y != posY)
         {
+            //print(_rigidbodyJumper.velocity);
             _jumperPartUpper.localPosition = Vector3.MoveTowards(_jumperPartUpper.localPosition,
                 new Vector3(_jumperPartUpper.localPosition.x, posY, _jumperPartUpper.localPosition.z),
                 speed * Time.deltaTime);
             yield return null;
         }
     }
-    
+
+    private bool maximumHeightEnd = false;
     // Возвращает угол джампера в первоначальное положение
     private IEnumerator ReturnStartingTopJumperRotation()
     {
+        // var timeCount = .0f;
+        // print(_maximumHeightJumper);
+        // while (_jumper.transform.position.y <= _maximumHeightJumper && !maximumHeightEnd)
+        // {
+        //     //print(_jumper.transform.rotation);
+        //     _jumper.transform.rotation = Quaternion.Slerp(_jumper.transform.rotation, 
+        //          Quaternion.Euler(0, 0, 0), timeCount);
+        //     // Должно умножаться в зависимости от скорости (Доработать)
+        //     timeCount += Time.deltaTime * 0.1f;
+        //     if(_maximumHeightJumper > _jumper.transform.position.y)
+        //         maximumHeightEnd = true;
+        //     yield return null;
+        // }
+        // print("Max Height End");
+        
+        
         var timeCount = .0f;
-        while (_jumper.transform.rotation != Quaternion.Euler(0, 0, 0))
+        while (_jumper.transform.rotation.eulerAngles != new Vector3(0, 0, 0))
         {
             //print(_jumper.transform.rotation);
             _jumper.transform.rotation = Quaternion.Slerp(_jumper.transform.rotation, 
-                 Quaternion.Euler(0, 0, 0), timeCount);
+                Quaternion.Euler(0, 0, 0), timeCount);
             // Должно умножаться в зависимости от скорости (Доработать)
-            timeCount += Time.deltaTime * 3;
+            timeCount += Time.deltaTime * 0.1f;
             yield return null;
         }
+        
+    }
+
+    private float MaxYJumper(Vector3 origin, Vector3 speed)
+    {
+        Vector3[] points = new Vector3[100];
+        float yMax = 0;
+        for (int i = 0; i < points.Length; i++)
+        {
+            float time = i * 0.1f;
+            points[i] = origin + speed * time + Physics.gravity * time * time / 2f;
+            if (points[i].y > yMax)
+                yMax = points[i].y;
+        }
+        return yMax;
     }
 
     private void AddSpeedJumperY(float positionX, float positionY)
