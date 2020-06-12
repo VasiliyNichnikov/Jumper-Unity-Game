@@ -73,16 +73,13 @@ public class Generation : MonoBehaviour
     void Spawn()
     {  
         var pre_last_pref = last_pref;
-<<<<<<< HEAD
         last_pref = Instantiate(
             prefabs[(int)Random.Range(0, prefabs.Length)],
             transform, false);
         
         var bounds = pre_last_pref.GetComponent<Collider>().bounds;
-=======
         var obj = getOBJ();
         last_pref = Instantiate(obj, transform, false);
->>>>>>> master
         var GOinfo = pre_last_pref.GetComponent<ObjectInfo>();
         float x1 = GOinfo.transform.position.x+ GOinfo.sizeX/2;
 
