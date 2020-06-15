@@ -11,13 +11,14 @@ public class Generation : MonoBehaviour
     public float max_dist_between_pref;
     public float heghtDifference=1;
     public int CountlastPrefabs;
+    public float distantionSpawn = 20;
 
     private GameObject last_pref;
     private List<GameObject> last_objects;
     private Vector3 end;
     private Vector3 start;
 
-    private float distantionSpawn=20;
+    
     // Start is called before the first frame update
     void Start()
     {
