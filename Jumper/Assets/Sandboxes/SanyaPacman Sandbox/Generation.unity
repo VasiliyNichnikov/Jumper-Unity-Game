@@ -403,6 +403,8 @@ MonoBehaviour:
   - {fileID: 8562538764484143981, guid: de1fc760cd53b6f4ead6df6654d92dda, type: 3}
   min_dist_between_pref: 1
   max_dist_between_pref: 3
+  heghtDifference: 1
+  CountlastPrefabs: 0
 --- !u!4 &1278156107
 Transform:
   m_ObjectHideFlags: 0

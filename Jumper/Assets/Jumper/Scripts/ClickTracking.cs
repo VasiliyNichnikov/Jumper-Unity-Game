@@ -19,10 +19,16 @@ public class ClickTracking : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
 
     [Header("Скрипт, который придает скорость джамперу")] [SerializeField]
     private FlightJumper _flightJumper = null;
-    
+
     /// <summary>
     /// Переменные, которые скрыты в инспекторе 
     /// </summary>
+
+    [HideInInspector] // Хранит куротину, которая отвечает за прыжок джампера
+    public IEnumerator CoroutineAnimationFlying = null;
+    
+    // Прыгает пользователь или нет
+    public static bool JumpPlayer = false;
     
     // Переменная хранит начальную позицию пальца при нажатии на экран
     private Vector2 _startingPositionFinger = Vector2.zero;
@@ -32,23 +38,41 @@ public class ClickTracking : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     
     public void OnPointerDown(PointerEventData eventData)
     {
-        _startingPositionFinger = new Vector2(_mainCamera.ScreenToViewportPoint(Input.mousePosition).x, 
-            _mainCamera.ScreenToViewportPoint(Input.mousePosition).y);
+        if (!JumpPlayer)
+        {
+            if (CoroutineAnimationFlying != null)
+            {
+                StopCoroutine(CoroutineAnimationFlying);
+                CoroutineAnimationFlying = null;
+            }
+            
+            _startingPositionFinger = new Vector2(_mainCamera.ScreenToViewportPoint(Input.mousePosition).x,
+                _mainCamera.ScreenToViewportPoint(Input.mousePosition).y);
+        }
     }
     
     public void OnDrag(PointerEventData eventData)
     {
-        _nowPositionFinger = new Vector2(_mainCamera.ScreenToViewportPoint(Input.mousePosition).x, 
-            _mainCamera.ScreenToViewportPoint(Input.mousePosition).y);
+        if (!JumpPlayer)
+        {
+            _nowPositionFinger = new Vector2(_mainCamera.ScreenToViewportPoint(Input.mousePosition).x,
+                _mainCamera.ScreenToViewportPoint(Input.mousePosition).y);
 
-        _calculatingAngleHeightJumper.ChangeHeightAngleInclinationJumper(_nowPositionFinger, _startingPositionFinger);
-        //print($"Стартовая позиция: {_startingPositionFinger}; Позиция сейчас: {_nowPositionFinger};");
+            _calculatingAngleHeightJumper.ChangeHeightAngleInclinationJumper(_nowPositionFinger,
+                _startingPositionFinger);
+        }
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        print("Add Speed");
-        _flightJumper.AddSpeedJumper();
-        StartCoroutine(_calculatingAngleHeightJumper.ReturnUpperPartJumper());
+        if (!JumpPlayer)
+        {
+            print("Add Speed");
+            _flightJumper.AddSpeedJumper();
+            CoroutineAnimationFlying = _flightJumper.AnimationJumperLanding();
+            StartCoroutine(CoroutineAnimationFlying);
+            StartCoroutine(_calculatingAngleHeightJumper.ReturnUpperPartJumper(0.2f));
+            JumpPlayer = true;
+        }
     }
 }

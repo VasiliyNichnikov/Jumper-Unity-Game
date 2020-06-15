@@ -23,14 +23,27 @@ public class CalculatingAngleHeightJumper : MonoBehaviour
 
     [Header("Скорость с которой джампер разжимается")] [SerializeField] [Range(0, 100)]
     private float _speedDecompressedJumper = .0f;
-    
+
     /// <summary>
     /// Переменные, которые скрыты в инспекторе 
     /// </summary>
 
     // Максимальная высота верхней части джампера (Задается при старте)
     private float _maximumHeightJumper = .0f;
+    
+    private float _percentHeightJumper = .0f;
+    private float _percentAngleJumper = .0f;
+    
+    public float GerPercentHeightJumper
+    {
+        get { return 100 - Mathf.Abs(_percentHeightJumper); }
+    }
 
+    public float GetPercentAngleJumper
+    {
+        get { return 100 - Mathf.Abs(_percentAngleJumper); }
+    }
+    
     // transform верхней части джампера
     private Transform _transformUpperPartJumper = null;
 
@@ -55,6 +68,8 @@ public class CalculatingAngleHeightJumper : MonoBehaviour
     private float GetHeightUpperPartJumper(float nowPositionY, float startPositionY)
     {
         var percentageScreenHeight = ConversionValuesPercent(nowPositionY, startPositionY);
+        _percentHeightJumper = percentageScreenHeight;
+        //print($"Процент высоты: {percentageScreenHeight}");
         var positionUpperPartJumperY =
             InterestValue(percentageScreenHeight, _minimumHeightUpperPart, _maximumHeightJumper);
         return positionUpperPartJumperY;
@@ -65,21 +80,24 @@ public class CalculatingAngleHeightJumper : MonoBehaviour
     {
         var differenceX = startPositionX - nowPositionX;
         var percentageScreenX = differenceX * 100;
+        _percentAngleJumper = percentageScreenX;
+        //print($"Процент угла: {percentageScreenX}");
         var angleInclination = InterestValue(percentageScreenX, -_maximumAngleInclination, _maximumAngleInclination);
         return angleInclination;
     }
     
     // Возвращает высоту верхней части джампера к исходному положению
-    public IEnumerator ReturnUpperPartJumper()
+    public IEnumerator ReturnUpperPartJumper(float subtractHeight=0)
     {
-        Vector3 heightJumper = new Vector3(_transformUpperPartJumper.localPosition.x, _maximumHeightJumper, 
+        Vector3 heightJumper = new Vector3(_transformUpperPartJumper.localPosition.x, _maximumHeightJumper - subtractHeight, 
             _transformUpperPartJumper.localPosition.z);
-        while (_transformUpperPartJumper.position != heightJumper)
+        while (_transformUpperPartJumper.localPosition.y != heightJumper.y)
         {
             _transformUpperPartJumper.localPosition = Vector3.MoveTowards(_transformUpperPartJumper.localPosition, heightJumper,
                 _speedDecompressedJumper * Time.deltaTime);
             yield return null;
         }
+        print("Stop Height");
     }
     
     // Данный метод вычисляет проценты от 0 до 100
