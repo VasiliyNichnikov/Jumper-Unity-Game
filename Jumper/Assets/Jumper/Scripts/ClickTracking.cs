@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine.EventSystems;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// Данный скрипт отслеживает нажатия пользователя.
@@ -30,15 +32,24 @@ public class ClickTracking : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     // Прыгает пользователь или нет
     public static bool JumpPlayer = false;
     
+    // Проиграл пользователь или нет (Для теста)
+    public static bool GameOverPlayer = false;
+    
     // Переменная хранит начальную позицию пальца при нажатии на экран
     private Vector2 _startingPositionFinger = Vector2.zero;
 
     // Переменная хранит позицию на которой находится палец сейчас
     private Vector2 _nowPositionFinger = Vector2.zero;
-    
+
+    private void Start()
+    {
+        JumpPlayer = false;
+        GameOverPlayer = false;
+    }
+
     public void OnPointerDown(PointerEventData eventData)
     {
-        if (!JumpPlayer)
+        if (!JumpPlayer && !GameOverPlayer)
         {
             if (CoroutineAnimationFlying != null)
             {
@@ -53,7 +64,7 @@ public class ClickTracking : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     
     public void OnDrag(PointerEventData eventData)
     {
-        if (!JumpPlayer)
+        if (!JumpPlayer && !GameOverPlayer)
         {
             _nowPositionFinger = new Vector2(_mainCamera.ScreenToViewportPoint(Input.mousePosition).x,
                 _mainCamera.ScreenToViewportPoint(Input.mousePosition).y);
@@ -65,7 +76,7 @@ public class ClickTracking : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        if (!JumpPlayer)
+        if (!JumpPlayer && !GameOverPlayer)
         {
             print("Add Speed");
             _flightJumper.AddSpeedJumper();
@@ -75,4 +86,10 @@ public class ClickTracking : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
             JumpPlayer = true;
         }
     }
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+    
 }

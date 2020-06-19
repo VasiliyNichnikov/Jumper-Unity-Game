@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -23,6 +24,9 @@ public class CalculatingAngleHeightJumper : MonoBehaviour
 
     [Header("Скорость с которой джампер разжимается")] [SerializeField] [Range(0, 100)]
     private float _speedDecompressedJumper = .0f;
+
+    // [Header("Вектор для теста")] [SerializeField]
+    // private Transform _vector3Start = null;
 
     /// <summary>
     /// Переменные, которые скрыты в инспекторе 
@@ -111,6 +115,11 @@ public class CalculatingAngleHeightJumper : MonoBehaviour
     {
         return Mathf.Clamp(maximum * percentNow / 100, minimum, maximum);
     }
-    
 
+    private void Update()
+    {
+        //print(transform.rotation.eulerAngles);
+       // print(Vector3.right + transform.position);
+    }
+    
 }
