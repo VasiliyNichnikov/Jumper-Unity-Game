@@ -9,6 +9,11 @@ EditorBuildSettings:
     path: Assets/Jumper/Scenes/Jumper Test Scene.unity
     guid: 24fe01f603d1cbe42a982a1052dfbbeb
   - enabled: 1
+<<<<<<< HEAD
     path: Assets/Jumper/Scenes/Models.unity
     guid: 6ac04843359186c4fab61ab603c018bd
+=======
+    path: Assets/Sandboxes/SanyaPacman Sandbox/Generation.unity
+    guid: 8a79d44927701a743903df7cbdd832a6
+>>>>>>> Generation-SanyaPacman
   m_configObjects: {}
