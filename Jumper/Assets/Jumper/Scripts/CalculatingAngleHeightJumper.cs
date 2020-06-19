@@ -56,7 +56,7 @@ public class CalculatingAngleHeightJumper : MonoBehaviour
     private void Start()
     {
         _transformUpperPartJumper = _upperPartJumper.transform;
-        _maximumHeightJumper = _transformUpperPartJumper.position.y;
+        _maximumHeightJumper = _transformUpperPartJumper.localPosition.y;
         _thisTransform = GetComponent<Transform>();
     }
     

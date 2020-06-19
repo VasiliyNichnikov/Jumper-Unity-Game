@@ -74,9 +74,9 @@ public class Generation : MonoBehaviour
     void Spawn()
     {  
         var pre_last_pref = last_pref;
-        last_pref = Instantiate(
-            prefabs[(int)Random.Range(0, prefabs.Length)],
-            transform, false);
+        //last_pref = Instantiate(
+        //    prefabs[(int)Random.Range(0, prefabs.Length)],
+        //    transform, false);
         
         var bounds = pre_last_pref.GetComponent<Collider>().bounds;
         var obj = getOBJ();
@@ -111,6 +111,6 @@ public class Generation : MonoBehaviour
         last_pref = Instantiate(
             obj,
             Vector3.zero,
-            new Quaternion());
+            new Quaternion(),transform);
     }
 }

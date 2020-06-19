@@ -443,7 +443,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9ea724c7763af64abbe714674cacbb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnKey: 0
+  spawnKey: 282
   player: {fileID: 627137509}
   prefabs:
   - {fileID: 8146626263265375595, guid: 6b3ca2d34c44a484b9e39aba1b76286e, type: 3}
@@ -456,13 +456,12 @@ MonoBehaviour:
   - {fileID: 4548136900820051050, guid: 2eeef10775a08b34f963a315a966ecc3, type: 3}
   - {fileID: 7507855019256844183, guid: 3bc0a9471bf0a5d48857b704ef045240, type: 3}
   - {fileID: 2933799158265138658, guid: 3d1a37f10fdf30d4497db420384f0182, type: 3}
-
+  min_dist_between_pref: 1
   max_dist_between_pref: 4
   heghtDifference: 2.5
   CountlastPrefabs: 2
   distantionSpawn: 100
 --- !u!4 &921113239
-
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

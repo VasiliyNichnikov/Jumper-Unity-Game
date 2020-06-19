@@ -50,8 +50,10 @@ public class FlightJumper : MonoBehaviour
         _rigidbodyJumper = GetComponent<Rigidbody>();
         _calculatingAngleHeightJumper = GetComponent<CalculatingAngleHeightJumper>();
         _thisTransform = transform;
-        _rigidbodyJumper.isKinematic = true;
+        //_rigidbodyJumper.isKinematic = false; было изначально
+        _rigidbodyJumper.isKinematic = false;
         _panelGameOver.SetActive(false);
+        crutch_flag = true;
     }
     
     public void AddSpeedJumper()
@@ -110,9 +112,21 @@ public class FlightJumper : MonoBehaviour
     private Vector3 _normalVector = Vector3.zero;
     private Vector3 _pointVector = Vector3.zero;
     private bool isFlyJumper = false;
-    
+
+    ///костыль
+    bool crutch_flag = false;
+    void Crutch()
+    {
+        if (crutch_flag)
+        {
+            crutch_flag = false;
+            _rigidbodyJumper.isKinematic = true;
+        }
+    }
+    //костыль закончился
     private void OnCollisionEnter(Collision other)
     {
+        Crutch();
         _normalVector = other.GetContact(0).normal.normalized;
         _pointVector = other.GetContact(0).point;
 
