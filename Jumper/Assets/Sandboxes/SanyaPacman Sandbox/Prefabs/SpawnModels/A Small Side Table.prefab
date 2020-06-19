@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5463123997944483629}
   - component: {fileID: 9154875111619401278}
   - component: {fileID: 282961260513439091}
-  - component: {fileID: 8087472890544227297}
+  - component: {fileID: -8582986617623047660}
   m_Layer: 0
   m_Name: A Small Side Table
   m_TagString: Untagged
@@ -110,13 +110,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: None
-  BLB_Point: {x: -1.2192962, y: -0.0061843395, z: -1.4050671}
-  TRF_Point: {x: 1.213393, y: 2.1338787, z: 0.3146553}
-  sizeX: 2.4326892
-  sizeZ: 1.7197224
-  sizeY: 2.140063
+  BLB_Point: {x: 0, y: 0, z: 0}
+  TRF_Point: {x: 0, y: 0, z: 0}
+  sizeX: 0
+  sizeZ: 0
+  sizeY: 0
   center: {x: 0, y: 0, z: 0}
---- !u!64 &8087472890544227297
+--- !u!64 &-8582986617623047660
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
