@@ -2412,10 +2412,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemsField: {fileID: 1415507312}
   shopItems:
-  - {fileID: 518918385761591508, guid: 01aa61b0995584f49bc91384877aeba8, type: 3}
-  - {fileID: 518918385761591508, guid: cbc5d784ef5262747b48c2a209f3ec2e, type: 3}
+  - {fileID: 5209619819338116978, guid: 01aa61b0995584f49bc91384877aeba8, type: 3}
+  - {fileID: 1523735028086731919, guid: cbc5d784ef5262747b48c2a209f3ec2e, type: 3}
   selectedItemPrice: {fileID: 2141848393}
   selectedItemDonatePrice: {fileID: 464972547}
+  _selectedItem: {fileID: 0}
 --- !u!4 &2046404429
 Transform:
   m_ObjectHideFlags: 0
