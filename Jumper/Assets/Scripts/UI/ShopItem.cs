@@ -9,6 +9,7 @@ public class ShopItem : MonoBehaviour
   public GameObject prefab;
   public int price;
   public int donatePrice;
+  public Rarity rarity;
 
   private Shop shopManager;
   private UnityAction _action;
@@ -17,6 +18,11 @@ public class ShopItem : MonoBehaviour
   {
     shopManager = FindObjectOfType<Shop>();
     Button button = gameObject.GetComponent<Button>();
+    if (shopManager.selectedItem == null)
+    {
+      shopManager.selectedItem = this;
+      button.Select();
+    }
     _action += OnButtonClick;
     button.onClick.AddListener(_action);
   }
@@ -25,4 +31,11 @@ public class ShopItem : MonoBehaviour
   {
     shopManager.selectedItem = this;
   }
+}
+
+public enum Rarity
+{
+  Casual,
+  Rare,
+  Epic,
 }

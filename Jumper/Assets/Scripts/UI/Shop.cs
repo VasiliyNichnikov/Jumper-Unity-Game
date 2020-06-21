@@ -5,10 +5,9 @@ using UnityEngine.UI;
 
 public class Shop : MonoBehaviour
 {
-  public GameObject itemsField;
-  public ShopItem[] shopItems;
   public Text selectedItemPrice;
   public Text selectedItemDonatePrice;
+  public Text selectedItemRarity;
 
   public ShopItem selectedItem
   {
@@ -21,24 +20,13 @@ public class Shop : MonoBehaviour
       _selectedItem = value;
       selectedItemPrice.text = _selectedItem.price.ToString();
       selectedItemDonatePrice.text = _selectedItem.donatePrice.ToString();
+      selectedItemRarity.text = _selectedItem.rarity.ToString();
     }
   }
 
-  public ShopItem _selectedItem;
+  private ShopItem _selectedItem;
 
   void Start()
   {
-    if (itemsField != null)
-    {
-      foreach (ShopItem shopItem in shopItems)
-      {
-        ShopItem newShopItem = Instantiate(shopItem, Vector3.zero, Quaternion.identity, itemsField.transform);
-        if (selectedItem == null)
-        {
-          selectedItem = shopItem;
-          newShopItem.GetComponent<Button>().Select();
-        }
-      }
-    }
   }
 }
