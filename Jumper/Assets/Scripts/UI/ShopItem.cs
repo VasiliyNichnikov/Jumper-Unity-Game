@@ -6,7 +6,7 @@ using UnityEngine.Events;
 
 public class ShopItem : MonoBehaviour
 {
-  public GameObject prefab;
+  public GameObject model;
   public int price;
   public int donatePrice;
   public Rarity rarity;
