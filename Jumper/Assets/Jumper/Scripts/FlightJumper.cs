@@ -136,21 +136,30 @@ public class FlightJumper : MonoBehaviour
             
             print($"Угол джампера {Vector3.Angle(_pointVector - (_pointVector + _normalVector * 5), Vector3.right)}");
             
-            if (angle <= 60)
-            {
-                print("GameOver");
-                ClickTracking.GameOverPlayer = true;
-                _panelGameOver.SetActive(true);
-            }
-            else
-            {
+            //if (angle <= 60)
+            //{
+            //    print("GameOver");
+            //    ClickTracking.GameOverPlayer = true;
+            //    _panelGameOver.SetActive(true);
+            //}
+            //else
+            //{
                 _rigidbodyJumper.isKinematic = true;
                 isFlyJumper = false;
-            }
+            //}
         }
     }
-    
-    
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Object")
+        {
+            print("GameOver");
+            ClickTracking.GameOverPlayer = true;
+            _panelGameOver.SetActive(true);
+        }
+    }
+
     private void OnDrawGizmosSelected()
     {
         // Gizmos.color = Color.blue;

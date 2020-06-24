@@ -14,10 +14,10 @@ GameObject:
   - component: {fileID: 7891492068953082486}
   - component: {fileID: 6327095516115476651}
   - component: {fileID: -4393987413830530573}
-  - component: {fileID: 2664302390278610629}
+  - component: {fileID: 4357886544364032298}
   m_Layer: 0
   m_Name: gladilka10 1
-  m_TagString: Untagged
+  m_TagString: Object
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -133,8 +133,8 @@ MonoBehaviour:
   - {fileID: 8146626263265375595, guid: 6b3ca2d34c44a484b9e39aba1b76286e, type: 3}
   LeftPoint: {x: -3.0904408, y: 2.4070137, z: 0}
   RightPoint: {x: 4.026645, y: 2.4070137, z: 0}
---- !u!64 &2664302390278610629
-MeshCollider:
+--- !u!65 &4357886544364032298
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -143,7 +143,6 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: cbbb7ffb9ffec904698848fe4d40d5f9, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 7.117086, y: 0.112612724, z: 2.0235293}
+  m_Center: {x: 0.46810222, y: 2.3507075, z: 0.008977294}

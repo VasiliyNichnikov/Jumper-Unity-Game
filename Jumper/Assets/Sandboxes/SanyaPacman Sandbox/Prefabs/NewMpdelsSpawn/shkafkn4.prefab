@@ -13,10 +13,12 @@ GameObject:
   - component: {fileID: 5982182786901532273}
   - component: {fileID: 6833639632226831512}
   - component: {fileID: 4929218920490192812}
-  - component: {fileID: 3945166916651305525}
+  - component: {fileID: 2758368364646721875}
+  - component: {fileID: 7885169696623947354}
+  - component: {fileID: 5452719322674012199}
   m_Layer: 0
   m_Name: shkafkn4
-  m_TagString: Untagged
+  m_TagString: Object
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -122,8 +124,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroy_distantion: 50
---- !u!64 &3945166916651305525
-MeshCollider:
+--- !u!65 &2758368364646721875
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -132,7 +134,32 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: 0c7700d3c04ff9344987afd390d55b2e, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 3.1040654, y: 4.4445477, z: 1.6414437}
+  m_Center: {x: 0.00000023841858, y: 2.2315035, z: -0.0017479956}
+--- !u!65 &7885169696623947354
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5982182786899525809}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.1768117, y: 4.3675632, z: 1.6414437}
+  m_Center: {x: -1.5318441, y: 2.1930113, z: -0.0017479658}
+--- !u!65 &5452719322674012199
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5982182786899525809}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.1768117, y: 4.3675632, z: 1.6414437}
+  m_Center: {x: 1.531844, y: 2.1930113, z: -0.0017479658}

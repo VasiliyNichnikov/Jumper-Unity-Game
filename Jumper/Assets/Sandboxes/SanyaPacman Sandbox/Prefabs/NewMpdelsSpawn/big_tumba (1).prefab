@@ -13,10 +13,12 @@ GameObject:
   - component: {fileID: 7580252380480848311}
   - component: {fileID: 7141735234832357978}
   - component: {fileID: 2970783478776496735}
-  - component: {fileID: 150785853950576854}
+  - component: {fileID: 9168880987980926105}
+  - component: {fileID: 4594592341032171391}
+  - component: {fileID: 8098938799665847089}
   m_Layer: 0
   m_Name: big_tumba (1)
-  m_TagString: Untagged
+  m_TagString: Object
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -115,8 +117,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroy_distantion: 50
---- !u!64 &150785853950576854
-MeshCollider:
+--- !u!65 &9168880987980926105
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -125,7 +127,32 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -3764680694359950872, guid: ff3383b9bdb44a34da08362d79603d56, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 2.4326882, y: 2.140062, z: 1.719722}
+  m_Center: {x: 0, y: 1.061747, z: 0.019263625}
+--- !u!65 &4594592341032171391
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8146626263265375595}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.121986866, y: 2.087873, z: 1.719722}
+  m_Center: {x: -1.2113473, y: 1.0356524, z: 0.019263625}
+--- !u!65 &8098938799665847089
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8146626263265375595}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.121986866, y: 2.087873, z: 1.719722}
+  m_Center: {x: 1.211347, y: 1.0356524, z: 0.019263625}

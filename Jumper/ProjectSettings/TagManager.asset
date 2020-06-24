@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Jumper
+  - Object
   layers:
   - Default
   - TransparentFX
