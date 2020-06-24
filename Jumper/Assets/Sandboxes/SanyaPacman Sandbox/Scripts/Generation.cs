@@ -9,7 +9,7 @@ public class Generation : MonoBehaviour
     public GameObject[] prefabs;
     public float min_dist_between_pref;
     public float max_dist_between_pref;
-    public float heghtDifference=1;
+    public float heghtDifference = 1;
     public int CountlastPrefabs;
     public float distantionSpawn = 20;
 
@@ -55,9 +55,11 @@ public class Generation : MonoBehaviour
         {
             obj_indexes.Add(i);           
         }
-        
-        while  (obj_indexes.Count > 0)
+
+        int testNum = 0;
+        while  (obj_indexes.Count > 0 && testNum <= 100)
         {
+            testNum++;
             int i = Random.Range(0, obj_indexes.Count - 1);
             var obj = prefabs[obj_indexes[i]];
             if (obj.GetComponent<ObjectInfo>().sizeY - last_pref.GetComponent<ObjectInfo>().sizeY > heghtDifference||
@@ -74,9 +76,9 @@ public class Generation : MonoBehaviour
     void Spawn()
     {  
         var pre_last_pref = last_pref;
-        last_pref = Instantiate(
-            prefabs[(int)Random.Range(0, prefabs.Length)],
-            transform, false);
+        // last_pref = Instantiate(
+        //     prefabs[(int)Random.Range(0, prefabs.Length)],
+        //     transform, false);
         
         var bounds = pre_last_pref.GetComponent<Collider>().bounds;
         var obj = getOBJ();
