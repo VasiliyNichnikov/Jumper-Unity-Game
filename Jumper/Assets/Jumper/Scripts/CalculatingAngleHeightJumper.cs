@@ -25,9 +25,6 @@ public class CalculatingAngleHeightJumper : MonoBehaviour
     [Header("Скорость с которой джампер разжимается")] [SerializeField] [Range(0, 100)]
     private float _speedDecompressedJumper = .0f;
 
-    // [Header("Вектор для теста")] [SerializeField]
-    // private Transform _vector3Start = null;
-
     /// <summary>
     /// Переменные, которые скрыты в инспекторе 
     /// </summary>
@@ -48,9 +45,23 @@ public class CalculatingAngleHeightJumper : MonoBehaviour
         get { return 100 - Mathf.Abs(_percentAngleJumper); }
     }
     
+    // Для настроек джампера(Начало)
+    public float ChangeAngleInclination
+    {
+        set
+        {
+            if (value <= 90) _maximumAngleInclination = value;
+        }
+
+        get
+        {
+            return _maximumAngleInclination;
+        }
+    }
+    // Для настроек джампера(Конец)
+    
     // transform верхней части джампера
     private Transform _transformUpperPartJumper = null;
-
     private Transform _thisTransform = null;
 
     private void Start()
@@ -83,12 +94,7 @@ public class CalculatingAngleHeightJumper : MonoBehaviour
     // Данный метод меняем угол джампера в зависимости от расположения пальца 
     private float GetAngleInclinationJumper(float nowPositionX, float startPositionX)
     {
-        // print(ConversionValuesPercent(nowPositionX, nowPositionX));
         var percentageScreenWidth = (startPositionX - nowPositionX) * 100;
-        //var percentageScreenWidth = ConversionValuesPercent(nowPositionX, startPositionX);
-        //_percentAngleJumper = Mathf.Clamp(percentageScreenWidth, 0, 100);
-        //print(percentageScreenWidth);
-        //print($"Процент угла: {_percentAngleJumper}");
         var angleInclination = InterestValue(percentageScreenWidth, -_maximumAngleInclination, _maximumAngleInclination);
         percentageScreenWidth = Mathf.Abs(angleInclination) * 100 / _maximumAngleInclination;
         return angleInclination;

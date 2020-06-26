@@ -46,6 +46,12 @@ public class ClickTracking : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
 
     // Двигал пользователь палец или нет
     private bool _playerDragFinger = false;
+
+    public float ChangeSensitivityJumper
+    {
+        get { return _sensitivityJumper;}
+        set { if(value <= 10) _sensitivityJumper = value;}
+    }
     
     private void Start()
     {

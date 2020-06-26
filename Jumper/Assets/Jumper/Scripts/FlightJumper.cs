@@ -49,8 +49,37 @@ public class FlightJumper : MonoBehaviour
 
     // Скрипт, который управляет углом и высотой джампера
     private CalculatingAngleHeightJumper _calculatingAngleHeightJumper = null;
+    
+    // Для настроек джампера(Начало)
+    public float ChangeMassJumper
+    {
+        set
+        {
+            if (value <= 1) _rigidbodyJumper.mass = value;
+        }
 
-    private void Start()
+        get
+        {
+            return _rigidbodyJumper.mass;
+        }
+    }
+
+    public float ChangeMaximumSpeedJumper
+    {
+        set
+        {
+            if (value <= 100) _maximumSpeedFlightJumper = value;
+        }
+        get
+        {
+            return _maximumSpeedFlightJumper;
+        }
+    }
+    
+    // Для настроек джампера(Конец)
+    
+
+    private void Awake()
     {
         _rigidbodyJumper = GetComponent<Rigidbody>();
         _calculatingAngleHeightJumper = GetComponent<CalculatingAngleHeightJumper>();
