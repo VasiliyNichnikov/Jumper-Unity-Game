@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4929218920490192812}
   - component: {fileID: 2758368364646721875}
   - component: {fileID: 7885169696623947354}
-  - component: {fileID: 5452719322674012199}
+  - component: {fileID: 6550995977495752760}
   m_Layer: 0
   m_Name: shkafkn4
   m_TagString: Object
@@ -148,9 +148,9 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.1768117, y: 4.3675632, z: 1.6414437}
-  m_Center: {x: -1.5318441, y: 2.1930113, z: -0.0017479658}
---- !u!65 &5452719322674012199
+  m_Size: {x: 0.13845134, y: 4.3675632, z: 1.6414437}
+  m_Center: {x: 1.5472535, y: 2.1930113, z: -0.0017479658}
+--- !u!65 &6550995977495752760
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -161,5 +161,5 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.1768117, y: 4.3675632, z: 1.6414437}
-  m_Center: {x: 1.531844, y: 2.1930113, z: -0.0017479658}
+  m_Size: {x: 0.13845134, y: 4.3675632, z: 1.6414437}
+  m_Center: {x: -1.547253, y: 2.1930113, z: -0.0017479658}

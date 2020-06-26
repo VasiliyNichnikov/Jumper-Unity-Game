@@ -71,22 +71,26 @@ public class CalculatingAngleHeightJumper : MonoBehaviour
     // Данный метод возвращает высоту до которой нужно опустить верхнюю часть джампера
     private float GetHeightUpperPartJumper(float nowPositionY, float startPositionY)
     {
-        var percentageScreenHeight = ConversionValuesPercent(nowPositionY, startPositionY);
-        _percentHeightJumper = percentageScreenHeight;
+        //print($"Now pos Y - {Mathf.Abs(nowPositionY)}");
+        var percentageScreenHeight = ConversionValuesPercent(nowPositionY, startPositionY);//startPositionY);
+        _percentHeightJumper = Mathf.Clamp(percentageScreenHeight, 0, 100);
         //print($"Процент высоты: {percentageScreenHeight}");
         var positionUpperPartJumperY =
             InterestValue(percentageScreenHeight, _minimumHeightUpperPart, _maximumHeightJumper);
         return positionUpperPartJumperY;
     }
     
-    // Данный метод меняеи угол джампера в зависимости от расположения пальца 
+    // Данный метод меняем угол джампера в зависимости от расположения пальца 
     private float GetAngleInclinationJumper(float nowPositionX, float startPositionX)
     {
-        var differenceX = startPositionX - nowPositionX;
-        var percentageScreenX = differenceX * 100;
-        _percentAngleJumper = percentageScreenX;
-        //print($"Процент угла: {percentageScreenX}");
-        var angleInclination = InterestValue(percentageScreenX, -_maximumAngleInclination, _maximumAngleInclination);
+        // print(ConversionValuesPercent(nowPositionX, nowPositionX));
+        var percentageScreenWidth = (startPositionX - nowPositionX) * 100;
+        //var percentageScreenWidth = ConversionValuesPercent(nowPositionX, startPositionX);
+        //_percentAngleJumper = Mathf.Clamp(percentageScreenWidth, 0, 100);
+        //print(percentageScreenWidth);
+        //print($"Процент угла: {_percentAngleJumper}");
+        var angleInclination = InterestValue(percentageScreenWidth, -_maximumAngleInclination, _maximumAngleInclination);
+        percentageScreenWidth = Mathf.Abs(angleInclination) * 100 / _maximumAngleInclination;
         return angleInclination;
     }
     
@@ -101,7 +105,7 @@ public class CalculatingAngleHeightJumper : MonoBehaviour
                 _speedDecompressedJumper * Time.deltaTime);
             yield return null;
         }
-        print("Stop Height");
+        //print("Stop Height");
     }
     
     // Данный метод вычисляет проценты от 0 до 100

@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 7793607491329246329}
   - component: {fileID: 8370996528443398455}
   - component: {fileID: 7083794710397194426}
-  - component: {fileID: 4543429001879404060}
+  - component: {fileID: 1380782156870044077}
   m_Layer: 0
   m_Name: Shkaf_h
   m_TagString: Object
@@ -159,9 +159,9 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.19839191, y: 5.849703, z: 2.3657074}
-  m_Center: {x: -2.8016706, y: 2.959866, z: -0.022621155}
---- !u!65 &4543429001879404060
+  m_Size: {x: 0.19413805, y: 5.849703, z: 2.3657074}
+  m_Center: {x: 3.0918815, y: 2.959866, z: -0.022621155}
+--- !u!65 &1380782156870044077
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -172,5 +172,5 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.19839191, y: 5.849703, z: 2.3657074}
-  m_Center: {x: 3.13, y: 2.959866, z: -0.022621155}
+  m_Size: {x: 0.19413805, y: 5.849703, z: 2.3657074}
+  m_Center: {x: -2.83, y: 2.959866, z: -0.022621155}

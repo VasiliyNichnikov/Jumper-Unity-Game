@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 6327095516115476651}
   - component: {fileID: -4393987413830530573}
   - component: {fileID: 4357886544364032298}
+  - component: {fileID: 7964400160645037485}
   m_Layer: 0
   m_Name: gladilka10 1
   m_TagString: Object
@@ -146,3 +147,16 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 7.117086, y: 0.112612724, z: 2.0235293}
   m_Center: {x: 0.46810222, y: 2.3507075, z: 0.008977294}
+--- !u!65 &7964400160645037485
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8836087351046518845}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 7.1293564, y: 1.9447849, z: 2.0235293}
+  m_Center: {x: 0.47427177, y: 0.97269094, z: 0.008977294}

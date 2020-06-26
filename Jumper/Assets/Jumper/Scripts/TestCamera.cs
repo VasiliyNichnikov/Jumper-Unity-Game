@@ -13,23 +13,30 @@ public class TestCamera : MonoBehaviour
 
     [SerializeField] private Text _textFPS = null;
 
-    private Transform _thisTransform = null;
-    
+    private Transform _thisTransform = null;   
+
+    [SerializeField] private float _hudRefreshRate = 1f;
+    private float _timer;
     // Start is called before the first frame update
     void Start()
     {
-        _thisTransform = transform;
+        _thisTransform = transform;       
     }
-
+    
+    private float fps = 0;
     // Update is called once per frame
     void Update()
     {
         _thisTransform.position = Vector3.Lerp(_thisTransform.position,
             new Vector3(_player.position.x - _offset, _player.position.y + _offset, _thisTransform.position.z), _speedCamera * Time.deltaTime);
-        _thisTransform.LookAt(_player);
-
-        float fps = 1.0f / Time.deltaTime;
-        _textFPS.text = $"FPS: {fps.ToString()}";
-
+        _thisTransform.LookAt(_player);        
+        
+        if (Time.unscaledTime > _timer)
+        {
+            int fps = (int)(1f / Time.unscaledDeltaTime);
+            _textFPS.text = "FPS: " + fps;
+            _timer = Time.unscaledTime + _hudRefreshRate;
+        }
     }
+  
 }

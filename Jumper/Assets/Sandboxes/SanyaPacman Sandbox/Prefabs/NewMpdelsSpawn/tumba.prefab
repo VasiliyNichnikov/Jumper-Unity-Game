@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 2526684045640149222}
   - component: {fileID: 6917944199701489736}
   - component: {fileID: 3230951940948648994}
-  - component: {fileID: 2245204022739582350}
+  - component: {fileID: 7165558667919928991}
   m_Layer: 0
   m_Name: tumba
   m_TagString: Object
@@ -157,9 +157,9 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.29853058, y: 2.0985696, z: 2.5313768}
-  m_Center: {x: -4.0119443, y: 1.0669633, z: -0.0012794733}
---- !u!65 &2245204022739582350
+  m_Size: {x: 0.2333641, y: 2.0985696, z: 2.5313768}
+  m_Center: {x: -4.044528, y: 1.0669633, z: -0.0012794733}
+--- !u!65 &7165558667919928991
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -170,5 +170,5 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.29853058, y: 2.0985696, z: 2.5313768}
-  m_Center: {x: 4.011944, y: 1.0669633, z: -0.0012794733}
+  m_Size: {x: 0.2333641, y: 2.0985696, z: 2.5313768}
+  m_Center: {x: 4.044528, y: 1.0669633, z: -0.0012794733}

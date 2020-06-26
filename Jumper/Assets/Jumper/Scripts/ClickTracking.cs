@@ -26,8 +26,11 @@ public class ClickTracking : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     /// Переменные, которые скрыты в инспекторе 
     /// </summary>
 
-    [HideInInspector] // Хранит куротину, которая отвечает за прыжок джампера
-    public IEnumerator CoroutineAnimationFlying = null;
+    //[HideInInspector] // Хранит куротину, которая отвечает за прыжок джампера
+    //public IEnumerator CoroutineAnimationFlying = null;
+
+    [HideInInspector] // Нажимал пользователь на экран или нет (Нужно для проверки, чтобы завершить цикл посадки)
+    public bool FingerInputScreen = false;
     
     // Прыгает пользователь или нет
     public static bool JumpPlayer = false;
@@ -41,22 +44,28 @@ public class ClickTracking : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     // Переменная хранит позицию на которой находится палец сейчас
     private Vector2 _nowPositionFinger = Vector2.zero;
 
+    // Двигал пользователь палец или нет
+    private bool _playerDragFinger = false;
+    
     private void Start()
     {
         JumpPlayer = false;
         GameOverPlayer = false;
+        _playerDragFinger = false;
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
         if (!JumpPlayer && !GameOverPlayer)
         {
-            if (CoroutineAnimationFlying != null)
-            {
-                StopCoroutine(CoroutineAnimationFlying);
-                CoroutineAnimationFlying = null;
-            }
-            
+            //if (CoroutineAnimationFlying != null)
+            //{
+                //StopAllCoroutines();
+                //StopCoroutine(CoroutineAnimationFlying);
+              //  CoroutineAnimationFlying = null;
+            //}
+            FingerInputScreen = true;
+            //print("Finger " + FingerInputScreen);
             _startingPositionFinger = new Vector2(_mainCamera.ScreenToViewportPoint(Input.mousePosition).x,
                 _mainCamera.ScreenToViewportPoint(Input.mousePosition).y);
         }
@@ -66,6 +75,9 @@ public class ClickTracking : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     {
         if (!JumpPlayer && !GameOverPlayer)
         {
+            FingerInputScreen = true;
+            
+            _playerDragFinger = true;
             _nowPositionFinger = new Vector2(_mainCamera.ScreenToViewportPoint(Input.mousePosition).x,
                 _mainCamera.ScreenToViewportPoint(Input.mousePosition).y);
 
@@ -76,14 +88,18 @@ public class ClickTracking : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        if (!JumpPlayer && !GameOverPlayer)
+        if (!JumpPlayer && !GameOverPlayer && _playerDragFinger)
         {
-            print("Add Speed");
+            //print("Add Speed");
+            FingerInputScreen = false;
             _flightJumper.AddSpeedJumper();
-            CoroutineAnimationFlying = _flightJumper.AnimationJumperLanding();
-            StartCoroutine(CoroutineAnimationFlying);
-            StartCoroutine(_calculatingAngleHeightJumper.ReturnUpperPartJumper(0.2f));
+            //CoroutineAnimationFlying = _flightJumper.AnimationJumperLanding();
+            //StartCoroutine(CoroutineAnimationFlying);
+            //StartCoroutine(_flightJumper.AnimationJumperLanding());
+            StartCoroutine(_flightJumper.AnimationStartJumper());
+            StartCoroutine(_calculatingAngleHeightJumper.ReturnUpperPartJumper());
             JumpPlayer = true;
+            _playerDragFinger = false;
         }
     }
 

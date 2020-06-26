@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 3267472323403961182}
   - component: {fileID: 5381164421825583724}
   - component: {fileID: 4804293220928844378}
-  - component: {fileID: 5233893691268818556}
+  - component: {fileID: 2142417015739621272}
   m_Layer: 0
   m_Name: Holodilnik11
   m_TagString: Object
@@ -173,9 +173,9 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.36005783, y: 5.259831, z: 2.3824985}
-  m_Center: {x: 1.2948167, y: 2.6299155, z: 0.22744048}
---- !u!65 &5233893691268818556
+  m_Size: {x: 0.3096664, y: 5.259831, z: 2.3824985}
+  m_Center: {x: 1.3200125, y: 2.6299155, z: 0.22744048}
+--- !u!65 &2142417015739621272
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -186,5 +186,5 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.36005783, y: 5.259831, z: 2.3824985}
-  m_Center: {x: -1.294817, y: 2.6299155, z: 0.22744048}
+  m_Size: {x: 0.3096664, y: 5.259831, z: 2.3824985}
+  m_Center: {x: -1.320012, y: 2.6299155, z: 0.22744048}
