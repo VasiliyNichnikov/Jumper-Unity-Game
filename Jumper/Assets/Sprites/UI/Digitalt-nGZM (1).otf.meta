@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: adec8f3dd57d9c6428f7f6e6bd46ac2e
+guid: cb9e379bd7b50b74e97e0faab6ab9d96
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -8,9 +8,9 @@ TrueTypeFontImporter:
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
-  fontName: HVD Comic Serif Pro
+  fontName: Digitalt
   fontNames:
-  - HVD Comic Serif Pro
+  - Digitalt
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0
