@@ -18,7 +18,7 @@ public class Generation : MonoBehaviour
     private Vector3 end;
     private Vector3 start;
 
-    
+    bool bug = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,6 +31,7 @@ public class Generation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+       
         ChekPlayerPosition();
         //Control();
     }
@@ -50,48 +51,38 @@ public class Generation : MonoBehaviour
     }
     GameObject getOBJ()
     {
-        List<int> obj_indexes = new List<int>();
-        for (int i = 0; i < prefabs.Length; i++)
-        {
-            obj_indexes.Add(i);           
-        }
+        Shuffle(ref prefabs);
+        foreach (var obj in prefabs)
+        { 
+            if (!(obj.GetComponent<ObjectInfo>().sizeY - last_pref.GetComponent<ObjectInfo>().sizeY > heghtDifference ||
+                last_objects.Contains(obj)))
+                    return obj;
+        }       
         
-        while  (obj_indexes.Count > 0)
-        {
-            int i = Random.Range(0, obj_indexes.Count - 1);
-            var obj = prefabs[obj_indexes[i]];
-            if (obj.GetComponent<ObjectInfo>().sizeY - last_pref.GetComponent<ObjectInfo>().sizeY > heghtDifference||
-                last_objects.Contains(obj))
-            {                
-                obj_indexes.Remove(i);                
-            }
-            else
-                return obj;
-        }
-        Debug.Log("Ошибка, не найден подходящий объект");
-        return new GameObject();
+        return null;
     }
     void Spawn()
     {  
         var pre_last_pref = last_pref;
-        //last_pref = Instantiate(
-        //    prefabs[(int)Random.Range(0, prefabs.Length)],
-        //    transform, false);
-        
+       
         var bounds = pre_last_pref.GetComponent<Collider>().bounds;
         var obj = getOBJ();
+        if (obj == null)
+        {
+            Debug.Log("Ошибка, не найден подходящий объект");
+            return;
+        }
         last_pref = Instantiate(obj, transform, false);
         var GOinfo = pre_last_pref.GetComponent<ObjectInfo>();
         float x1 = GOinfo.transform.position.x+ GOinfo.sizeX/2;
 
-        //Debug.Log("x1= " + x1);
+       
         float x2 = Random.Range(min_dist_between_pref, max_dist_between_pref);
-        //Debug.Log("x2= " + x2);
+       
         GOinfo = last_pref.GetComponent<ObjectInfo>();
         float x3 = Mathf.Abs(GOinfo.transform.position.x - GOinfo.sizeX/2);
-        //Debug.Log("x3= " + x3);
-        //Debug.Log("Summ(x1 +x2 +x3)=" + (x1+ x2+ x3));
-        last_pref.transform.position += new Vector3(x1+x2+x3, 0, 0);  //new Vector3((last_pref.GetComponent<Collider>().bounds.center.x - last_pref.GetComponent<Collider>().bounds.ClosestPoint(end).x),0,0); 
+       
+        last_pref.transform.position += new Vector3(x1+x2+x3, 0, 0); 
 
         SpawnZoneInfo SpawnZone = last_pref.GetComponent<SpawnZoneInfo>();
         if (SpawnZone != null)
@@ -112,5 +103,25 @@ public class Generation : MonoBehaviour
             obj,
             Vector3.zero,
             new Quaternion(),transform);
+    }
+    public static void Shuffle<T>(ref List<T> list)
+    {
+        for (int i = list.Count - 1; i >= 1; i--)
+        {
+            int j = Random.Range(0,i + 1);
+            var tmp = list[j];
+            list[j] = list[i];
+            list[i] = tmp;
+        }
+    }
+    public static void Shuffle<T>( ref T[] arr)
+    { 
+        for (int i = arr.Length - 1; i >= 1; i--)
+        {
+            int j = Random.Range(0, i + 1);
+            var tmp = arr[j];
+            arr[j] = arr[i];
+            arr[i] = tmp;
+        }
     }
 }

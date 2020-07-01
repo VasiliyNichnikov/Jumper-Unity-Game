@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 1205536365269170106}
   - component: {fileID: 7057199567328076502}
   - component: {fileID: 5719136780846116196}
-  - component: {fileID: 7793607491329246329}
   - component: {fileID: 8370996528443398455}
   - component: {fileID: 7083794710397194426}
   - component: {fileID: 1380782156870044077}
@@ -119,22 +118,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroy_distantion: 50
---- !u!114 &7793607491329246329
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1205536365266971002}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38cf8c0c38a4c8f468a83b15c88e7104, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PrefabsForSpawn:
-  - {fileID: 8146626263265375595, guid: 6b3ca2d34c44a484b9e39aba1b76286e, type: 3}
-  LeftPoint: {x: -2.8393726, y: 5.9833364, z: 0}
-  RightPoint: {x: 3.1089497, y: 5.9833364, z: 0}
 --- !u!65 &8370996528443398455
 BoxCollider:
   m_ObjectHideFlags: 0
