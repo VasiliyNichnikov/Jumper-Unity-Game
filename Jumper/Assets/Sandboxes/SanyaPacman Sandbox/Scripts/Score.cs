@@ -12,11 +12,12 @@ public class Score : MonoBehaviour
     public int CoinReward;
     public float TimeForObj;
     public int CapacityForLastObjects=10;
-    public float Distance;
+    public float Distance=0;
     int CurrentCoins = 0;    
     float CurrTime;
     public List<GameObject> lastObjects;
 
+    Vector3 RayCenter;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,17 +30,22 @@ public class Score : MonoBehaviour
     {
         if (CurrTime>0)        
             CurrTime -= Time.deltaTime;
+        if (transform.position.x>0)
+            Distance = transform.position.x;
 
-        Distance = transform.position.x;
+
+
         TimeText.text =String.Format("время на объекте {0:f1}",CurrTime);
         DistanceText.text = String.Format("Рекорд в расстоянии {0:f1}", Distance);
         RaycastHit hit;
-        if (Physics.Raycast(transform.position,Vector3.down, out hit))
+        
+        if (Physics.Raycast(transform.position,Vector3.down, out hit, Mathf.Infinity, 9 ))
         {
+            RayCenter = hit.point;
             var obj = hit.transform.gameObject;            
             if (obj.tag!="Object")            
                 return;
-                       
+            
             if (!lastObjects.Contains(obj))
             {
                 lastObjects.Add(obj);
@@ -66,6 +72,6 @@ public class Score : MonoBehaviour
     {
         Gizmos.color = Color.cyan;
         Gizmos.DrawRay(transform.position, Vector3.down);
-        //Gizmos.DrawWireSphere(transform.position, 1);
+        Gizmos.DrawWireSphere(RayCenter, 1);
     }
 }
