@@ -46,12 +46,25 @@ public class ClickTracking : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
 
     // Двигал пользователь палец или нет
     private bool _playerDragFinger = false;
+    
+    // Позиция мыши при нажатии
+    private Vector2 _startMousePosition = Vector2.zero;
 
     public float ChangeSensitivityJumper
     {
         get { return _sensitivityJumper;}
         set { if(value <= 10) _sensitivityJumper = value;}
     }
+
+    // public Vector2 GetStartPositionFinger
+    // {
+    //     get { return _startMousePosition; }
+    // }
+    //
+    // public Vector3 GetNowPositionFinger
+    // {
+    //     get { return _nowPositionFinger; }
+    // }
     
     private void Start()
     {
@@ -64,9 +77,10 @@ public class ClickTracking : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     {
         if (!JumpPlayer && !GameOverPlayer)
         {
-            FingerInputScreen = true;
+            _startMousePosition = Input.mousePosition;
             _startingPositionFinger = new Vector2(_mainCamera.ScreenToViewportPoint(Input.mousePosition).x,
                 _mainCamera.ScreenToViewportPoint(Input.mousePosition).y);
+            FingerInputScreen = true;
         }
     }
     

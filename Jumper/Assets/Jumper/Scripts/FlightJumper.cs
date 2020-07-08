@@ -28,15 +28,21 @@ public class FlightJumper : MonoBehaviour
     [Header("Угол наклона джампера при падении")] [SerializeField] [Range(0, 45)]
     private float _angleIncidence = .0f;
     
+    [Header("Вес джампера при старте")] [SerializeField] [Range(0, 5)]
+    private float _massJumper = .0f;
+    
     [Header("Вектор для для нахождения вектора толчка")] [SerializeField]
     private Transform _vector3TransformHeightAngle = null;
 
     [Header("Панель, которая появляется во время проигрыша")] [SerializeField]
     private GameObject _panelGameOver = null;
 
+    [Header("Скрипт, который отображает траекторию джамперв")] [SerializeField]
+    private Trajectory _trajectory = null;
+    
     [Header("Скрипт, который отслеживает нажатие")] [SerializeField]
     private ClickTracking _clickTracking = null;
-
+    
     /// <summary>
     /// Переменные, которые скрыты в инспекторе 
     /// </summary>
@@ -49,6 +55,9 @@ public class FlightJumper : MonoBehaviour
 
     // Скрипт, который управляет углом и высотой джампера
     private CalculatingAngleHeightJumper _calculatingAngleHeightJumper = null;
+    
+    // Добавление массы при приземление
+    private float _addMassJumper = .0f;
     
     // Для настроек джампера(Начало)
     public float ChangeMassJumper
@@ -78,6 +87,16 @@ public class FlightJumper : MonoBehaviour
     
     // Для настроек джампера(Конец)
     
+    // Возвращает среднюю скорость джампера
+    public float GetAverageSpeedJumper
+    {
+        get
+        {
+            return GetSpeedJumper(_calculatingAngleHeightJumper.GerPercentHeightJumper, _maximumSpeedFlightJumper);
+            //(GetSpeedJumper(_calculatingAngleHeightJumper.GetPercentAngleJumper, _maximumSpeedFlightJumper) +
+            //GetSpeedJumper(_calculatingAngleHeightJumper.GerPercentHeightJumper, _maximumSpeedFlightJumper)) / 2;
+        }
+    }
 
     private void Awake()
     {
@@ -86,14 +105,38 @@ public class FlightJumper : MonoBehaviour
         _thisTransform = transform;
         _rigidbodyJumper.isKinematic = true;
     }
-    
+
+    private bool jump = false;
+    private void Update()
+    {
+        var speedX = GetSpeedJumper(_calculatingAngleHeightJumper.GetPercentAngleJumper, _maximumSpeedFlightJumper);
+        var speedY = GetSpeedJumper(_calculatingAngleHeightJumper.GerPercentHeightJumper, _maximumSpeedFlightJumper);
+        //_rigidbodyJumper.isKinematic = false;
+        if (speedY > 0)
+        {
+            Vector3 vectorDifference = _vector3TransformHeightAngle.position - _thisTransform.position;
+            Vector3 vectorForce = new Vector3(vectorDifference.x * speedX, vectorDifference.y * speedY, vectorDifference.z);
+            _trajectory.ShowTrajectory(transform.position, vectorForce, ref jump);
+            //_addMassJumper = Vector3.Project(vectorForce, Vector3.up).y / 2; // Добавляем массу джамперу при падениии
+            //_rigidbodyJumper.AddForce(vectorForce, ForceMode.Impulse);
+        }
+    }
+
     public void AddSpeedJumper()
     {
+        //print(_calculatingAngleHeightJumper.GetPercentAngleJumper);
+        var speedX = GetSpeedJumper(_calculatingAngleHeightJumper.GetPercentAngleJumper, _maximumSpeedFlightJumper);
+        var speedY = GetSpeedJumper(_calculatingAngleHeightJumper.GerPercentHeightJumper, _maximumSpeedFlightJumper);
         _rigidbodyJumper.isKinematic = false;
-        Vector3 vectorDifference = _vector3TransformHeightAngle.position - _thisTransform.position;
-        Vector3 vectorForce = new Vector3(vectorDifference.x * GetSpeedJumper(_calculatingAngleHeightJumper.GetPercentAngleJumper,  _maximumSpeedFlightJumper), 
-            vectorDifference.y * GetSpeedJumper(_calculatingAngleHeightJumper.GerPercentHeightJumper, _maximumSpeedFlightJumper), vectorDifference.z);
-        _rigidbodyJumper.AddForce(vectorForce,ForceMode.Impulse);
+        jump = true;
+        if (speedY > 0)
+        {
+            Vector3 vectorDifference = _vector3TransformHeightAngle.position - _thisTransform.position;
+            Vector3 vectorForce = new Vector3(vectorDifference.x * speedX, vectorDifference.y * speedY, vectorDifference.z);
+            //_trajectory.ShowTrajectory(transform.position, vectorForce);
+            _addMassJumper = Vector3.Project(vectorForce, Vector3.up).y / 2; // Добавляем массу джамперу при падениии
+            _rigidbodyJumper.AddForce(vectorForce, ForceMode.Impulse);
+        }
     }
 
     private Quaternion _rotationEnd = Quaternion.identity;
@@ -124,7 +167,7 @@ public class FlightJumper : MonoBehaviour
     {
         var endPositionJump = Math.Abs(_thisTransform.position.x);
         var differenceDistance = Mathf.Abs(endPositionJump - _startPositionJump);
-
+        _rigidbodyJumper.mass += _addMassJumper;
         if (differenceDistance > .5f)
         {
             if (_thisTransform.rotation.z < 0)
@@ -147,7 +190,6 @@ public class FlightJumper : MonoBehaviour
     // Возвращает джампер перпендикулярно земле при посадке.
     private IEnumerator AnimationReturnRotationJumper()
     {
-        ClickTracking.JumpPlayer = false;
         _rotationEnd = Quaternion.Euler(0, 0, 0);
         while (_thisTransform.rotation != _rotationEnd && !_clickTracking.FingerInputScreen)
         {
@@ -160,21 +202,24 @@ public class FlightJumper : MonoBehaviour
     private void OnCollisionEnter(Collision other)
     {
         if (_animationStartJumperEnd)
-        {
-            _landingCollider = true;
-            _rigidbodyJumper.isKinematic = true;
-        }
+            EndAnimationJumper();
     }
 
     private void OnCollisionStay(Collision other)
     {
         if (_animationStartJumperEnd)
-        {
-            _landingCollider = true;
-            _rigidbodyJumper.isKinematic = true;
-        }
+            EndAnimationJumper();
     }
 
+    
+    // Анимация заканчивается
+    private void EndAnimationJumper()
+    {
+        _landingCollider = true;
+        ClickTracking.JumpPlayer = false;
+        _rigidbodyJumper.isKinematic = true;
+        _rigidbodyJumper.mass = _massJumper;
+    }
 
     private void OnDrawGizmosSelected()
     {
@@ -185,12 +230,6 @@ public class FlightJumper : MonoBehaviour
 
     private float GetSpeedJumper(float percent, float maximumSpeed=1f)
     {
-        return maximumSpeed * percent / 100;
+        return maximumSpeed * percent / _calculatingAngleHeightJumper.MaximumPercentScreenForMaximumSpeedJumper;
     }
-
-    // private float GetSpeedJumper(float percentHeight, float percentAngle, float maximumSpeed)
-    // {
-    //     return maximumSpeed * ((percentHeight + percentAngle) * 2) / 100;
-    // }
-    
 }
