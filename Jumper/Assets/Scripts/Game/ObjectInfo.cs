@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿    using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -40,7 +40,6 @@ public class ObjectInfo: MonoBehaviour
         var meshcol = gameObject.AddComponent<MeshCollider>();
         meshcol.sharedMesh = GetComponent<MeshFilter>().sharedMesh;
         Bounds bounds = GetComponent<Collider>().bounds;
-        //Vector3 center = bounds.center;
         BLB_Point = bounds.ClosestPoint(new Vector3(-Mathf.Infinity, -Mathf.Infinity, -Mathf.Infinity));
         TRF_Point = bounds.ClosestPoint(new Vector3(Mathf.Infinity, Mathf.Infinity, Mathf.Infinity));
         BLB_Point -= transform.position;

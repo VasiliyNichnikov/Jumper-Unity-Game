@@ -10,7 +10,12 @@ public enum AllParametersSettings
     Mass,
     AngleInclination,
     MaximumSpeed,
-    Sensitivity
+    Sensitivity,
+    DistanceXCamera,
+    DistanceYCamera,
+    SpeedCamera,
+    AngleRotationCameraX,
+    AngleRotationCameraY
 }
 public class ChangeSettings : MonoBehaviour
 {
@@ -34,6 +39,9 @@ public class ChangeSettings : MonoBehaviour
 
     [SerializeField] [Header("Скрипт, который рассчитывает угол и высоту джампера")]
     private CalculatingAngleHeightJumper _calculatingAngleHeightJumper = null;
+
+    [SerializeField] [Header("Скрипт, который управляет камерой")]
+    private CameraTracking _cameraTracking = null;
 
 
     private void Start()
@@ -99,6 +107,66 @@ public class ChangeSettings : MonoBehaviour
                         _allSliders[i].SliderUI.value = _flightJumper.ChangeMaximumSpeedJumper;
                     }
                     break;
+                
+                case AllParametersSettings.DistanceXCamera:
+                    if (!getParameters)
+                    {
+                        _allSliders[i].TextUI.text = $"{_allSliders[i].NameSlider}: {_cameraTracking.ChangeGetOffsetX}";
+                        _cameraTracking.ChangeGetOffsetX = _allSliders[i].SliderUI.value;
+                    }
+                    else
+                    {
+                        _allSliders[i].SliderUI.value = _cameraTracking.ChangeGetOffsetX;
+                    }
+                    break;
+                
+                case AllParametersSettings.DistanceYCamera:
+                    if (!getParameters)
+                    {
+                        _allSliders[i].TextUI.text = $"{_allSliders[i].NameSlider}: {_cameraTracking.ChangeGetOffsetY}";
+                        _cameraTracking.ChangeGetOffsetY = _allSliders[i].SliderUI.value;
+                    }
+                    else
+                    {
+                        _allSliders[i].SliderUI.value = _cameraTracking.ChangeGetOffsetY;
+                    }
+                    break;
+                
+                case AllParametersSettings.AngleRotationCameraY:
+                    if (!getParameters)
+                    {
+                        _allSliders[i].TextUI.text = $"{_allSliders[i].NameSlider}: {_cameraTracking.ChangeAngleRotationY}";
+                        _cameraTracking.ChangeAngleRotationY = _allSliders[i].SliderUI.value;
+                    }
+                    else
+                    {
+                        _allSliders[i].SliderUI.value = _cameraTracking.ChangeAngleRotationY;
+                    }
+                    break;
+                
+                case AllParametersSettings.AngleRotationCameraX:
+                    if (!getParameters)
+                    {
+                        _allSliders[i].TextUI.text = $"{_allSliders[i].NameSlider}: {_cameraTracking.ChangeAngleRotationX}";
+                        _cameraTracking.ChangeAngleRotationX = _allSliders[i].SliderUI.value;
+                    }
+                    else
+                    {
+                        _allSliders[i].SliderUI.value = _cameraTracking.ChangeAngleRotationX;
+                    }
+                    break;
+                
+                case AllParametersSettings.SpeedCamera:
+                    if (!getParameters)
+                    {
+                        _allSliders[i].TextUI.text = $"{_allSliders[i].NameSlider}: {_cameraTracking.ChangeGetSpeed}";
+                        _cameraTracking.ChangeGetSpeed = _allSliders[i].SliderUI.value;
+                    }
+                    else
+                    {
+                        _allSliders[i].SliderUI.value = _cameraTracking.ChangeGetSpeed;
+                    }
+                    break;;
             }
         }
     }

@@ -34,15 +34,15 @@ public class FlightJumper : MonoBehaviour
     [Header("Вектор для для нахождения вектора толчка")] [SerializeField]
     private Transform _vector3TransformHeightAngle = null;
 
-    [Header("Панель, которая появляется во время проигрыша")] [SerializeField]
-    private GameObject _panelGameOver = null;
-
     [Header("Скрипт, который отображает траекторию джамперв")] [SerializeField]
     private Trajectory _trajectory = null;
     
     [Header("Скрипт, который отслеживает нажатие")] [SerializeField]
     private ClickTracking _clickTracking = null;
-    
+
+    [Header("Скрипт, который настраивает отвечает за движение камеры")] [SerializeField]
+    private CameraTracking _cameraTracking = null;
+
     /// <summary>
     /// Переменные, которые скрыты в инспекторе 
     /// </summary>
@@ -55,9 +55,6 @@ public class FlightJumper : MonoBehaviour
 
     // Скрипт, который управляет углом и высотой джампера
     private CalculatingAngleHeightJumper _calculatingAngleHeightJumper = null;
-    
-    // Добавление массы при приземление
-    private float _addMassJumper = .0f;
     
     // Для настроек джампера(Начало)
     public float ChangeMassJumper
@@ -106,35 +103,20 @@ public class FlightJumper : MonoBehaviour
         _rigidbodyJumper.isKinematic = true;
     }
 
-    private bool jump = false;
-    private void Update()
-    {
-        var speedX = GetSpeedJumper(_calculatingAngleHeightJumper.GetPercentAngleJumper, _maximumSpeedFlightJumper);
-        var speedY = GetSpeedJumper(_calculatingAngleHeightJumper.GerPercentHeightJumper, _maximumSpeedFlightJumper);
-        //_rigidbodyJumper.isKinematic = false;
-        if (speedY > 0)
-        {
-            Vector3 vectorDifference = _vector3TransformHeightAngle.position - _thisTransform.position;
-            Vector3 vectorForce = new Vector3(vectorDifference.x * speedX, vectorDifference.y * speedY, vectorDifference.z);
-            _trajectory.ShowTrajectory(transform.position, vectorForce, ref jump);
-            //_addMassJumper = Vector3.Project(vectorForce, Vector3.up).y / 2; // Добавляем массу джамперу при падениии
-            //_rigidbodyJumper.AddForce(vectorForce, ForceMode.Impulse);
-        }
-    }
-
+    // Добавление скорости джамперу
     public void AddSpeedJumper()
     {
-        //print(_calculatingAngleHeightJumper.GetPercentAngleJumper);
         var speedX = GetSpeedJumper(_calculatingAngleHeightJumper.GetPercentAngleJumper, _maximumSpeedFlightJumper);
         var speedY = GetSpeedJumper(_calculatingAngleHeightJumper.GerPercentHeightJumper, _maximumSpeedFlightJumper);
         _rigidbodyJumper.isKinematic = false;
-        jump = true;
         if (speedY > 0)
         {
             Vector3 vectorDifference = _vector3TransformHeightAngle.position - _thisTransform.position;
             Vector3 vectorForce = new Vector3(vectorDifference.x * speedX, vectorDifference.y * speedY, vectorDifference.z);
-            //_trajectory.ShowTrajectory(transform.position, vectorForce);
-            _addMassJumper = Vector3.Project(vectorForce, Vector3.up).y / 2; // Добавляем массу джамперу при падениии
+            //_addMassJumper = Vector3.Project(vectorForce, Vector3.up).y / 2; // Добавляем массу джамперу при падениии
+            Vector3 positionJumperEnd = _trajectory.ShowTrajectory(transform.position, vectorForce);
+            if(positionJumperEnd != Vector3.zero)
+                _cameraTracking.PositionY = positionJumperEnd.y;
             _rigidbodyJumper.AddForce(vectorForce, ForceMode.Impulse);
         }
     }
@@ -142,6 +124,7 @@ public class FlightJumper : MonoBehaviour
     private Quaternion _rotationEnd = Quaternion.identity;
     private bool _animationStartJumperEnd = false;
     private bool _landingCollider = false;
+    
     // Хранит начальную позиция джампера при прыжке по оси X
     private float _startPositionJump = .0f;
     
@@ -167,7 +150,7 @@ public class FlightJumper : MonoBehaviour
     {
         var endPositionJump = Math.Abs(_thisTransform.position.x);
         var differenceDistance = Mathf.Abs(endPositionJump - _startPositionJump);
-        _rigidbodyJumper.mass += _addMassJumper;
+        //_rigidbodyJumper.mass += _addMassJumper;
         if (differenceDistance > .5f)
         {
             if (_thisTransform.rotation.z < 0)
@@ -199,12 +182,6 @@ public class FlightJumper : MonoBehaviour
         print("End ReturnRotationJumper");
     }
 
-    private void OnCollisionEnter(Collision other)
-    {
-        if (_animationStartJumperEnd)
-            EndAnimationJumper();
-    }
-
     private void OnCollisionStay(Collision other)
     {
         if (_animationStartJumperEnd)
@@ -216,9 +193,10 @@ public class FlightJumper : MonoBehaviour
     private void EndAnimationJumper()
     {
         _landingCollider = true;
-        ClickTracking.JumpPlayer = false;
+        ClickTracking.JumpPlayer = false; 
         _rigidbodyJumper.isKinematic = true;
-        _rigidbodyJumper.mass = _massJumper;
+        _animationStartJumperEnd = false; // Test
+        print("Animation End, start now");
     }
 
     private void OnDrawGizmosSelected()

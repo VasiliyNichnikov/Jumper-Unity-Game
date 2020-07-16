@@ -56,16 +56,6 @@ public class ClickTracking : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
         set { if(value <= 10) _sensitivityJumper = value;}
     }
 
-    // public Vector2 GetStartPositionFinger
-    // {
-    //     get { return _startMousePosition; }
-    // }
-    //
-    // public Vector3 GetNowPositionFinger
-    // {
-    //     get { return _nowPositionFinger; }
-    // }
-    
     private void Start()
     {
         JumpPlayer = false;
