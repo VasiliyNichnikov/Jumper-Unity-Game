@@ -178,6 +178,7 @@ MonoBehaviour:
   price: 170
   donatePrice: 17
   rarity: 0
+  id: 
 --- !u!95 &28426921
 Animator:
   serializedVersion: 3
@@ -358,7 +359,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 41782518}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2046404428}
+        m_MethodName: BuyForCoins
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &41782518
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -899,6 +911,7 @@ MonoBehaviour:
   price: 180
   donatePrice: 18
   rarity: 0
+  id: 
 --- !u!95 &268248770
 Animator:
   serializedVersion: 3
@@ -998,6 +1011,44 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 268248767}
   m_CullTransparentMesh: 0
+--- !u!1 &282290779
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 282290780}
+  m_Layer: 5
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &282290780
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 282290779}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 803845564}
+  - {fileID: 382750972}
+  - {fileID: 1941040379}
+  m_Father: {fileID: 1915878504}
+  m_RootOrder: 19
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 22.077, y: -39.96997}
+  m_SizeDelta: {x: 525.84546, y: 58.201538}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &326809722
 GameObject:
   m_ObjectHideFlags: 0
@@ -1055,6 +1106,7 @@ MonoBehaviour:
   price: 100
   donatePrice: 10
   rarity: 1
+  id: 
 --- !u!95 &326809725
 Animator:
   serializedVersion: 3
@@ -1227,6 +1279,84 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 357214920}
+  m_CullTransparentMesh: 0
+--- !u!1 &382750971
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 382750972}
+  - component: {fileID: 382750974}
+  - component: {fileID: 382750973}
+  m_Layer: 5
+  m_Name: donateCoinsText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &382750972
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 382750971}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 282290780}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 41.31, y: -0.0000017285}
+  m_SizeDelta: {x: 82.61476, y: 58.2015}
+  m_Pivot: {x: 0.5000002, y: 0.49999997}
+--- !u!114 &382750973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 382750971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.7, g: 0.85266274, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: ffb0f490b1cb2b0498b604d701905e84, type: 3}
+    m_FontSize: 50
+    m_FontStyle: 0
+    m_BestFit: 1
+    m_MinSize: 1
+    m_MaxSize: 50
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 100
+--- !u!222 &382750974
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 382750971}
   m_CullTransparentMesh: 0
 --- !u!1 &408528453
 GameObject:
@@ -1522,6 +1652,7 @@ MonoBehaviour:
   price: 100
   donatePrice: 10
   rarity: 2
+  id: 
 --- !u!95 &443227343
 Animator:
   serializedVersion: 3
@@ -1678,7 +1809,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: dca3ec47d76e37f4e8aa9b9b515ef05d, type: 3}
+    m_Font: {fileID: 12800000, guid: ffb0f490b1cb2b0498b604d701905e84, type: 3}
     m_FontSize: 61
     m_FontStyle: 0
     m_BestFit: 0
@@ -1756,6 +1887,7 @@ MonoBehaviour:
   price: 120
   donatePrice: 12
   rarity: 0
+  id: 
 --- !u!95 &468501442
 Animator:
   serializedVersion: 3
@@ -2356,6 +2488,7 @@ MonoBehaviour:
   price: 100
   donatePrice: 10
   rarity: 2
+  id: 
 --- !u!95 &691037878
 Animator:
   serializedVersion: 3
@@ -2480,16 +2613,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 803845563}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1915878504}
-  m_RootOrder: 15
+  m_Father: {fileID: 282290780}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 22.077, y: -39.96997}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 525.84546, y: 58.201538}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &803845565
@@ -2586,6 +2719,7 @@ MonoBehaviour:
   price: 100
   donatePrice: 10
   rarity: 1
+  id: 
 --- !u!95 &817020114
 Animator:
   serializedVersion: 3
@@ -3056,6 +3190,7 @@ MonoBehaviour:
   price: 200
   donatePrice: 20
   rarity: 0
+  id: 
 --- !u!95 &879887357
 Animator:
   serializedVersion: 3
@@ -3360,6 +3495,7 @@ MonoBehaviour:
   price: 140
   donatePrice: 14
   rarity: 0
+  id: 
 --- !u!95 &915600704
 Animator:
   serializedVersion: 3
@@ -3818,6 +3954,7 @@ MonoBehaviour:
   price: 666
   donatePrice: 66
   rarity: 2
+  id: 
 --- !u!95 &1113097492
 Animator:
   serializedVersion: 3
@@ -3974,6 +4111,7 @@ MonoBehaviour:
   price: 190
   donatePrice: 19
   rarity: 0
+  id: 
 --- !u!95 &1173049184
 Animator:
   serializedVersion: 3
@@ -4101,7 +4239,7 @@ Transform:
   m_LocalScale: {x: 7398.8413, y: 7398.8413, z: 7398.8413}
   m_Children: []
   m_Father: {fileID: 1915878504}
-  m_RootOrder: 18
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1276133836
 GameObject:
@@ -4346,7 +4484,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1915878504}
-  m_RootOrder: 16
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
@@ -4636,7 +4774,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1369906195}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2046404428}
+        m_MethodName: BuyForDonateCoins
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1369906195
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4927,6 +5076,7 @@ MonoBehaviour:
   price: 100
   donatePrice: 10
   rarity: 1
+  id: 
 --- !u!95 &1427094750
 Animator:
   serializedVersion: 3
@@ -5083,6 +5233,7 @@ MonoBehaviour:
   price: 100
   donatePrice: 10
   rarity: 2
+  id: 
 --- !u!95 &1430075641
 Animator:
   serializedVersion: 3
@@ -5212,7 +5363,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1915878504}
-  m_RootOrder: 17
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -5317,6 +5468,7 @@ MonoBehaviour:
   price: 100
   donatePrice: 10
   rarity: 1
+  id: 
 --- !u!95 &1440729519
 Animator:
   serializedVersion: 3
@@ -6017,6 +6169,7 @@ MonoBehaviour:
   price: 100
   donatePrice: 10
   rarity: 2
+  id: 
 --- !u!95 &1627756523
 Animator:
   serializedVersion: 3
@@ -6173,6 +6326,7 @@ MonoBehaviour:
   price: 100
   donatePrice: 10
   rarity: 1
+  id: 
 --- !u!95 &1634871130
 Animator:
   serializedVersion: 3
@@ -6329,6 +6483,7 @@ MonoBehaviour:
   price: 100
   donatePrice: 10
   rarity: 2
+  id: 
 --- !u!95 &1644911181
 Animator:
   serializedVersion: 3
@@ -6485,6 +6640,7 @@ MonoBehaviour:
   price: 100
   donatePrice: 10
   rarity: 2
+  id: 
 --- !u!95 &1658959654
 Animator:
   serializedVersion: 3
@@ -6641,6 +6797,7 @@ MonoBehaviour:
   price: 100
   donatePrice: 10
   rarity: 2
+  id: 
 --- !u!95 &1663233067
 Animator:
   serializedVersion: 3
@@ -6993,6 +7150,7 @@ MonoBehaviour:
   price: 150
   donatePrice: 15
   rarity: 0
+  id: 
 --- !u!95 &1726752540
 Animator:
   serializedVersion: 3
@@ -7149,6 +7307,7 @@ MonoBehaviour:
   price: 100
   donatePrice: 10
   rarity: 0
+  id: 
 --- !u!95 &1741449042
 Animator:
   serializedVersion: 3
@@ -7797,11 +7956,11 @@ RectTransform:
   - {fileID: 1369906193}
   - {fileID: 62265773}
   - {fileID: 104536366}
-  - {fileID: 803845564}
   - {fileID: 1327209995}
   - {fileID: 1440619446}
   - {fileID: 1232259773}
   - {fileID: 1920358418}
+  - {fileID: 282290780}
   m_Father: {fileID: 1987407358}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7840,7 +7999,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1915878504}
-  m_RootOrder: 19
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 180, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
@@ -7941,6 +8100,7 @@ MonoBehaviour:
   price: 100
   donatePrice: 10
   rarity: 1
+  id: 
 --- !u!95 &1925492821
 Animator:
   serializedVersion: 3
@@ -8040,6 +8200,84 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1925492818}
   m_CullTransparentMesh: 0
+--- !u!1 &1941040378
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1941040379}
+  - component: {fileID: 1941040381}
+  - component: {fileID: 1941040380}
+  m_Layer: 5
+  m_Name: coinsText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1941040379
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1941040378}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 282290780}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 196.03, y: -1.006}
+  m_SizeDelta: {x: 133.78824, y: 60.213547}
+  m_Pivot: {x: 0.5000002, y: 0.49999997}
+--- !u!114 &1941040380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1941040378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.7, g: 0.85266274, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: ffb0f490b1cb2b0498b604d701905e84, type: 3}
+    m_FontSize: 61
+    m_FontStyle: 0
+    m_BestFit: 1
+    m_MinSize: 3
+    m_MaxSize: 65
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 100
+--- !u!222 &1941040381
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1941040378}
+  m_CullTransparentMesh: 0
 --- !u!1 &1980262808
 GameObject:
   m_ObjectHideFlags: 0
@@ -8097,6 +8335,7 @@ MonoBehaviour:
   price: 100
   donatePrice: 10
   rarity: 1
+  id: 
 --- !u!95 &1980262811
 Animator:
   serializedVersion: 3
@@ -8387,6 +8626,10 @@ MonoBehaviour:
   selectedItemDonatePrice: {fileID: 464972547}
   selectedItemRarity: {fileID: 1440619447}
   selectedItemModelField: {fileID: 1232259773}
+  buttonBuyForCoins: {fileID: 41782517}
+  buttonBuyForDonateCoins: {fileID: 1369906194}
+  playerCoins: {fileID: 1941040380}
+  playerDonateCoins: {fileID: 382750973}
 --- !u!4 &2046404429
 Transform:
   m_ObjectHideFlags: 0
@@ -8458,6 +8701,7 @@ MonoBehaviour:
   price: 100
   donatePrice: 10
   rarity: 1
+  id: 
 --- !u!95 &2064345020
 Animator:
   serializedVersion: 3
@@ -8762,7 +9006,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: dca3ec47d76e37f4e8aa9b9b515ef05d, type: 3}
+    m_Font: {fileID: 12800000, guid: ffb0f490b1cb2b0498b604d701905e84, type: 3}
     m_FontSize: 61
     m_FontStyle: 0
     m_BestFit: 0

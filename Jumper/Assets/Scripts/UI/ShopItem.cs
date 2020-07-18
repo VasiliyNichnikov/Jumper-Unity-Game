@@ -10,12 +10,14 @@ public class ShopItem : MonoBehaviour
   public int price;
   public int donatePrice;
   public Rarity rarity;
+  public string id;
 
   private Shop shopManager;
   private UnityAction _action;
 
   private void Start()
   {
+    id = model.name;
     shopManager = FindObjectOfType<Shop>();
     Button button = gameObject.GetComponent<Button>();
     if (shopManager.selectedItem == null)

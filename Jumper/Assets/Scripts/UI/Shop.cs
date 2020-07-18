@@ -9,6 +9,10 @@ public class Shop : MonoBehaviour
   public Text selectedItemDonatePrice;
   public Text selectedItemRarity;
   public Transform selectedItemModelField;
+  public Button buttonBuyForCoins;
+  public Button buttonBuyForDonateCoins;
+  public Text playerCoins;
+  public Text playerDonateCoins;
 
   public ShopItem selectedItem
   {
@@ -21,18 +25,25 @@ public class Shop : MonoBehaviour
       if (value != _selectedItem)
       {
         _selectedItem = value;
-        selectedItemPrice.text = _selectedItem.price.ToString();
-        selectedItemDonatePrice.text = _selectedItem.donatePrice.ToString();
-        selectedItemRarity.text = _selectedItem.rarity.ToString();
-        UpdateSelectedItemModel();
+        UpdateSelectedItemData();
       }
     }
   }
 
   private ShopItem _selectedItem;
 
+  private void Awake()
+  {
+    if (PlayerData.instance == null)
+    {
+      SaveSystem.LoadPlayerData();
+    }
+  }
+
   private void Update()
   {
+    playerCoins.text = PlayerData.instance.coins.ToString();
+    playerDonateCoins.text = PlayerData.instance.donateCoins.ToString();
     selectedItemModelField.Rotate(0, .5f, 0);
   }
 
@@ -45,5 +56,45 @@ public class Shop : MonoBehaviour
     GameObject model = Instantiate(_selectedItem.model, Vector3.zero, Quaternion.identity, selectedItemModelField);
     model.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
     model.transform.localPosition = Vector3.zero;
+  }
+
+  public void BuyForCoins()
+  {
+    PlayerData.instance.coins -= selectedItem.price;
+    BuyItem();
+  }
+
+  public void BuyForDonateCoins()
+  {
+    PlayerData.instance.donateCoins -= selectedItem.donatePrice;
+    BuyItem();
+  }
+
+  private void BuyItem()
+  {
+    PlayerData.instance.jumpers.Add(selectedItem.id);
+    SaveSystem.SavePlayerData();
+    UpdateSelectedItemData();
+  }
+
+  private bool IsItemBought(string itemId)
+  {
+    return PlayerData.instance.jumpers.Contains(itemId);
+  }
+
+  private void UpdateSelectedItemData()
+  {
+    bool isItemBought = IsItemBought(_selectedItem.id);
+    if (!isItemBought)
+    {
+      selectedItemPrice.text = _selectedItem.price.ToString();
+      selectedItemDonatePrice.text = _selectedItem.donatePrice.ToString();
+      buttonBuyForCoins.interactable = PlayerData.instance.coins > _selectedItem.price;
+      buttonBuyForDonateCoins.interactable = PlayerData.instance.donateCoins > _selectedItem.donatePrice;
+    }
+    selectedItemRarity.text = _selectedItem.rarity.ToString();
+    buttonBuyForCoins.gameObject.SetActive(!isItemBought);
+    buttonBuyForDonateCoins.gameObject.SetActive(!isItemBought);
+    UpdateSelectedItemModel();
   }
 }
