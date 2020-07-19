@@ -38,12 +38,11 @@ public class Shop : MonoBehaviour
     {
       SaveSystem.LoadPlayerData();
     }
+    UpdatePlayerCoins();
   }
 
   private void Update()
   {
-    playerCoins.text = PlayerData.instance.coins.ToString();
-    playerDonateCoins.text = PlayerData.instance.donateCoins.ToString();
     selectedItemModelField.Rotate(0, .5f, 0);
   }
 
@@ -56,25 +55,6 @@ public class Shop : MonoBehaviour
     GameObject model = Instantiate(_selectedItem.model, Vector3.zero, Quaternion.identity, selectedItemModelField);
     model.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
     model.transform.localPosition = Vector3.zero;
-  }
-
-  public void BuyForCoins()
-  {
-    PlayerData.instance.coins -= selectedItem.price;
-    BuyItem();
-  }
-
-  public void BuyForDonateCoins()
-  {
-    PlayerData.instance.donateCoins -= selectedItem.donatePrice;
-    BuyItem();
-  }
-
-  private void BuyItem()
-  {
-    PlayerData.instance.jumpers.Add(selectedItem.id);
-    SaveSystem.SavePlayerData();
-    UpdateSelectedItemData();
   }
 
   private bool IsItemBought(string itemId)
@@ -96,5 +76,27 @@ public class Shop : MonoBehaviour
     buttonBuyForCoins.gameObject.SetActive(!isItemBought);
     buttonBuyForDonateCoins.gameObject.SetActive(!isItemBought);
     UpdateSelectedItemModel();
+  }
+
+  private void UpdatePlayerCoins()
+  {
+    playerCoins.text = PlayerData.instance.coins.ToString();
+    playerDonateCoins.text = PlayerData.instance.donateCoins.ToString();
+  }
+
+  public void BuyItem(bool isDonateCoins)
+  {
+    if (isDonateCoins)
+    {
+      PlayerData.instance.donateCoins -= selectedItem.donatePrice;
+    }
+    else
+    {
+      PlayerData.instance.coins -= selectedItem.price;
+    }
+    PlayerData.instance.jumpers.Add(selectedItem.id);
+    SaveSystem.SavePlayerData();
+    UpdateSelectedItemData();
+    UpdatePlayerCoins();
   }
 }
