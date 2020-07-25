@@ -4,31 +4,31 @@ using UnityEngine;
 
 public class ChangeDifficle : MonoBehaviour
 {
-    
-    public Generation gen;
-    public float MaxDistantion=1000;
-    public float MaxIncreseBetweenObj=1;
 
-    private float TargetX;
-    private float ScaleDiff;
-    private float StartMin;
-    private float StartMax;
-    // Start is called before the first frame update
-    void Start()
-    {
-        StartMin = gen.min_dist_between_pref;
-        StartMax = gen.max_dist_between_pref;
-    }
+  public Generation gen;
+  public float MaxDistantion = 1000;
+  public float MaxIncreseBetweenObj = 1;
 
-    // Update is called once per frame
-    void Update()
-    {
-        TargetX = Mathf.Abs(transform.position.x);
-        if (TargetX > MaxDistantion)
-            ScaleDiff = 1;
-        else
-            ScaleDiff = TargetX/MaxDistantion;
-        gen.min_dist_between_pref = ScaleDiff * MaxIncreseBetweenObj + StartMin;
-        gen.max_dist_between_pref = ScaleDiff * MaxIncreseBetweenObj + StartMax;
-    }
+  private float TargetX;
+  private float ScaleDiff;
+  private float StartMin;
+  private float StartMax;
+  // Start is called before the first frame update
+  void Start()
+  {
+    StartMin = gen.minDistance;
+    StartMax = gen.maxDistance;
+  }
+
+  // Update is called once per frame
+  void Update()
+  {
+    TargetX = Mathf.Abs(transform.position.x);
+    if (TargetX > MaxDistantion)
+      ScaleDiff = 1;
+    else
+      ScaleDiff = TargetX / MaxDistantion;
+    gen.minDistance = ScaleDiff * MaxIncreseBetweenObj + StartMin;
+    gen.maxDistance = ScaleDiff * MaxIncreseBetweenObj + StartMax;
+  }
 }

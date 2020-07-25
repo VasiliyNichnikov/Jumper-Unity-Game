@@ -453,7 +453,7 @@ MonoBehaviour:
   - {fileID: 827159613584333469, guid: dd72dd7e0dbb2614a92ba3b8e762ce30, type: 3}
   - {fileID: 5509406071252050579, guid: aafe8bbb0d5d0564193f4e9470969d74, type: 3}
   - {fileID: 4616720298062656816, guid: d84df3eab908cdb4b869d5ca696d162e, type: 3}
-  - {fileID: 5982182786899525809, guid: c42e94f6cdd713642ac5f52074883e87, type: 3}
+  - {fileID: 8566841184214509134, guid: 4f5b9599eb5a78e4da78eb56e4f9bf7d, type: 3}
   - {fileID: 3794128395929773014, guid: d0f206aef0affdb449f82ba843e5c03c, type: 3}
   - {fileID: 5495662020534565779, guid: f90f78bfb0d43c040b9dcd42c90b23cd, type: 3}
   - {fileID: 1468229806015648368, guid: 4c7b9d6b2d2f30e4991945721362e908, type: 3}
@@ -469,11 +469,13 @@ MonoBehaviour:
   - {fileID: 6654528339390477050, guid: face550ddab525144bcfd0e24feac749, type: 3}
   - {fileID: 5716156011266469797, guid: c2c6678a3c5f0704a99eb28a160b8509, type: 3}
   - {fileID: 6351200962059742209, guid: 3d1a37f10fdf30d4497db420384f0182, type: 3}
-  min_dist_between_pref: 1
-  max_dist_between_pref: 4
-  heghtDifference: 2.5
   CountlastPrefabs: 2
   distantionSpawn: 100
+  maxDifficultyByDistance: 100
+  minDistance: 1
+  maxDistance: 4
+  minHeight: 1
+  maxHeight: 2.5
 --- !u!4 &921113239
 Transform:
   m_ObjectHideFlags: 0
@@ -893,13 +895,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1920305465}
-  m_LocalRotation: {x: 0.07339429, y: 0.8964951, z: -0.16217479, w: 0.40572047}
-  m_LocalPosition: {x: -10.39, y: 6.84, z: 14.13}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 2.34, y: 5.43, z: 17.35}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 627137510}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 20.508001, y: 131.30101, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &1947715818
 GameObject:
   m_ObjectHideFlags: 0
