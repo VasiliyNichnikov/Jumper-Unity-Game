@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using UnityEngine.EventSystems;
+﻿using UnityEngine.EventSystems;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -37,7 +35,7 @@ public class ClickTracking : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     
     // Проиграл пользователь или нет (Для теста)
     public static bool GameOverPlayer = false;
-    
+
     // Переменная хранит начальную позицию пальца при нажатии на экран
     private Vector2 _startingPositionFinger = Vector2.zero;
 
@@ -46,10 +44,8 @@ public class ClickTracking : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
 
     // Двигал пользователь палец или нет
     private bool _playerDragFinger = false;
-    
-    // Позиция мыши при нажатии
-    private Vector2 _startMousePosition = Vector2.zero;
 
+    // Настройки джампера
     public float ChangeSensitivityJumper
     {
         get { return _sensitivityJumper;}
@@ -67,7 +63,6 @@ public class ClickTracking : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     {
         if (!JumpPlayer && !GameOverPlayer)
         {
-            _startMousePosition = Input.mousePosition;
             _startingPositionFinger = new Vector2(_mainCamera.ScreenToViewportPoint(Input.mousePosition).x,
                 _mainCamera.ScreenToViewportPoint(Input.mousePosition).y);
             FingerInputScreen = true;
@@ -79,8 +74,8 @@ public class ClickTracking : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
         if (!JumpPlayer && !GameOverPlayer)
         {
             FingerInputScreen = true;
-            
             _playerDragFinger = true;
+            
             _nowPositionFinger = new Vector2(_mainCamera.ScreenToViewportPoint(Input.mousePosition).x,
                 _mainCamera.ScreenToViewportPoint(Input.mousePosition).y);
 
@@ -93,7 +88,6 @@ public class ClickTracking : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     {
         if (!JumpPlayer && !GameOverPlayer && _playerDragFinger)
         {
-            JumpPlayer = true;
             FingerInputScreen = false;
             _playerDragFinger = false;
             _flightJumper.AddSpeedJumper();

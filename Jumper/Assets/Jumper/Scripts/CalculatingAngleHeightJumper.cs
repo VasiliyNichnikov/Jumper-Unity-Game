@@ -31,7 +31,10 @@ public class CalculatingAngleHeightJumper : MonoBehaviour
     /// <summary>
     /// Переменные, которые скрыты в инспекторе 
     /// </summary>
-
+    
+    // Блокировка угла по оси Z
+    private float _lockAngleZ = .0f;
+    
     // Максимальная высота верхней части джампера (Задается при старте)
     private float _maximumHeightJumper = .0f;
     
@@ -62,18 +65,24 @@ public class CalculatingAngleHeightJumper : MonoBehaviour
         }
     }
     // Для настроек джампера(Конец)
-    
+
     // transform верхней части джампера
     private Transform _transformUpperPartJumper = null;
     private Transform _thisTransform = null;
-
+    
     private void Start()
     {
         _transformUpperPartJumper = _upperPartJumper.transform;
         _maximumHeightJumper = _transformUpperPartJumper.localPosition.y;
         _thisTransform = GetComponent<Transform>();
+        _lockAngleZ = _maximumAngleInclination;
     }
-    
+
+    // private void Update()
+    // {
+    //     print(_thisTransform.localRotation.eulerAngles);
+    // }
+
     // Данный метод меняет высоту и угол наклона джампера, в зависимости от нахождения пальца
     public void ChangeHeightAngleInclinationJumper(Vector2 nowPosition, Vector2 startPosition)
     {
@@ -99,7 +108,10 @@ public class CalculatingAngleHeightJumper : MonoBehaviour
         var percentageScreenWidth = (startPositionX - nowPositionX) * MaximumPercentScreenForMaximumSpeedJumper;
         var angleInclination = InterestValue(percentageScreenWidth, -_maximumAngleInclination, _maximumAngleInclination);
         _percentAngleJumper = Mathf.Abs(angleInclination) * MaximumPercentScreenForMaximumSpeedJumper / _maximumAngleInclination;
+        //print($"angleInclination - {angleInclination}; _lockAngleZ - {_lockAngleZ}");
+        //if(Mathf.Abs(angleInclination) <= Mathf.Abs(_lockAngleZ))
         return angleInclination;
+        //return _lockAngleZ;
     }
     
     // Возвращает высоту верхней части джампера к исходному положению
@@ -113,6 +125,35 @@ public class CalculatingAngleHeightJumper : MonoBehaviour
                 _speedDecompressedJumper * Time.deltaTime);
             yield return null;
         }
+    }
+
+    // Метод блокирует или разблокирует угол наклона джампера
+    public void LockingUnlockJumperAngle(bool LockUnlock = false)
+    {
+        if (!LockUnlock)
+        {
+            print(_thisTransform.localRotation.eulerAngles);
+            var angleZ = .0f;
+            if (_thisTransform.localRotation.eulerAngles.z > 180)
+            {
+                angleZ = -(360 - _thisTransform.localRotation.eulerAngles.z);
+            }
+            else
+            {
+                angleZ = _thisTransform.localRotation.eulerAngles.z;
+            }
+
+            _lockAngleZ = angleZ;
+        }
+        else
+        {
+            _lockAngleZ = _maximumAngleInclination;
+        }
+        
+        //_maximumAngleInclination = angleZ;
+        //_thisTransform.localRotation = Quaternion.Euler(0, 0, angleZ);
+        //print(Mathf.Abs(_thisTransform.localRotation.normalized.eulerAngles.z));
+        //_maximumAngleInclination = Mathf.Abs(_thisTransform.localRotation.eulerAngles.z); 
     }
     
     // Данный метод вычисляет проценты от 0 до 100

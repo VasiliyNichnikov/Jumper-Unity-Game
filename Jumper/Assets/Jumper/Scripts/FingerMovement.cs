@@ -50,7 +50,6 @@ public class FingerMovement : MonoBehaviour
 		if (Input.GetMouseButton(0))
 		{
 			newline.endPt = new Vector2 (Input.mousePosition.x, Input.mousePosition.y); 
-			//print(newline.endPt);
 			SetLinePoints(newline);
 			DrawLine(newline.startPt, newline.endPt);
 		}

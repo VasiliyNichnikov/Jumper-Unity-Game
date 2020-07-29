@@ -5,9 +5,10 @@ using UnityEngine;
 
 public class JumperAutoSimulation : MonoBehaviour
 {
-    // Скрипт траектории
-    [HideInInspector] public Trajectory Trajectory = null;
-    private ListModelsTest _listModelsTest = null;
+    // Скрипт симуляции джампера
+    [HideInInspector] public SimulationJumperPhysics SimulationJumperPhysics = null;
+
+    [HideInInspector]
     public bool FoundPointMax = false;
 
 
@@ -25,12 +26,8 @@ public class JumperAutoSimulation : MonoBehaviour
     {
         if (other.tag == "Block" && FoundPointMax)
         {
-            Trajectory.ObjectLandingJumper = other.gameObject;
-            Trajectory.CheckJumperStop = true;
-        }
-        else if(other.tag == "Ground")
-        {
-            //print($"Ground");
+            SimulationJumperPhysics.TransformEnemyObject = other.GetComponent<CheckCollider>().TransformEnemyObject;
+            //SimulationJumperPhysics.CheckJumperStop = true;
         }
     }
     

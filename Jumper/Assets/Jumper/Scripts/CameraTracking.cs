@@ -5,8 +5,8 @@ public class CameraTracking : MonoBehaviour
     [SerializeField] [Header("Объект, за которым смотрим")]
     private Transform _player = null;
 
-    [SerializeField] [Header("Скрипт, который хранит все позиции моделей")]
-    private ListModelsTest _listModelsTest = null;
+    // [SerializeField] [Header("Скрипт, который хранит все позиции моделей")]
+    // private ListModelsTest _listModelsTest = null;
 
     [SerializeField] [Header("Главная камера (Transform)")]
     private Transform _mainCamera = null;
@@ -34,6 +34,11 @@ public class CameraTracking : MonoBehaviour
     
     private Transform _thisTransform = null;
 
+    // Вектор куда должен двигаться игрок
+    private Vector3 _positionPlayerMovement = Vector3.zero;
+    
+    // Сохранение последней позиции игрока по X
+    //private float _savePositionPlayer = .0f;
     
     // Получение и изменение расстояние между камерой и игроком по оси X
     public float ChangeGetOffsetX
@@ -82,24 +87,42 @@ public class CameraTracking : MonoBehaviour
         }
     }
     
+    // PositionY, когда будет генерация, нужно добавить первый объект, который создался
     private void Start()
     {
         _thisTransform = transform;
-        PositionY = _listModelsTest.GetSelectObject(_player).position.y;
+        //PositionY = _listModelsTest.GetSelectObject(_player).position.y;
     }
     
     private void Update()
     {
         _mainCamera.rotation = Quaternion.Euler(_angleX, _angleY, _mainCamera.eulerAngles.z);
+
+        if (ClickTracking.GameOverPlayer)
+        {
+            //_mainCamera.transform.LookAt(_player.transform);
+            //PositionY = _player.transform.position.y;
+            _positionPlayerMovement = _thisTransform.position;
+            //     Mathf.MoveTowards(_thisTransform.position.y, _thisTransform.position.y, _speedCameraAxesY * Time.deltaTime),
+            //     _thisTransform.position.z);
+        }
+        else
+        {
+            _positionPlayerMovement = new Vector3(Mathf.MoveTowards(_thisTransform.position.x, _player.position.x - _offsetX, _speedCamera * Time.deltaTime),
+                Mathf.MoveTowards(_thisTransform.position.y, PositionY + _offsetY, _speedCameraAxesY * Time.deltaTime),
+                _thisTransform.position.z);
+        }
+
+        _thisTransform.position = _positionPlayerMovement;
         // _mainCamera.transform.position = new Vector3(_player.position.x - _offsetX, _player.position.y + _offsetY, _mainCamera.position.z);
         
         // _mainCamera.position = Vector3.MoveTowards(_mainCamera.position,
         //     new Vector3(_player.position.x - _offsetX, _mainCamera.position.y, _mainCamera.position.z), _speedCamera * Time.deltaTime);
 
-        _thisTransform.position = new Vector3(
-            Mathf.MoveTowards(_thisTransform.position.x, _player.position.x - _offsetX, _speedCamera * Time.deltaTime),
-            Mathf.MoveTowards(_thisTransform.position.y, PositionY + _offsetY, _speedCameraAxesY * Time.deltaTime),
-            _thisTransform.position.z);
+        // _thisTransform.position = new Vector3(
+        //     Mathf.MoveTowards(_thisTransform.position.x, _player.position.x - _offsetX, _speedCamera * Time.deltaTime),
+        //     Mathf.MoveTowards(_thisTransform.position.y, PositionY + _offsetY, _speedCameraAxesY * Time.deltaTime),
+        //     _thisTransform.position.z);
 
         // _thisTransform.position = Vector3.Lerp(_thisTransform.position,
         //     new Vector3(_player.position.x - _offsetX, PositionY, _thisTransform.position.z), _speedCamera * Time.deltaTime);

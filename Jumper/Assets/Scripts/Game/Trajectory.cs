@@ -14,8 +14,8 @@ public class Trajectory : MonoBehaviour
     
     private LineRenderer _lineRenderer = null;
 
-    [SerializeField] [Header("Скрипт, который хранит все объекты на карте")]
-    private ListModelsTest _listModelsTest = null;
+    // [SerializeField] [Header("Скрипт, который хранит все объекты на карте")]
+    // private ListModelsTest _listModelsTest = null;
     
     private void Start()
     {
@@ -34,12 +34,12 @@ public class Trajectory : MonoBehaviour
     {
         GameObject newJumper = Instantiate(JumperPrefab, origin, Quaternion.identity);
         Vector3[] points = new Vector3[150];
-        //_lineRenderer.positionCount = points.Length;
+        _lineRenderer.positionCount = points.Length;
         
         points[0] = newJumper.transform.position;
         newJumper.GetComponent<Rigidbody>().AddForce(speed, ForceMode.Impulse);
         JumperAutoSimulation jumperAutoSimulation = newJumper.GetComponent<JumperAutoSimulation>();
-        jumperAutoSimulation.Trajectory = this;
+        //jumperAutoSimulation.Trajectory = this;
 
         Physics.autoSimulation = false;
         Vector3 endPosition = Vector3.zero;
@@ -54,19 +54,18 @@ public class Trajectory : MonoBehaviour
             else
                 pointNowY = newJumper.transform.position.y;
             
-            if (CheckJumperStop)
-            {
-                //_lineRenderer.positionCount = i;
-                Transform objectNearby = _listModelsTest.GetEmptyTransform(ObjectLandingJumper);
-                if(objectNearby != null)
-                    endPosition = _listModelsTest.GetEmptyTransform(ObjectLandingJumper).position;
-                break;
-            }
-                
+            // if (CheckJumperStop)
+            // {
+            //     _lineRenderer.positionCount = i;
+            //     Transform objectNearby = _listModelsTest.GetEmptyTransform(ObjectLandingJumper);
+            //     if(objectNearby != null)
+            //         endPosition = _listModelsTest.GetEmptyTransform(ObjectLandingJumper).position;
+            //     break;
+            // }
             Physics.Simulate(0.02f);
             points[i] = newJumper.transform.position;
         }
-        //_lineRenderer.SetPositions(points);
+        _lineRenderer.SetPositions(points);
         Physics.autoSimulation = true;
         Destroy(newJumper.gameObject);
         CheckJumperStop = false;
