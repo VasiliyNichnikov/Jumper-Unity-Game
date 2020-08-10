@@ -1971,9 +1971,12 @@ MonoBehaviour:
   - {fileID: 6351200962059742209, guid: 3d1a37f10fdf30d4497db420384f0182, type: 3}
   CountlastPrefabs: 5
   distantionSpawn: 100
-  min_dist_between_pref: 0.2
-  max_dist_between_pref: 1.2
-  heghtDifference: 3
+  maxDifficultyByDistance: 100
+  minDistance: 1
+  startMaxDistance: 1
+  endMaxDistance: 4
+  minHeight: 1
+  maxHeight: 2.5
 --- !u!4 &1803404319
 Transform:
   m_ObjectHideFlags: 0

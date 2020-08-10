@@ -412,7 +412,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MoveRight: 0
-  moveSpeed: 15
+  moveSpeed: -15
 --- !u!1 &921113237
 GameObject:
   m_ObjectHideFlags: 0
@@ -473,7 +473,8 @@ MonoBehaviour:
   distantionSpawn: 100
   maxDifficultyByDistance: 100
   minDistance: 1
-  maxDistance: 4
+  startMaxDistance: 1
+  endMaxDistance: 4
   minHeight: 1
   maxHeight: 2.5
 --- !u!4 &921113239

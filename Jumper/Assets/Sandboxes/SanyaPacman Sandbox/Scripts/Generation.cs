@@ -6,30 +6,28 @@ public class Generation : MonoBehaviour
 {
   public KeyCode spawnKey;
   public GameObject player;
-  public GameObject[] prefabs;
+  public ObjectInfo[] prefabs;
   public int CountlastPrefabs;
   public float distantionSpawn = 20;
+  private float MAX_JAMPER_VELOCITY = 9.6f;
   [Header("Difficulty")]
   public float maxDifficultyByDistance;
   public float minDistance;
-  public float maxDistance;
+  public float startMaxDistance;
+  private float _endMaxDistance;
   public float minHeight;
-  public float maxHeight;
+  private float _maxHeight;
 
-
+  private int _maxAmountSpawnedObjects = 20;
   private GameObject last_pref;
   private List<GameObject> last_objects;
-  // private Hashtable prefInfos = new Hashtable();
 
-  bool bug = false;
   // Start is called before the first frame update
   void Start()
   {
     last_objects = new List<GameObject>();
-    // foreach (GameObject item in prefabs)
-    // {
-    //   prefInfos.Add(item.name, 0);
-    // }
+    _endMaxDistance = GetMaxDistance();
+    _maxHeight = GetMaxHeight();
     SpawnFirst();
   }
 
@@ -37,7 +35,6 @@ public class Generation : MonoBehaviour
   void Update()
   {
     ChekPlayerPosition();
-    //Control();
   }
 
   void ChekPlayerPosition()
@@ -45,33 +42,23 @@ public class Generation : MonoBehaviour
     if (Mathf.Abs(last_pref.transform.position.x - player.transform.position.x) < distantionSpawn)
     {
       Spawn();
-    }
-  }
-
-  void Control()
-  {
-    if (Input.GetKeyDown(spawnKey))
-    {
-      Spawn();
+      if (transform.childCount > _maxAmountSpawnedObjects)
+      {
+        Destroy(transform.GetChild(0).gameObject);
+      }
     }
   }
 
   GameObject getOBJ()
   {
     Shuffle(ref prefabs);
-    float lastPrefSizeY = last_pref.GetComponent<ObjectInfo>().sizeY;
-    foreach (var obj in prefabs)
+    ObjectInfo lastPrefInfo = last_pref.GetComponent<ObjectInfo>();
+    foreach (var objectInfo in prefabs)
     {
-      if (obj.GetComponent<ObjectInfo>().sizeY - lastPrefSizeY < GetDifficultyByValue(minHeight, maxHeight) &&
-        !last_objects.Contains(obj))
+      if (objectInfo.sizeY - lastPrefInfo.sizeY < GetDifficultyByValue(minHeight, _maxHeight) &&
+        !last_objects.Contains(objectInfo.gameObject))
       {
-        // prefInfos[obj.name] = (int)prefInfos[obj.name] + 1;
-        // ICollection keys = prefInfos.Keys;
-        // List<string> test = new List<string>();
-        // foreach (string s in keys)
-        //   test.Add(s + ": " + prefInfos[s]);
-        // Debug.Log(string.Join(", ", test));
-        return obj;
+        return objectInfo.gameObject;
       }
     }
     return null;
@@ -93,7 +80,7 @@ public class Generation : MonoBehaviour
     // граница последнего объекта
     float x1 = GOinfo.transform.position.x - GOinfo.sizeX / 2;
     // расстояние между объектами
-    float x2 = -GetDifficultyByValue(minDistance, maxDistance);
+    float x2 = -Random.Range(minDistance, GetDifficultyByValue(startMaxDistance, _endMaxDistance));
 
     GOinfo = last_pref.GetComponent<ObjectInfo>();
 
@@ -116,9 +103,9 @@ public class Generation : MonoBehaviour
   void SpawnFirst()
   {
     var obj = prefabs[(int)Random.Range(0, prefabs.Length)];
-    last_objects.Add(obj);
+    last_objects.Add(obj.gameObject);
     last_pref = Instantiate(
-        obj,
+        obj.gameObject,
         Vector3.zero,
         new Quaternion(), transform);
   }
@@ -131,6 +118,18 @@ public class Generation : MonoBehaviour
   float GetDifficultyByValue(float min, float max)
   {
     return Mathf.Lerp(min, max, GetDifficultyPercent());
+  }
+
+  float GetMaxDistance()
+  {
+    float angle = 45f;
+    return (MAX_JAMPER_VELOCITY * MAX_JAMPER_VELOCITY * Mathf.Sin(2 * angle)) / Physics.gravity.magnitude;
+  }
+
+  float GetMaxHeight()
+  {
+    float angle = 45f;
+    return (MAX_JAMPER_VELOCITY * MAX_JAMPER_VELOCITY * Mathf.Sin(angle) * Mathf.Sin(angle)) / (Physics.gravity.magnitude * 2);
   }
 
   public static void Shuffle<T>(ref List<T> list)

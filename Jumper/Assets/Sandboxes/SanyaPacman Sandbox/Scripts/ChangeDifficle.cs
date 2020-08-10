@@ -17,7 +17,7 @@ public class ChangeDifficle : MonoBehaviour
   void Start()
   {
     StartMin = gen.minDistance;
-    StartMax = gen.maxDistance;
+    StartMax = gen.startMaxDistance;
   }
 
   // Update is called once per frame
@@ -29,6 +29,6 @@ public class ChangeDifficle : MonoBehaviour
     else
       ScaleDiff = TargetX / MaxDistantion;
     gen.minDistance = ScaleDiff * MaxIncreseBetweenObj + StartMin;
-    gen.maxDistance = ScaleDiff * MaxIncreseBetweenObj + StartMax;
+    gen.startMaxDistance = ScaleDiff * MaxIncreseBetweenObj + StartMax;
   }
 }
