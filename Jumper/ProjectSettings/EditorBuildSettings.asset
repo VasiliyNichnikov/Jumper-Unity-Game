@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Jumper/Scenes/Test Jumper Alpha v0.1.unity
+    guid: 566c7949ada65904692f9c6f7e07ada8
+  - enabled: 0
     path: Assets/Jumper/Scenes/Jumper Test Scene.unity
     guid: 24fe01f603d1cbe42a982a1052dfbbeb
   m_configObjects: {}

@@ -5,11 +5,11 @@ using Random = UnityEngine.Random;
 
 public class AnimationGameOverJumper : MonoBehaviour
 {
-    [SerializeField] [Header("Верхняя часть джампера")]
+    // Верхняя часть джампера
     private GameObject _upperPartJumper = null;
-
-    [SerializeField] [Header("Нижняя часть джампера")]
-    private GameObject _lowerPartJumper = null;
+    
+    // Нижняя часть джампера
+    private GameObject _bottomPartJumper = null;
 
     private Rigidbody _rigidbodyJumper = null;
     private CapsuleCollider _capsuleCollider = null;
@@ -22,7 +22,14 @@ public class AnimationGameOverJumper : MonoBehaviour
         _rigidbodyJumper = GetComponent<Rigidbody>();
         _capsuleCollider = GetComponent<CapsuleCollider>();
     }
-
+    
+    // Данный метод передает параметр UpperPart и BottomPart джампера
+    public void ChangeUpperAndBottomPartsJumper(GameObject upperPart, GameObject bottomPart)
+    {
+        _upperPartJumper = upperPart;
+        _bottomPartJumper = bottomPart;
+    }
+    
     public void StartAnimationGameOver()
     {
         _rigidbodyJumper.useGravity = false;
@@ -31,14 +38,14 @@ public class AnimationGameOverJumper : MonoBehaviour
         
         if(_upperPartJumper.GetComponent<Rigidbody>() == null)
             _upperPartJumper.AddComponent<Rigidbody>();
-        if(_lowerPartJumper.GetComponent<Rigidbody>() == null)
-            _lowerPartJumper.AddComponent<Rigidbody>();
+        if(_bottomPartJumper.GetComponent<Rigidbody>() == null)
+            _bottomPartJumper.AddComponent<Rigidbody>();
 
-        _upperPartJumper.GetComponent<BoxCollider>().enabled = true;
-        _lowerPartJumper.GetComponent<CapsuleCollider>().enabled = true;
+        _upperPartJumper.GetComponent<BoxCollider>().isTrigger = false;
+        _bottomPartJumper.GetComponent<CapsuleCollider>().enabled = true;
         
         _rigidbodyUpperPartJumper = _upperPartJumper.GetComponent<Rigidbody>();
-        _rigidbodyLowerPartJumper = _lowerPartJumper.GetComponent<Rigidbody>();
+        _rigidbodyLowerPartJumper = _bottomPartJumper.GetComponent<Rigidbody>();
         
         float x = Random.Range(0f, 1f);
         float y = Random.Range(0f, 1f);

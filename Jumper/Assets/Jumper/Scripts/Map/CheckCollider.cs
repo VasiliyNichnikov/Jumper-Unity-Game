@@ -33,11 +33,11 @@ public class CheckCollider : MonoBehaviour
     private Vector3 _positionLandingPlayer = Vector3.zero;
     
     // Скрипт, который запускает анимацию поражения джампера
-    [HideInInspector] 
-    public AnimationGameOverJumper AnimationGameOverJumper = null;
+    //[HideInInspector] 
+    //public AnimationGameOverJumper AnimationGameOverJumper = null;
     
     // Скрипт, который управляет панелью при поражении джампера
-    [HideInInspector] public GameOverPanel GameOverPanel = null;
+    //[HideInInspector] public GameOverPanel GameOverPanel = null;
 
     [HideInInspector] public GameOverPlayer GameOverPlayer = null;
     
@@ -49,7 +49,6 @@ public class CheckCollider : MonoBehaviour
 
         for (int i = 0; i < _boxColliders.Length; i++)
         {
-            //print(_collidersClass[i]);
             ColliderClass colliderClass = new ColliderClass();
             
             colliderClass.NameCollider = $"Collider - {i}";
@@ -68,33 +67,58 @@ public class CheckCollider : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision other)
+    public void CheckGameOver(Collision collision)
     {
-        if (!ClickTracking.GameOverPlayer)
+         Vector3[] arrayPoints = GetLeftRightPositionColliderPoints(collision.collider);
+         //print($"arrayPoints - {arrayPoints}");
+         Vector3 positionRightCollider = arrayPoints[0];
+         Vector3 positionLeftCollider = arrayPoints[1];
+
+         _positionLandingPlayer = collision.GetContact(0).point;
+         
+         //print($"Position Right Collider - {positionRightCollider}");
+         //print($"Position Left Collider - {positionLeftCollider}");
+         
+        if (_positionLandingPlayer.x < positionRightCollider.x && // - 0.1f
+            _positionLandingPlayer.x > positionLeftCollider.x) //+ 0.1f // _positionLandingPlayer.y > _positionCenterBounds.y &&
         {
-            ContactPoint contactPoint = other.contacts[0];
-            Vector3[] arrayPoints = GetLeftRightPositionColliderPoints(contactPoint.thisCollider);
-            if(arrayPoints == null)
-                Debug.LogError("Ошибка, не найден коллайлер");
-            else
-            {
-                Vector3 positionRightCollider = arrayPoints[0];
-                Vector3 positionLeftCollider = arrayPoints[1];
-        
-                _positionLandingPlayer = other.GetContact(0).point;
-                
-                if (_positionLandingPlayer.x < positionRightCollider.x && // - 0.1f
-                    _positionLandingPlayer.x > positionLeftCollider.x ) //+ 0.1f // _positionLandingPlayer.y > _positionCenterBounds.y &&
-                {
-                    print("Player in the game;");
-                }
-                else
-                {
-                    GameOverPlayer.GameOverPlayerMethod();
-                } 
-            }
+            print("Player in the game;");
         }
+        else
+        {
+            GameOverPlayer.GameOverPlayerMethod();
+        } 
     }
+    
+    //private void OnCollisionEnter(Collision other)
+    //{
+        // if (!ClickTracking.GameOverPlayer && other.collider.tag == "Player")// && ClickTracking.JumpPlayer)
+        // {
+        //     //ClickTracking.JumpPlayer = false;
+        //     //ClickTracking.JumpPlayer = false;
+        //     ContactPoint contactPoint = other.contacts[0];
+        //     Vector3[] arrayPoints = GetLeftRightPositionColliderPoints(contactPoint.thisCollider);
+        //     if(arrayPoints == null)
+        //         Debug.LogError("Ошибка, не найден коллайлер");
+        //     else
+        //     {
+        //         Vector3 positionRightCollider = arrayPoints[0];
+        //         Vector3 positionLeftCollider = arrayPoints[1];
+        //
+        //         _positionLandingPlayer = other.GetContact(0).point;
+        //         
+        //         if (_positionLandingPlayer.x < positionRightCollider.x && // - 0.1f
+        //             _positionLandingPlayer.x > positionLeftCollider.x) //+ 0.1f // _positionLandingPlayer.y > _positionCenterBounds.y &&
+        //         {
+        //             print("Player in the game;");
+        //         }
+        //         else
+        //         {
+        //             GameOverPlayer.GameOverPlayerMethod();
+        //         } 
+        //     }
+        // }
+     // }
     
     // Метод возвращает правую и левую точку коллайдера, на который прилетел джампер
     private Vector3[] GetLeftRightPositionColliderPoints(Collider colliderLanding)

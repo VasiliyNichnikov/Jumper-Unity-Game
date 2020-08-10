@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class JumperAutoSimulation : MonoBehaviour
@@ -14,6 +15,9 @@ public class JumperAutoSimulation : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+       // Thread thread = new Thread(Test);
+       // thread.Start();
+                    
         StopJumper(other);
     }
 
@@ -24,11 +28,25 @@ public class JumperAutoSimulation : MonoBehaviour
 
     private void StopJumper(Collider other)
     {
+        // var angleStart = -30;
+        // for (int i = 0; i < 60; i++)
+        // {
+        //     transform.localRotation = Quaternion.Euler(0, 0, angleStart);
+        //     print($"Collider other - {other.gameObject.name}");
+        //     angleStart++;
+        // }
+        
         if (other.tag == "Block" && FoundPointMax)
         {
-            SimulationJumperPhysics.TransformEnemyObject = other.GetComponent<CheckCollider>().TransformEnemyObject;
+            SimulationJumperPhysics.TransformEmptyObject = other.GetComponent<CheckCollider>().TransformEnemyObject;
             //SimulationJumperPhysics.CheckJumperStop = true;
         }
     }
+
+    private void Test()
+    {
+        
+    }
+    
     
 }
