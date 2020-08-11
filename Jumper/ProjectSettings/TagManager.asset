@@ -5,8 +5,12 @@ TagManager:
   serializedVersion: 2
   tags:
   - Jumper
+<<<<<<< HEAD
   - Block
   - Ground
+=======
+  - Object
+>>>>>>> Generation_plus_control
   layers:
   - Default
   - TransparentFX
@@ -16,8 +20,13 @@ TagManager:
   - UI
   - 
   - 
+<<<<<<< HEAD
   - Ground
   - 
+=======
+  - AvoidJumper
+  - Jumper
+>>>>>>> Generation_plus_control
   - 
   - 
   - 

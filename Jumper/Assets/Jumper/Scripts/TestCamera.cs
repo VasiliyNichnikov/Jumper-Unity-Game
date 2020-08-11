@@ -13,4 +13,5 @@ public class TestCamera : MonoBehaviour
         _textFPS.text = $"FPS: {fps.ToString()}";
 
     }
+  
 }

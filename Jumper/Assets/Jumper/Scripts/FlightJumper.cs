@@ -129,6 +129,8 @@ public class FlightJumper : MonoBehaviour
         _rigidbodyJumper = GetComponent<Rigidbody>();
         _simulationJumperPhysics = GetComponent<SimulationJumperPhysics>();
         _calculatingAngleHeightJumper = GetComponent<CalculatingAngleHeightJumper>();
+        //_radiusCollider = GetComponent<CapsuleCollider>().radius;
+        //_layerMaskJumper = 1 << 8;
         _thisTransform = transform;
         //FreezePositionAndRotationJumper();
     }
