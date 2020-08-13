@@ -16,7 +16,7 @@ public class AnimationGameOverJumper : MonoBehaviour
 
     private Rigidbody _rigidbodyUpperPartJumper = null;
     private Rigidbody _rigidbodyLowerPartJumper = null;
-    
+
     private void Start()
     {
         _rigidbodyJumper = GetComponent<Rigidbody>();
@@ -35,22 +35,22 @@ public class AnimationGameOverJumper : MonoBehaviour
         _rigidbodyJumper.useGravity = false;
         _capsuleCollider.isTrigger = true;
         _rigidbodyJumper.constraints = RigidbodyConstraints.FreezeAll;
-        
-        if(_upperPartJumper.GetComponent<Rigidbody>() == null)
+
+        if (_upperPartJumper.GetComponent<Rigidbody>() == null)
             _upperPartJumper.AddComponent<Rigidbody>();
-        if(_bottomPartJumper.GetComponent<Rigidbody>() == null)
+        if (_bottomPartJumper.GetComponent<Rigidbody>() == null)
             _bottomPartJumper.AddComponent<Rigidbody>();
 
         _upperPartJumper.GetComponent<BoxCollider>().isTrigger = false;
         _bottomPartJumper.GetComponent<CapsuleCollider>().enabled = true;
-        
+
         _rigidbodyUpperPartJumper = _upperPartJumper.GetComponent<Rigidbody>();
         _rigidbodyLowerPartJumper = _bottomPartJumper.GetComponent<Rigidbody>();
-        
+
         float x = Random.Range(0f, 1f);
         float y = Random.Range(0f, 1f);
         float z = Random.Range(0f, 1f);
-        
+
         _rigidbodyUpperPartJumper.AddForce(new Vector3(x, y, z) * Random.Range(1f, 5f), ForceMode.Impulse);
         _rigidbodyLowerPartJumper.AddForce(new Vector3(-x, -y, -z) * Random.Range(1f, 5f), ForceMode.Impulse);
     }

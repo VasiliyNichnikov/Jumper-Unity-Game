@@ -6,20 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Jumper/Scenes/Test Jumper Alpha v0.1.unity
-    guid: 566c7949ada65904692f9c6f7e07ada8
-  - enabled: 0
-<<<<<<< HEAD
-    path: Assets/Jumper/Scenes/Jumper Test Scene.unity
+    path: Assets/Jumper/Scenes/Jumper and Generation Test.unity
     guid: 24fe01f603d1cbe42a982a1052dfbbeb
-=======
-    path: 
-    guid: 00000000000000000000000000000000
-  - enabled: 0
-    path: Assets/Sandboxes/SanyaPacman Sandbox/Test_Build.unity
-    guid: 389d5bb70d0f11f448f35e27887cddc5
-  - enabled: 1
-    path: Assets/Sandboxes/SanyaPacman Sandbox/Generation_Old.unity
-    guid: 8df8ce1b87e6f424f93bb9cc4c348a66
->>>>>>> Generation_plus_control
   m_configObjects: {}

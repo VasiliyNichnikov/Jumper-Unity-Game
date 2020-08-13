@@ -132,6 +132,7 @@ public class FlightJumper : MonoBehaviour
         //_radiusCollider = GetComponent<CapsuleCollider>().radius;
         //_layerMaskJumper = 1 << 8;
         _thisTransform = transform;
+
         //FreezePositionAndRotationJumper();
     }
     
@@ -148,7 +149,7 @@ public class FlightJumper : MonoBehaviour
             Vector3 vectorDifference = _vector3TransformHeightAngle.position - _thisTransform.position;
             //print($"Угол наклона - {Vector3.Angle( vectorDifference, Vector3.left)}");
             Vector3 vectorForce =
-                new Vector3(vectorDifference.x * speedX, vectorDifference.y * speedY, vectorDifference.z);
+                new Vector3(-vectorDifference.x * speedX, Mathf.Abs(vectorDifference.y * speedY), vectorDifference.z);
             Dictionary<string, float> dictionaryDistance =
                 _simulationJumperPhysics.SimulationJumper(transform.position, vectorForce);
             float positionJumperEndAxesY = dictionaryDistance["finite_distance_axes_y"];
@@ -156,7 +157,8 @@ public class FlightJumper : MonoBehaviour
             if (positionJumperEndAxesY != .0f)
                 _cameraTracking.PositionY = positionJumperEndAxesY;
             _rigidbodyJumper.isKinematic = false;
-            //FreezePositionAndRotationJumper(true);
+            //print($"Add speed - {speedX}; {speedY}");
+            //print(vectorForce);
             _rigidbodyJumper.AddForce(vectorForce, ForceMode.Impulse);
         }    
     }
@@ -233,9 +235,6 @@ public class FlightJumper : MonoBehaviour
     //private GameObject _otherGameobject = null;
     // Прикосновение к объекту
     private void OnCollisionEnter(Collision other){
-        //ContactPoint contactPoint = other.contacts[0];
-        //print($"contactPoint - {contactPoint}");
-        //print(other.collider);
         if (_animationStartJumperEnd)
             EndAnimationJumper(other);
     }
@@ -243,8 +242,6 @@ public class FlightJumper : MonoBehaviour
     // Нахождение в объекте
     private void OnCollisionStay(Collision other)
     {
-        //ContactPoint contactPoint = other.contacts[0];
-        
         if (_animationStartJumperEnd)
             EndAnimationJumper(other);
     }

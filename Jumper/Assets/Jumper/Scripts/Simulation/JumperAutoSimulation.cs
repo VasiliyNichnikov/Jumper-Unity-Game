@@ -36,7 +36,7 @@ public class JumperAutoSimulation : MonoBehaviour
         //     angleStart++;
         // }
         
-        if (other.tag == "Block" && FoundPointMax)
+        if (other.tag == "Object" && FoundPointMax)
         {
             SimulationJumperPhysics.TransformEmptyObject = other.GetComponent<CheckCollider>().TransformEnemyObject;
             //SimulationJumperPhysics.CheckJumperStop = true;

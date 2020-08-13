@@ -8,7 +8,7 @@ public class ChangeDifficle : MonoBehaviour
   public Generation gen;
   public float MaxDistantion = 1000;
   public float MaxIncreseBetweenObj = 1;
-
+  
   private float TargetX;
   private float ScaleDiff;
   private float StartMin;
@@ -19,7 +19,7 @@ public class ChangeDifficle : MonoBehaviour
     StartMin = gen.minDistance;
     StartMax = gen.startMaxDistance;
   }
-
+  
   // Update is called once per frame
   void Update()
   {

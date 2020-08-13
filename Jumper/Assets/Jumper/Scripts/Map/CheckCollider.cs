@@ -10,7 +10,7 @@ public class CheckCollider : MonoBehaviour
         [Header("Имя коллайлера")]
         public string NameCollider = "None";
         [Header("Коллайдер")]
-        public BoxCollider BoxCollider = null;
+        public Collider Collider = null;
         [Header("Позиция правой точки коллайдера")]
         public Vector3 PositionRightCollider = Vector3.zero;
         [Header("Позиция левой точки коллайдера")]
@@ -27,39 +27,44 @@ public class CheckCollider : MonoBehaviour
     private List<ColliderClass> _collidersClass = new List<ColliderClass>();
 
     // Все boxColliders, которые есть на объекте
-    private BoxCollider[] _boxColliders = null;
+    private Collider[] _colliders = null;
 
     // Точка куда приземлился джампер
     private Vector3 _positionLandingPlayer = Vector3.zero;
     
-    // Скрипт, который запускает анимацию поражения джампера
-    //[HideInInspector] 
-    //public AnimationGameOverJumper AnimationGameOverJumper = null;
+    // Камера
+    private Camera _camera = null;
     
-    // Скрипт, который управляет панелью при поражении джампера
-    //[HideInInspector] public GameOverPanel GameOverPanel = null;
+    [Header("Префаб шарика, который создается по краям")]
+    public GameObject PrefabSpehere = null;
 
     [HideInInspector] public GameOverPlayer GameOverPlayer = null;
     
     private void Start()
     {
-        _boxColliders = GetComponents<BoxCollider>();
+        _colliders = GetComponents<Collider>();
         // Получение точки, которая является ребенком объекта
         TransformEnemyObject = transform.GetChild(0).transform;
-
-        for (int i = 0; i < _boxColliders.Length; i++)
+        _camera = Camera.main;;
+        for (int i = 0; i < _colliders.Length; i++)
         {
             ColliderClass colliderClass = new ColliderClass();
             
             colliderClass.NameCollider = $"Collider - {i}";
-            colliderClass.BoxCollider = _boxColliders[i];
+            colliderClass.Collider = _colliders[i];
             //BoxCollider collider = _boxCollidersObject[i]; 
-            var positionCenterBounds = _boxColliders[i].bounds.center;
+            var positionCenterBounds = _colliders[i].bounds.center;
             //_positionMaximumHeight = _boxColliders[i].bounds.ClosestPoint(new Vector3(_positionCenterBounds.x, Mathf.Infinity, _positionCenterBounds.z));
             
-            var positionRightCollider = _boxColliders[i].bounds.ClosestPoint(new Vector3(Mathf.Infinity, positionCenterBounds.y, positionCenterBounds.z));
-            var positionLeftCollider = _boxColliders[i].bounds.ClosestPoint(new Vector3(-Mathf.Infinity, positionCenterBounds.y, positionCenterBounds.z));
+            var positionRightCollider = _colliders[i].bounds.ClosestPoint(new Vector3(Mathf.Infinity, positionCenterBounds.y, positionCenterBounds.z));
+            var positionLeftCollider = _colliders[i].bounds.ClosestPoint(new Vector3(-Mathf.Infinity, positionCenterBounds.y, positionCenterBounds.z));
 
+            // GameObject newSphereRight = Instantiate(PrefabSpehere, transform, false);
+            // newSphereRight.transform.localPosition = positionRightCollider;
+            //
+            // GameObject newSphereLeft = Instantiate(PrefabSpehere, transform, false);
+            // newSphereLeft.transform.localPosition = positionLeftCollider;
+            
             colliderClass.PositionRightCollider = positionRightCollider;
             colliderClass.PositionLeftCollider = positionLeftCollider;
             
@@ -74,10 +79,16 @@ public class CheckCollider : MonoBehaviour
          Vector3 positionRightCollider = arrayPoints[0];
          Vector3 positionLeftCollider = arrayPoints[1];
 
-         _positionLandingPlayer = collision.GetContact(0).point;
+         _positionLandingPlayer = _camera.transform.InverseTransformPoint(collision.GetContact(0).point);
          
          //print($"Position Right Collider - {positionRightCollider}");
          //print($"Position Left Collider - {positionLeftCollider}");
+         
+         // print($"Check One - {Mathf.Abs(_positionLandingPlayer.x) > Mathf.Abs(positionRightCollider.x)}");
+         // print($"Check Two - {Mathf.Abs(_positionLandingPlayer.x) < Mathf.Abs(positionLeftCollider.x)}");
+         // print($"Position Landing Player - {Mathf.Abs(_positionLandingPlayer.x)}");
+         // print($"Position Left Collider - {Mathf.Abs(positionLeftCollider.x)}");
+         // print($"Position Right Collider - {Mathf.Abs(positionRightCollider.x)}");
          
         if (_positionLandingPlayer.x < positionRightCollider.x && // - 0.1f
             _positionLandingPlayer.x > positionLeftCollider.x) //+ 0.1f // _positionLandingPlayer.y > _positionCenterBounds.y &&
@@ -86,6 +97,7 @@ public class CheckCollider : MonoBehaviour
         }
         else
         {
+            print("Game OVER");
             GameOverPlayer.GameOverPlayerMethod();
         } 
     }
@@ -126,7 +138,7 @@ public class CheckCollider : MonoBehaviour
         Vector3[] arrayPoints = new Vector3[2];
         for (int i = 0; i < _collidersClass.Count; i++)
         {
-            if (_collidersClass[i].BoxCollider == colliderLanding)
+            if (_collidersClass[i].Collider == colliderLanding)
             {
                 arrayPoints[0] = _collidersClass[i].PositionRightCollider;
                 arrayPoints[1] = _collidersClass[i].PositionLeftCollider;

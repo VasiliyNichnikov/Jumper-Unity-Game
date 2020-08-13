@@ -9,11 +9,7 @@ public class Destroy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-<<<<<<< HEAD
         player= GameObject.FindGameObjectWithTag("Player");
-=======
-        player = GameObject.FindGameObjectWithTag("Jumper");
->>>>>>> Generation_plus_control
     }
 
     // Update is called once per frame

@@ -5,29 +5,26 @@ public class CameraTracking : MonoBehaviour
     [SerializeField] [Header("Объект, за которым смотрим")]
     private Transform _player = null;
 
-    // [SerializeField] [Header("Скрипт, который хранит все позиции моделей")]
-    // private ListModelsTest _listModelsTest = null;
-
     [SerializeField] [Header("Главная камера (Transform)")]
     private Transform _mainCamera = null;
     
     [SerializeField] [Range(-50, 50)] [Header("Расстояние по оси X")]
-    private float _offsetX = .0f;
+    private static float _offsetX = .0f;
 
     [SerializeField] [Range(-50, 50)] [Header("Расстояние по оси Y")]
-    private float _offsetY = .0f;
+    private static float _offsetY = .0f;
 
     [SerializeField] [Range(0, 100)] [Header("Скорость движения камеры")]
-    private float _speedCamera = .0f;
+    private static float _speedCamera = 45f;
 
     [SerializeField] [Range(0, 10)] [Header("Скорость движения камеры по оси Y")]
     private float _speedCameraAxesY = .0f;
 
-    [SerializeField] [Range(-45, 45)] [Header("Угол камеры по оси Y")]
-    private float _angleY = .0f;
+    [SerializeField] [Range(-45, 360)] [Header("Угол камеры по оси Y")]
+    private static float _angleY = 220;
 
-    [SerializeField] [Range(-45, 45)] [Header("Угол наклона по оси X")]
-    private float _angleX = .0f;
+    [SerializeField] [Range(-45, 360)] [Header("Угол наклона по оси X")]
+    private static float _angleX = .0f;
 
     [HideInInspector]
     public float PositionY = .0f;
@@ -36,10 +33,7 @@ public class CameraTracking : MonoBehaviour
 
     // Вектор куда должен двигаться игрок
     private Vector3 _positionPlayerMovement = Vector3.zero;
-    
-    // Сохранение последней позиции игрока по X
-    //private float _savePositionPlayer = .0f;
-    
+
     // Получение и изменение расстояние между камерой и игроком по оси X
     public float ChangeGetOffsetX
     {

@@ -40,11 +40,9 @@ public class CalculatingAngleHeightJumper : MonoBehaviour
     private float _percentHeightJumper = .0f;
     private float _percentAngleJumper = .0f;
     
-    [SerializeField]
     // Максимальный угол по оси Z на данный момент 
     private float _maximumAngleInclinationAxesZ = .0f;
     
-    [SerializeField]
     // Минимальный угол по оси Z на данный момент
     private float _minimumAngleInclinationAxesZ = .0f;
 
@@ -143,7 +141,7 @@ public class CalculatingAngleHeightJumper : MonoBehaviour
     private float GetAngleInclinationJumper(float nowPositionX, float startPositionX, float sensitivityJumper)
     {
         var differenceDistance = startPositionX - nowPositionX;
-        var percentageScreenWidth = ConversionValuesPercent(differenceDistance, sensitivityJumper);
+        var percentageScreenWidth = -ConversionValuesPercent(differenceDistance, sensitivityJumper);
         _percentAngleJumper = Mathf.Clamp(Mathf.Abs(percentageScreenWidth), 0, 100);    
         var angleInclination = InterestValue(percentageScreenWidth, _minimumAngleInclinationAxesZ, _maximumAngleInclinationAxesZ);
         return angleInclination;
