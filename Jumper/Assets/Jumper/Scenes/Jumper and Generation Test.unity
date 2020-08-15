@@ -621,6 +621,84 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 173140533}
   m_CullTransparentMesh: 0
+--- !u!1 &178202770
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 178202771}
+  - component: {fileID: 178202773}
+  - component: {fileID: 178202772}
+  m_Layer: 5
+  m_Name: Score
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &178202771
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 178202770}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.000044551285}
+  m_LocalScale: {x: 1.0015783, y: 1.0015783, z: 1.0015783}
+  m_Children: []
+  m_Father: {fileID: 522291901}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: -0.00024414062, y: -221}
+  m_SizeDelta: {x: 200, y: 62.91626}
+  m_Pivot: {x: 0, y: 1}
+--- !u!114 &178202772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 178202770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 40
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 3
+    m_MaxSize: 67
+    m_Alignment: 3
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: Score - 0
+--- !u!222 &178202773
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 178202770}
+  m_CullTransparentMesh: 0
 --- !u!1 &194579943
 GameObject:
   m_ObjectHideFlags: 0
@@ -1574,6 +1652,7 @@ GameObject:
   - component: {fileID: 522291899}
   - component: {fileID: 522291898}
   - component: {fileID: 522291903}
+  - component: {fileID: 522291902}
   m_Layer: 5
   m_Name: Main Canvas
   m_TagString: Untagged
@@ -1654,6 +1733,7 @@ RectTransform:
   m_Children:
   - {fileID: 697577792}
   - {fileID: 1849092187}
+  - {fileID: 178202771}
   - {fileID: 1768733867}
   - {fileID: 1363042580}
   - {fileID: 1779762981}
@@ -1665,6 +1745,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &522291902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 522291897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21ea0e0e07c22d34f8732e523a30f3c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreText: {fileID: 178202772}
 --- !u!20 &522291903
 Camera:
   m_ObjectHideFlags: 0
@@ -4414,7 +4507,7 @@ RectTransform:
   - {fileID: 975935170}
   - {fileID: 1748728327}
   m_Father: {fileID: 522291901}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0.80300003}
@@ -5857,7 +5950,7 @@ RectTransform:
   - {fileID: 1903963965}
   - {fileID: 707302797}
   m_Father: {fileID: 522291901}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.25125, y: 0.8583283}
   m_AnchorMax: {x: 1, y: 1}
@@ -5932,7 +6025,7 @@ RectTransform:
   - {fileID: 708266635}
   - {fileID: 2119914179}
   m_Father: {fileID: 522291901}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
