@@ -80,18 +80,9 @@ public class CheckCollider : MonoBehaviour
          Vector3 positionLeftCollider = arrayPoints[1];
 
          _positionLandingPlayer = _camera.transform.InverseTransformPoint(collision.GetContact(0).point);
-         
-         //print($"Position Right Collider - {positionRightCollider}");
-         //print($"Position Left Collider - {positionLeftCollider}");
-         
-         // print($"Check One - {Mathf.Abs(_positionLandingPlayer.x) > Mathf.Abs(positionRightCollider.x)}");
-         // print($"Check Two - {Mathf.Abs(_positionLandingPlayer.x) < Mathf.Abs(positionLeftCollider.x)}");
-         // print($"Position Landing Player - {Mathf.Abs(_positionLandingPlayer.x)}");
-         // print($"Position Left Collider - {Mathf.Abs(positionLeftCollider.x)}");
-         // print($"Position Right Collider - {Mathf.Abs(positionRightCollider.x)}");
-         
-        if (_positionLandingPlayer.x < positionRightCollider.x && // - 0.1f
-            _positionLandingPlayer.x > positionLeftCollider.x) //+ 0.1f // _positionLandingPlayer.y > _positionCenterBounds.y &&
+
+         if (_positionLandingPlayer.x < positionRightCollider.x && // - 0.1f
+             _positionLandingPlayer.x > positionLeftCollider.x) //+ 0.1f // _positionLandingPlayer.y > _positionCenterBounds.y &&
         {
             print("Player in the game;");
         }
@@ -101,37 +92,7 @@ public class CheckCollider : MonoBehaviour
             GameOverPlayer.GameOverPlayerMethod();
         } 
     }
-    
-    //private void OnCollisionEnter(Collision other)
-    //{
-        // if (!ClickTracking.GameOverPlayer && other.collider.tag == "Player")// && ClickTracking.JumpPlayer)
-        // {
-        //     //ClickTracking.JumpPlayer = false;
-        //     //ClickTracking.JumpPlayer = false;
-        //     ContactPoint contactPoint = other.contacts[0];
-        //     Vector3[] arrayPoints = GetLeftRightPositionColliderPoints(contactPoint.thisCollider);
-        //     if(arrayPoints == null)
-        //         Debug.LogError("Ошибка, не найден коллайлер");
-        //     else
-        //     {
-        //         Vector3 positionRightCollider = arrayPoints[0];
-        //         Vector3 positionLeftCollider = arrayPoints[1];
-        //
-        //         _positionLandingPlayer = other.GetContact(0).point;
-        //         
-        //         if (_positionLandingPlayer.x < positionRightCollider.x && // - 0.1f
-        //             _positionLandingPlayer.x > positionLeftCollider.x) //+ 0.1f // _positionLandingPlayer.y > _positionCenterBounds.y &&
-        //         {
-        //             print("Player in the game;");
-        //         }
-        //         else
-        //         {
-        //             GameOverPlayer.GameOverPlayerMethod();
-        //         } 
-        //     }
-        // }
-     // }
-    
+
     // Метод возвращает правую и левую точку коллайдера, на который прилетел джампер
     private Vector3[] GetLeftRightPositionColliderPoints(Collider colliderLanding)
     {

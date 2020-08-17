@@ -33,12 +33,9 @@ public class ClickTracking : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     /// Переменные, которые скрыты в инспекторе 
     /// </summary>
 
-    [HideInInspector] // Нажимал пользователь на экран или нет (Нужно для проверки, чтобы завершить цикл посадки)
-    public bool FingerInputScreen = false;
-    
-    // Переменная хранит время движения пальца
-    //private float _stopwatchMoveFinger = .0f;
-    
+    //[HideInInspector] // Нажимал пользователь на экран или нет (Нужно для проверки, чтобы завершить цикл посадки)
+    public static bool FingerInputScreen = false;
+
     // Прыгает пользователь или нет
     public static bool JumpPlayer = false;
     
@@ -67,6 +64,7 @@ public class ClickTracking : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
         JumpPlayer = false;
         GameOverPlayer = false;
         _playerDragFinger = false;
+        FingerInputScreen = false;
     }
 
     // Позиции пальца без переводов в экранные разрешения
@@ -78,7 +76,6 @@ public class ClickTracking : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     {
         if (!JumpPlayer && !GameOverPlayer)
         {
-            //_stopwatchMoveFinger = 0;
             _startPositionFinger = new Vector2(_mainCamera.ScreenToViewportPoint(Input.mousePosition).x,
                 _mainCamera.ScreenToViewportPoint(Input.mousePosition).y);
             FingerInputScreen = true;
@@ -91,17 +88,6 @@ public class ClickTracking : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     {
         if (!JumpPlayer && !GameOverPlayer)
         {
-            //_stopwatchMoveFinger += Time.deltaTime;
-            // if (_stopwatchMoveFinger > 0 && _sensitivityJumper > 0)
-            //     _sensitivityJumper *= _stopwatchMoveFinger;
-            
-            //_sensitivityJumper *= _stopwatchMoveFinger; 
-            //print($"Секундомер - {_stopwatchMoveFinger};");
-            //if (_calculatingAngleHeightJumper.GetPercentAngleJumper >= 60)
-              // _sensitivityJumper = 0.0001f;
-            // else
-            //     _sensitivityJumper = 2;
-            
             FingerInputScreen = true;
             _playerDragFinger = true;
             

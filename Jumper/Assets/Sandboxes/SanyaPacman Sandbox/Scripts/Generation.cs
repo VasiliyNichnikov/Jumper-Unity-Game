@@ -33,7 +33,7 @@ public class Generation : MonoBehaviour
   private int _maxAmountSpawnedObjects = 8;
   private GameObject last_pref;
   private List<GameObject> last_objects;
-  private List<GameObject> _wallpaperBlockAndFloorObjectsList = new List<GameObject>();
+
 
   
   private int _positionXWallpaperBlockFloor = 0;
@@ -44,7 +44,7 @@ public class Generation : MonoBehaviour
     _endMaxDistance = GetMaxDistance();
     _maxHeight = GetMaxHeight();
     SpawnFirst();
-    GenerationBackground();
+    GenerationNumberBackground();
   }
   
   void Update()
@@ -54,15 +54,19 @@ public class Generation : MonoBehaviour
 
   
   
-  private void GenerationBackground(int number = 8)
+  private void GenerationNumberBackground(int number = 8)
   {
     for (int i = 0; i < number; i++)
     {
-      GameObject newWallpaperBlockFloor = Instantiate(PrefabWallpaperBlockFloor, ParentPrefabWallpaperBlockFloorObjects, false);
-      newWallpaperBlockFloor.transform.position = new Vector3(_positionXWallpaperBlockFloor, 0, -7.2f);
-      _positionXWallpaperBlockFloor -= 16;
-      _wallpaperBlockAndFloorObjectsList.Add(newWallpaperBlockFloor);
+      GenerationOneBackground();
     }
+  }
+
+  private void GenerationOneBackground()
+  {
+    GameObject newWallpaperBlockFloor = Instantiate(PrefabWallpaperBlockFloor, ParentPrefabWallpaperBlockFloorObjects, false);
+    newWallpaperBlockFloor.transform.position = new Vector3(_positionXWallpaperBlockFloor, 0, -7.2f);
+    _positionXWallpaperBlockFloor -= 8;
   }
   
   
@@ -74,10 +78,15 @@ public class Generation : MonoBehaviour
       if (transform.childCount > _maxAmountSpawnedObjects)
       {
         Destroy(transform.GetChild(0).gameObject);
-        // Destroy(_wallpaperBlockAndFloorObjectsList[0]);
-        // _wallpaperBlockAndFloorObjectsList.RemoveAt(0);
-        GenerationBackground(1);
       }
+    }
+    var distanceBackgroundToPlayer =
+      Vector3.Distance(ParentPrefabWallpaperBlockFloorObjects.GetChild(0).transform.position, player.transform.position);
+
+    if (distanceBackgroundToPlayer > 25)
+    {
+      Destroy(ParentPrefabWallpaperBlockFloorObjects.GetChild(0).gameObject);
+      GenerationOneBackground();
     }
   }
 
@@ -100,7 +109,7 @@ public class Generation : MonoBehaviour
   {
     var pre_last_pref = last_pref;
 
-    var bounds = pre_last_pref.GetComponent<Collider>().bounds;
+    //var bounds = pre_last_pref.GetComponent<Collider>().bounds;
     var obj = getOBJ();
     if (obj == null)
     {
