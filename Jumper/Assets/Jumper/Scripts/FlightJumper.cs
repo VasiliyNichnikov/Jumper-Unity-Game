@@ -57,6 +57,7 @@ public class FlightJumper : MonoBehaviour
     private Quaternion _rotationEnd = Quaternion.identity;
     private bool _animationStartJumperEnd = false;
     private bool _landingCollider = false;
+    public event System.Action<Collision> OnJumperStop;
     
     // Для настроек джампера(Начало)
     public float ChangeMassJumper
@@ -210,6 +211,10 @@ public class FlightJumper : MonoBehaviour
         {
             CheckCollider _checkCollider = other.gameObject.GetComponent<CheckCollider>();
             _checkCollider.CheckGameOver(other);
+            if (OnJumperStop != null)
+            {
+                OnJumperStop(other);
+            }
         }
         
         print("Animation End, start now");
