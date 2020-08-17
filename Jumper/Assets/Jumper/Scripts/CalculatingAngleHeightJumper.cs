@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 
 /// <summary>
@@ -30,10 +29,7 @@ public class CalculatingAngleHeightJumper : MonoBehaviour
     
     // Верхняя часть джампера
     private GameObject _upperPartJumper = null;
-    
-    // Нижняя часть джампера
-    //private GameObject _bottomPartJumper = null;
-    
+
     // Максимальная высота верхней части джампера (Задается при старте)
     private float _maximumHeightJumper = .0f;
     
@@ -51,7 +47,6 @@ public class CalculatingAngleHeightJumper : MonoBehaviour
         set { _upperPartJumper = value; }
     }
     
-
     public float GerPercentHeightJumper
     {
         get { return _percentHeightJumper; }
@@ -91,15 +86,6 @@ public class CalculatingAngleHeightJumper : MonoBehaviour
     
     private void Start()
     {
-        // Создание джампера при старте
-        //_flightJumper = GetComponent<FlightJumper>();
-        //_upperPartJumper = GameObject.Find("Jumper the upper part");
-        //_bottomPartJumper = GameObject.Find("Jumper the bottom part");
-        
-        //createVector3HeightAngle.transform.position = new Vector3(createVector3HeightAngle.transform.position.x, 6.9f,
-        //    createVector3HeightAngle.transform.position.z);
-        //_flightJumper.Changevector3TransformHeightAngle = createVector3HeightAngle.transform;
-        
         // Инициализация дополнительных параметров
         _transformUpperPartJumper = _upperPartJumper.transform;
         _maximumHeightJumper = _transformUpperPartJumper.localPosition.y;
@@ -108,13 +94,6 @@ public class CalculatingAngleHeightJumper : MonoBehaviour
         _maximumAngleInclinationAxesZ = _maximumAngleInclination;
         _minimumAngleInclinationAxesZ = -_maximumAngleInclination;
     }
-    
-    // Данный метод передает параметр UpperPart и BottomPart джампера
-    // public void ChangeUpperPartJumper(GameObject upperPart)
-    // {
-    //     _upperPartJumper = upperPart;
-    //     //_bottomPartJumper = bottomPart;
-    // }
 
     // Данный метод меняет высоту и угол наклона джампера, в зависимости от нахождения пальца
     public void ChangeHeightAngleInclinationJumper(Vector2 nowPosition, Vector2 startPosition, float sensitivityJumper)
@@ -157,9 +136,7 @@ public class CalculatingAngleHeightJumper : MonoBehaviour
             heightJumper = new Vector3(_transformUpperPartJumper.localPosition.x, _maximumHeightJumper - 0, 
                 _transformUpperPartJumper.localPosition.z);
         }
-        // Vector3 heightJumper = new Vector3(_transformUpperPartJumper.localPosition.x, _maximumHeightJumper - DifferenceUpperPartJumperAxesYFlight, 
-        //     _transformUpperPartJumper.localPosition.z);
-        while (_transformUpperPartJumper.localPosition.y != heightJumper.y)
+        while (_transformUpperPartJumper.localPosition.y != heightJumper.y && !ClickTracking.FingerInputScreen)
         {
             _transformUpperPartJumper.localPosition = Vector3.MoveTowards(_transformUpperPartJumper.localPosition, heightJumper,
                 _speedDecompressedJumper * Time.deltaTime);
@@ -168,7 +145,7 @@ public class CalculatingAngleHeightJumper : MonoBehaviour
     }
 
 
-    // Метод блокирует или разблокирует угол наклона джампера
+    // Метод блокирует/разблокирует угол наклона джампера
     public void LockingUnlockJumperAngle(bool lockUnlock = false)
     {
         if (!lockUnlock)
@@ -198,13 +175,7 @@ public class CalculatingAngleHeightJumper : MonoBehaviour
     {
         return Mathf.Clamp(_maximumAngleInclination * percentNow / 100, minimum, maximum);
     }
-    
-    // Возвращает число, которое мы делим на полученный процента угла
-    // private float NumberDividingAnglePercentage(float percentNow, float minimum, float maximum)
-    // {
-    //     return Mathf.Clamp(maximum * percentNow / 100, minimum, maximum);
-    // }
-    
+
     // Разница высоты верхний части джампера
     private float DifferenceLengthUpperPartJumper(float percentNow, float minimum, float maximum)
     {

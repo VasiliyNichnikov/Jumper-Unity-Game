@@ -13,9 +13,8 @@ GameObject:
   - component: {fileID: 7324613862246698978}
   - component: {fileID: 7324613862248863624}
   - component: {fileID: -7026635623820691580}
-  - component: {fileID: 1649505623579345533}
-  - component: {fileID: 8739182212271332659}
-  - component: {fileID: 7327093262687499248}
+  - component: {fileID: 4107883267553069005}
+  - component: {fileID: 4676306289172423370}
   m_Layer: 0
   m_Name: Bath
   m_TagString: Object
@@ -123,7 +122,21 @@ MonoBehaviour:
   PrefabSpehere: {fileID: 6614533643343637360, guid: f5dac25f45cffb343ac645eba4a818f2,
     type: 3}
   GameOverPlayer: {fileID: 0}
---- !u!65 &1649505623579345533
+--- !u!64 &4107883267553069005
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7324613862248894754}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: f43dde4c02704e144a91a1f6e97476b6, type: 3}
+--- !u!65 &4676306289172423370
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -134,34 +147,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.8994856, y: 2.102497, z: 3.6047208}
-  m_Center: {x: -3.055255, y: 1.0747721, z: -0.38765562}
---- !u!65 &8739182212271332659
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7324613862248894754}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.857805, y: 2.102497, z: 3.6047208}
-  m_Center: {x: 2.6805859, y: 1.0747721, z: -0.38765562}
---- !u!65 &7327093262687499248
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7324613862248894754}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 6.614486, y: 0.6373372, z: 3.6047208}
-  m_Center: {x: -0.19775462, y: 0.34219217, z: -0.38765562}
+  m_Size: {x: 5.289895, y: 0.85518456, z: 3.6047208}
+  m_Center: {x: -0.21390867, y: 0.45111585, z: -0.38765562}
 --- !u!1 &9091263647080277167
 GameObject:
   m_ObjectHideFlags: 0
