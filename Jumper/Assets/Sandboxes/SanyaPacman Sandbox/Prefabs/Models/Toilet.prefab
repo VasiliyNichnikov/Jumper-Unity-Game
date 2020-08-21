@@ -127,7 +127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4600fa91b87a13e47b9cbd4f8beef24a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: "\u0423\u043D\u0438\u0442\u0430\u0437"
+  Name: Toilet
   BLB_Point: {x: -1.6651497, y: 0.015506983, z: -0.8813499}
   TRF_Point: {x: 0.98946, y: 1.55, z: 0.8272592}
   sizeX: 2.6546097

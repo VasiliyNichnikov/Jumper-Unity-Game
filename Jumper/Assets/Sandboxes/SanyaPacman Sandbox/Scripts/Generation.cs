@@ -14,7 +14,10 @@ public class Generation : MonoBehaviour
   public CameraTracking CameraTracking = null;
 
   [Header("Префаб обоев и пола (блок)")] public GameObject PrefabWallpaperBlockFloor = null;
-  
+
+  [Header("Минимальное расстояние от игрока до последнего фона")]
+  [Range(0, 100)]
+  public float MinimumDistanceFromPlayer;
   
   //public KeyCode spawnKey;
   public GameObject player;
@@ -83,7 +86,7 @@ public class Generation : MonoBehaviour
     var distanceBackgroundToPlayer =
       Vector3.Distance(ParentPrefabWallpaperBlockFloorObjects.GetChild(0).transform.position, player.transform.position);
 
-    if (distanceBackgroundToPlayer > 25)
+    if (distanceBackgroundToPlayer > MinimumDistanceFromPlayer)
     {
       Destroy(ParentPrefabWallpaperBlockFloorObjects.GetChild(0).gameObject);
       GenerationOneBackground();
@@ -127,7 +130,6 @@ public class Generation : MonoBehaviour
     GOinfo = last_pref.GetComponent<ObjectInfo>();
 
     float x3 = -Mathf.Abs(GOinfo.transform.position.x - GOinfo.sizeX / 2);
-
     last_pref.transform.position += new Vector3(x1 + x2 + x3, 0, 0);
 
     SpawnZoneInfo SpawnZone = last_pref.GetComponent<SpawnZoneInfo>();

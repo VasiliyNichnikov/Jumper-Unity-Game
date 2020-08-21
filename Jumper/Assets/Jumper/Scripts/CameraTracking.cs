@@ -9,10 +9,10 @@ public class CameraTracking : MonoBehaviour
     private Transform _mainCamera = null;
     
     [SerializeField] [Range(-50, 50)] [Header("Расстояние по оси X")]
-    private static float _offsetX = .0f;
+    private float _offsetX = .0f;
 
     [SerializeField] [Range(-50, 50)] [Header("Расстояние по оси Y")]
-    private static float _offsetY = .0f;
+    private float _offsetY = .0f;
 
     [SerializeField] [Range(0, 100)] [Header("Скорость движения камеры")]
     private static float _speedCamera = 45f;
@@ -20,10 +20,10 @@ public class CameraTracking : MonoBehaviour
     [SerializeField] [Range(0, 10)] [Header("Скорость движения камеры по оси Y")]
     private float _speedCameraAxesY = .0f;
 
-    [SerializeField] [Range(-45, 360)] [Header("Угол камеры по оси Y")]
+    [Range(-45, 360)] [Header("Угол камеры по оси Y")]
     private static float _angleY = 220;
 
-    [SerializeField] [Range(-45, 360)] [Header("Угол наклона по оси X")]
+    [Range(-45, 360)] [Header("Угол наклона по оси X")]
     private static float _angleX = .0f;
 
     [HideInInspector]

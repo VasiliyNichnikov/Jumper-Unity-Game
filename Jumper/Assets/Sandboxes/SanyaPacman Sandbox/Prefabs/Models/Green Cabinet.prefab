@@ -41,9 +41,9 @@ GameObject:
   - component: {fileID: 8566841184214678126}
   - component: {fileID: 8566841184217545294}
   - component: {fileID: 8566841184216447118}
-  - component: {fileID: 5848421212780445851}
   - component: {fileID: 4070774422316251610}
   - component: {fileID: -3202206149013146857}
+  - component: {fileID: 5848421212780445851}
   m_Layer: 0
   m_Name: Green Cabinet
   m_TagString: Object
@@ -117,19 +117,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &5848421212780445851
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8566841184214509134}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 4.9343767, y: 5.194957, z: 1.6213596}
-  m_Center: {x: 0.014071226, y: 2.581747, z: -0.011805594}
 --- !u!114 &4070774422316251610
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -142,7 +129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4600fa91b87a13e47b9cbd4f8beef24a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: "\u0417\u0435\u043B\u0435\u043D\u044B\u0439 \u0448\u043A\u0430\u0444"
+  Name: Green Cabinet
   BLB_Point: {x: -2.4531171, y: -0.015731335, z: -0.8224854}
   TRF_Point: {x: 2.4812596, y: 5.1792254, z: 0.79887444}
   sizeX: 4.9343767
@@ -166,3 +153,16 @@ MonoBehaviour:
   PrefabSpehere: {fileID: 6614533643343637360, guid: f5dac25f45cffb343ac645eba4a818f2,
     type: 3}
   GameOverPlayer: {fileID: 0}
+--- !u!65 &5848421212780445851
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8566841184214509134}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.9343767, y: 5.194957, z: 1.6213596}
+  m_Center: {x: 0.014071226, y: 2.581747, z: -0.011805594}

@@ -12,35 +12,35 @@ public class CalculatingAngleHeightJumper : MonoBehaviour
     ///</summary>
 
     [Header("Минимальная высота до которой может сжиматься джампер")] [SerializeField] [Range(0, 3)]
-    private float _minimumHeightUpperPart = .0f;
+    private float _minimumHeightUpperPart;
 
     [Header("Максимальный угол наклона джампера (По модулю)")] [SerializeField] [Range(0, 180)]
-    private float _maximumAngleInclination = .0f;
+    private float _maximumAngleInclination;
 
     [Header("Скорость с которой джампер разжимается")] [SerializeField] [Range(0, 100)]
-    private float _speedDecompressedJumper = .0f;
+    private float _speedDecompressedJumper;
 
     /// <summary>
     /// Переменные, которые скрыты в инспекторе 
     /// </summary>
 
     // Позиция верхней части джампера во время полета
-    [HideInInspector] public float PositionUpperPartJumperAxesYFlight = .0f;
+    [HideInInspector] public float PositionUpperPartJumperAxesYFlight;
     
     // Верхняя часть джампера
-    private GameObject _upperPartJumper = null;
+    private GameObject _upperPartJumper;
 
     // Максимальная высота верхней части джампера (Задается при старте)
-    private float _maximumHeightJumper = .0f;
+    private float _maximumHeightJumper;
     
-    private float _percentHeightJumper = .0f;
-    private float _percentAngleJumper = .0f;
+    private float _percentHeightJumper;
+    private float _percentAngleJumper;
     
     // Максимальный угол по оси Z на данный момент 
-    private float _maximumAngleInclinationAxesZ = .0f;
+    private float _maximumAngleInclinationAxesZ;
     
     // Минимальный угол по оси Z на данный момент
-    private float _minimumAngleInclinationAxesZ = .0f;
+    private float _minimumAngleInclinationAxesZ;
 
     public GameObject ChoiseUpperPartJumper
     {
@@ -81,8 +81,8 @@ public class CalculatingAngleHeightJumper : MonoBehaviour
     // Для настроек джампера(Конец)
 
     // transform верхней части джампера
-    private Transform _transformUpperPartJumper = null;
-    private Transform _thisTransform = null;
+    private Transform _transformUpperPartJumper;
+    private Transform _thisTransform;
     
     private void Start()
     {
