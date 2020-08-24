@@ -136,7 +136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4600fa91b87a13e47b9cbd4f8beef24a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: "\u0441\u0442\u043E\u043B \u0448\u0438\u0440\u043E\u043A\u0438\u0439"
+  Name: Table wide
   BLB_Point: {x: -1.9281502, y: -0.015230894, z: -1.3461426}
   TRF_Point: {x: 2.2679367, y: 2.3909478, z: 1.5628554}
   sizeX: 4.196087
@@ -157,8 +157,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TransformEnemyObject: {fileID: 0}
   _collidersClass: []
-  PrefabSpehere: {fileID: 6614533643343637360, guid: f5dac25f45cffb343ac645eba4a818f2,
-    type: 3}
   GameOverPlayer: {fileID: 0}
 --- !u!1 &901936951606587578
 GameObject:

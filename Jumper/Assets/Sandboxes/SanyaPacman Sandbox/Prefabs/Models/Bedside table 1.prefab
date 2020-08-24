@@ -126,7 +126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4600fa91b87a13e47b9cbd4f8beef24a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: Bedside table
+  Name: Bedside table 1
   BLB_Point: {x: -0.7186699, y: -0.039063215, z: -0.8094898}
   TRF_Point: {x: 0.7186699, y: 2.8323636, z: 0.80948967}
   sizeX: 1.4373398
@@ -147,7 +147,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TransformEnemyObject: {fileID: 0}
   _collidersClass: []
-  PrefabSpehere: {fileID: 0}
   GameOverPlayer: {fileID: 0}
 --- !u!65 &3171860906022663636
 BoxCollider:
