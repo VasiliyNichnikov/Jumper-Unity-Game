@@ -41,11 +41,11 @@ GameObject:
   - component: {fileID: 5716156011266962309}
   - component: {fileID: 5716156011269829541}
   - component: {fileID: 5716156011268731237}
+  - component: {fileID: 5716156011266566397}
+  - component: {fileID: 5365336021426668636}
   - component: {fileID: 5716156011266566399}
   - component: {fileID: 5716156011266566392}
   - component: {fileID: 5716156011266566395}
-  - component: {fileID: 5716156011266566397}
-  - component: {fileID: 5365336021426668636}
   m_Layer: 0
   m_Name: Cot
   m_TagString: Object
@@ -118,6 +118,42 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &5716156011266566397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5716156011266469797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4600fa91b87a13e47b9cbd4f8beef24a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Cot
+  BLB_Point: {x: -3.822589, y: 0.012259483, z: -1.5311658}
+  TRF_Point: {x: 3.8381042, y: 3.33, z: 1.4533403}
+  sizeX: 7.660693
+  sizeZ: 2.9845061
+  sizeY: 3.3177404
+  center: {x: 0, y: 0, z: 0}
+--- !u!114 &5365336021426668636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5716156011266469797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebf5764395709a04d88b3f7e7dbd3dd7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TransformEnemyObject: {fileID: 0}
+  _collidersClass: []
+  PrefabSpehere: {fileID: 6614533643343637360, guid: f5dac25f45cffb343ac645eba4a818f2,
+    type: 3}
+  GameOverPlayer: {fileID: 0}
 --- !u!65 &5716156011266566399
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -157,39 +193,3 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.19322515, y: 3.174669, z: 2.9845061}
   m_Center: {x: -3.7696137, y: 1.599594, z: -0.038912773}
---- !u!114 &5716156011266566397
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5716156011266469797}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4600fa91b87a13e47b9cbd4f8beef24a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Name: "\u0416\u0435\u043B\u0435\u0437\u043D\u0430\u044F \u043A\u0440\u043E\u0432\u0430\u0442\u044C"
-  BLB_Point: {x: -3.822589, y: 0.012259483, z: -1.5311658}
-  TRF_Point: {x: 3.8381042, y: 3.33, z: 1.4533403}
-  sizeX: 7.660693
-  sizeZ: 2.9845061
-  sizeY: 3.3177404
-  center: {x: 0, y: 0, z: 0}
---- !u!114 &5365336021426668636
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5716156011266469797}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebf5764395709a04d88b3f7e7dbd3dd7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TransformEnemyObject: {fileID: 0}
-  _collidersClass: []
-  PrefabSpehere: {fileID: 6614533643343637360, guid: f5dac25f45cffb343ac645eba4a818f2,
-    type: 3}
-  GameOverPlayer: {fileID: 0}

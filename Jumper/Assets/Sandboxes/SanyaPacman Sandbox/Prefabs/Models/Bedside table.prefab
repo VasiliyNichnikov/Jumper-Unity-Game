@@ -41,9 +41,9 @@ GameObject:
   - component: {fileID: 8927846147675110299}
   - component: {fileID: 8927846147678534587}
   - component: {fileID: 8927846147677403515}
-  - component: {fileID: 8927846147675234591}
   - component: {fileID: 8927846147675234589}
   - component: {fileID: 8234797097049890561}
+  - component: {fileID: 8927846147675234591}
   m_Layer: 0
   m_Name: Bedside table
   m_TagString: Object
@@ -114,19 +114,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &8927846147675234591
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8927846147675137979}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.8370887, y: 1.6229708, z: 1.3053566}
-  m_Center: {x: 0.066887856, y: 0.7878928, z: 0.052989483}
 --- !u!114 &8927846147675234589
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -139,7 +126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4600fa91b87a13e47b9cbd4f8beef24a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: "\u0442\u0443\u043C\u0431\u0430 \u0448\u0438\u0440\u043E\u043A\u0430\u044F"
+  Name: Bedside table
   BLB_Point: {x: -0.8516565, y: -0.023592591, z: -0.5996888}
   TRF_Point: {x: 0.9854322, y: 1.5993782, z: 0.7056679}
   sizeX: 1.8370887
@@ -163,3 +150,16 @@ MonoBehaviour:
   PrefabSpehere: {fileID: 6614533643343637360, guid: f5dac25f45cffb343ac645eba4a818f2,
     type: 3}
   GameOverPlayer: {fileID: 0}
+--- !u!65 &8927846147675234591
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8927846147675137979}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.8370887, y: 1.6229708, z: 1.3053566}
+  m_Center: {x: 0.066887856, y: 0.7878928, z: 0.052989483}

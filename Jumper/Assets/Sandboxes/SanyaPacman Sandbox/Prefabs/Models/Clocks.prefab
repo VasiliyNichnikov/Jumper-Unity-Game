@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4600fa91b87a13e47b9cbd4f8beef24a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: "\u0427\u0430\u0441\u044B"
+  Name: Clocks
   BLB_Point: {x: -0.74151564, y: -0.014548302, z: -0.7370603}
   TRF_Point: {x: 0.73540926, y: 5.16, z: 0.7498691}
   sizeX: 1.4769249

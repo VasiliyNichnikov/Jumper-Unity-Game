@@ -41,11 +41,11 @@ GameObject:
   - component: {fileID: 3794128395929550838}
   - component: {fileID: 3794128395930845142}
   - component: {fileID: 3794128395931974934}
-  - component: {fileID: 3794128395929675122}
   - component: {fileID: 3794128395929675132}
   - component: {fileID: -1052121534995821713}
+  - component: {fileID: 3794128395929675122}
   m_Layer: 0
-  m_Name: large wardrobe
+  m_Name: Large wardrobe
   m_TagString: Object
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -115,19 +115,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &3794128395929675122
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3794128395929773014}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 5.948322, y: 5.948322, z: 2.3467326}
-  m_Center: {x: 0, y: 2.974161, z: 0.10858017}
 --- !u!114 &3794128395929675132
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -140,7 +127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4600fa91b87a13e47b9cbd4f8beef24a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: "\u0428\u043A\u0430\u0444 \u0411\u043E\u043B\u044C\u0448\u043E\u0439"
+  Name: Large wardrobe
   BLB_Point: {x: -2.974161, y: 0, z: -1.0647861}
   TRF_Point: {x: 2.974161, y: 5.948322, z: 1.2819468}
   sizeX: 5.948322
@@ -164,3 +151,16 @@ MonoBehaviour:
   PrefabSpehere: {fileID: 6614533643343637360, guid: f5dac25f45cffb343ac645eba4a818f2,
     type: 3}
   GameOverPlayer: {fileID: 0}
+--- !u!65 &3794128395929675122
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3794128395929773014}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.948322, y: 5.948322, z: 2.3467326}
+  m_Center: {x: 0, y: 2.974161, z: 0.10858017}

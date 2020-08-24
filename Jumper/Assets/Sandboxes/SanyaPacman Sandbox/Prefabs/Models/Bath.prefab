@@ -12,9 +12,8 @@ GameObject:
   - component: {fileID: 7324613862245567778}
   - component: {fileID: 7324613862246698978}
   - component: {fileID: 7324613862248863624}
-  - component: {fileID: -7026635623820691580}
+  - component: {fileID: 5186384665649722339}
   - component: {fileID: 4107883267553069005}
-  - component: {fileID: 4676306289172423370}
   m_Layer: 0
   m_Name: Bath
   m_TagString: Object
@@ -98,14 +97,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4600fa91b87a13e47b9cbd4f8beef24a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: "\u0412\u0430\u043D\u043D\u0430"
+  Name: Bath
   BLB_Point: {x: -3.5049977, y: 0.02352333, z: -2.190016}
   TRF_Point: {x: 3.1094885, y: 2.126021, z: 1.4147048}
   sizeX: 6.614486
   sizeZ: 3.6047208
   sizeY: 2.1024976
   center: {x: 0, y: 0, z: 0}
---- !u!114 &-7026635623820691580
+--- !u!114 &5186384665649722339
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -119,8 +118,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TransformEnemyObject: {fileID: 0}
   _collidersClass: []
-  PrefabSpehere: {fileID: 6614533643343637360, guid: f5dac25f45cffb343ac645eba4a818f2,
-    type: 3}
   GameOverPlayer: {fileID: 0}
 --- !u!64 &4107883267553069005
 MeshCollider:
@@ -136,19 +133,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: f43dde4c02704e144a91a1f6e97476b6, type: 3}
---- !u!65 &4676306289172423370
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7324613862248894754}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 5.289895, y: 0.85518456, z: 3.6047208}
-  m_Center: {x: -0.21390867, y: 0.45111585, z: -0.38765562}
 --- !u!1 &9091263647080277167
 GameObject:
   m_ObjectHideFlags: 0
@@ -173,7 +157,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9091263647080277167}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.86, z: 0}
+  m_LocalPosition: {x: 0, y: 1.637, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7324613862248467714}

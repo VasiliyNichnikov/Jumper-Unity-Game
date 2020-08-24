@@ -12,35 +12,37 @@ public class ClickTracking : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     /// Переменные, которые отображаются в инспекторе 
     /// </summary>
     [Header("Главная камера на сцене")] [SerializeField]
-    private Camera _mainCamera = null;
-    
-    [Header("Максимальный процент экрана, который нужен для максимальной скорости джампера")] [Range(0, 100)] [SerializeField]
-    private int _maximumPercentScreenForMaximumSpeedJumper = 0;
+    private Camera _mainCamera;
+
+    [Header("Максимальный процент экрана, который нужен для максимальной скорости джампера")]
+    [Range(0, 100)]
+    [SerializeField]
+    private int _maximumPercentScreenForMaximumSpeedJumper;
     
     [Header("Чувствительность джампера")] [SerializeField] [Range(1, 10)]
-    private float _sensitivityJumper = .0f;
+    private float _sensitivityJumper;
     
     [Header("Скрипт, который высчитывает угол и высоту джампера")] [SerializeField]
-    private CalculatingAngleHeightJumper _calculatingAngleHeightJumper = null;
+    private CalculatingAngleHeightJumper _calculatingAngleHeightJumper;
 
     [Header("Скрипт, который придает скорость джамперу")] [SerializeField]
-    private FlightJumper _flightJumper = null;
+    private FlightJumper _flightJumper;
 
     [Header("Скрипт, который рисует трессер")] [SerializeField]
-    private FingerMovement _fingerMovement = null;
+    private FingerMovement _fingerMovement;
     
     /// <summary>
     /// Переменные, которые скрыты в инспекторе 
     /// </summary>
 
-    //[HideInInspector] // Нажимал пользователь на экран или нет (Нужно для проверки, чтобы завершить цикл посадки)
-    public static bool FingerInputScreen = false;
+    // Нажимал пользователь на экран или нет (Нужно для проверки, чтобы завершить цикл посадки)
+    public static bool FingerInputScreen;
 
     // Прыгает пользователь или нет
-    public static bool JumpPlayer = false;
+    public static bool JumpPlayer;
     
     // Проиграл пользователь или нет (Для теста)
-    public static bool GameOverPlayer = false;
+    public static bool GameOverPlayer;
 
     // Переменная хранит начальную позицию пальца при нажатии на экран
     private Vector2 _startPositionFinger = Vector2.zero;
@@ -49,7 +51,7 @@ public class ClickTracking : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     private Vector2 _nowPositionFinger = Vector2.zero;
 
     // Двигал пользователь палец или нет
-    private bool _playerDragFinger = false;
+    private bool _playerDragFinger;
 
     // Настройки джампера (Начало)
     public float ChangeSensitivityJumper

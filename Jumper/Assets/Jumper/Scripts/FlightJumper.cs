@@ -12,52 +12,49 @@ public class FlightJumper : MonoBehaviour
     /// Переменные, которые отображаются в инспекторе 
     ///</summary>
     [Header("Максимальная скорость полета джампера")] [SerializeField] [Range(0, 50)]
-    private float _maximumSpeedFlightJumper = .0f;
+    private float _maximumSpeedFlightJumper;
     
     [Header("Скорость анимации полета джампера (После прыжка)")] [SerializeField] [Range(0, 100)]
-    private float _speedFlightAnimationJumper = .0f;
+    private float _speedFlightAnimationJumper;
 
     [Header("Скорость анимации после приземления и при возвращение джампера перпендикулярно земли")]
     [SerializeField]
     [Range(0, 100)]
-    private float _speedAfterLandingAnimationJumper = .0f;
+    private float _speedAfterLandingAnimationJumper;
 
     [Header("Угол наклона джампера при падении")] [SerializeField] [Range(0, 45)]
-    private float _angleIncidence = .0f;
-
-    //[Header("Скрипт, который отслеживает нажатие")] [SerializeField]
-    //private ClickTracking _clickTracking = null;
+    private float _angleIncidence;
 
     [Header("Скрипт, который настраивает отвечает за движение камеры")] [SerializeField]
-    private CameraTracking _cameraTracking = null;
+    private CameraTracking _cameraTracking;
 
     /// <summary>
     /// Переменные, которые скрыты в инспекторе 
     /// </summary>
 
     // rigidbody джампера
-    private Rigidbody _rigidbodyJumper = null;
+    private Rigidbody _rigidbodyJumper;
     
     // очистка кэша
-    private Transform _thisTransform = null;
+    private Transform _thisTransform;
 
     // Скрипт, который управляет углом и высотой джампера
-    private CalculatingAngleHeightJumper _calculatingAngleHeightJumper = null;
+    private CalculatingAngleHeightJumper _calculatingAngleHeightJumper;
     
     // Скрипт, который управляет симуляцией джампера
-    private SimulationJumperPhysics _simulationJumperPhysics = null;
+    private SimulationJumperPhysics _simulationJumperPhysics;
 
     // Переменная, которая хранит скорость поворота во время полета по оси Z
-    private float _speedRotationJumperFlight = .0f;
+    private float _speedRotationJumperFlight;
     
     // Вектор для нахождения толчка
-    private Transform _vector3TransformHeightAngle = null;
+    private Transform _vector3TransformHeightAngle;
     
     // Переменная хранит конечный поворот
     private Quaternion _rotationEnd = Quaternion.identity;
-    private bool _animationStartJumperEnd = false;
-    private bool _landingCollider = false;
-    public event System.Action<Collision> OnJumperStop;
+    private bool _animationStartJumperEnd;
+    private bool _landingCollider;
+    public event Action<Collision> OnJumperStop;
     
     // Для настроек джампера(Начало)
     public float ChangeMassJumper
@@ -107,6 +104,7 @@ public class FlightJumper : MonoBehaviour
         _simulationJumperPhysics = GetComponent<SimulationJumperPhysics>();
         _calculatingAngleHeightJumper = GetComponent<CalculatingAngleHeightJumper>();
         _thisTransform = transform;
+        FreezePositionAndRotation();
     }
     
 
@@ -128,8 +126,9 @@ public class FlightJumper : MonoBehaviour
             _speedRotationJumperFlight = dictionaryDistance["speed_rotation_jumper_flight"];
             if (positionJumperEndAxesY != .0f)
                 _cameraTracking.PositionY = positionJumperEndAxesY;
-            _rigidbodyJumper.isKinematic = false;
-            print($"Vector Force - {vectorForce}");
+            //_rigidbodyJumper.isKinematic = false;
+            //FreezePositionAndRotation();
+            FreezePositionAndRotation();
             _rigidbodyJumper.AddForce(vectorForce, ForceMode.Impulse);
         }    
     }
@@ -203,14 +202,16 @@ public class FlightJumper : MonoBehaviour
     {
         _landingCollider = true;
         ClickTracking.JumpPlayer = false;
-        _rigidbodyJumper.isKinematic = true;
+        //_rigidbodyJumper.isKinematic = true;
+        //FreezePositionAndRotation();
+        FreezePositionAndRotation(true);
         _animationStartJumperEnd = false;
         _calculatingAngleHeightJumper.StartCoroutine(_calculatingAngleHeightJumper.ReturnUpperPartJumper(true));
         // Проверка проиграл игрок или нет
         if (other.collider.tag != "Ground")
         {
-            CheckCollider _checkCollider = other.gameObject.GetComponent<CheckCollider>();
-            _checkCollider.CheckGameOver(other);
+            //CheckCollider _checkCollider = other.gameObject.GetComponent<CheckCollider>();
+            //_checkCollider.CheckGameOver(other);
             if (OnJumperStop != null)
             {
                 OnJumperStop(other);
@@ -220,11 +221,27 @@ public class FlightJumper : MonoBehaviour
         print("Animation End, start now");
     }
 
-    private void OnDrawGizmosSelected()
+    // private void OnDrawGizmosSelected()
+    // {
+    //     Gizmos.color = Color.blue;
+    //     Vector3 newVector = new Vector3(transform.position.x, transform.position.y + 0.05f, transform.position.z);
+    //     Gizmos.DrawSphere(newVector, 0.05f);
+    // }
+
+    // Заморозка позиции и поворота
+    private void FreezePositionAndRotation(bool freeze=false)
     {
-        Gizmos.color = Color.blue;
-        Vector3 newVector = new Vector3(transform.position.x, transform.position.y + 0.05f, transform.position.z);
-        Gizmos.DrawSphere(newVector, 0.05f);
+        if (freeze)
+        {
+            _rigidbodyJumper.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
+        }
+        else
+        {
+            print("Frezee false");
+            _rigidbodyJumper.constraints &= ~RigidbodyConstraints.FreezePositionX;
+        }
+
+        _rigidbodyJumper.freezeRotation = true;
     }
     
     

@@ -35,8 +35,8 @@ public class CheckCollider : MonoBehaviour
     // Камера
     private Camera _camera = null;
     
-    [Header("Префаб шарика, который создается по краям")]
-    public GameObject PrefabSpehere = null;
+    //[Header("Префаб шарика, который создается по краям")]
+    //public GameObject PrefabSpehere = null;
 
     [HideInInspector] public GameOverPlayer GameOverPlayer = null;
     

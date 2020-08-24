@@ -37,6 +37,7 @@ public class ObjectInfo: MonoBehaviour
     public Vector3 center;
     public void AutoSize()
     {
+        Name = gameObject.name;
         var meshcol = gameObject.AddComponent<MeshCollider>();
         meshcol.sharedMesh = GetComponent<MeshFilter>().sharedMesh;
         Bounds bounds = GetComponent<Collider>().bounds;

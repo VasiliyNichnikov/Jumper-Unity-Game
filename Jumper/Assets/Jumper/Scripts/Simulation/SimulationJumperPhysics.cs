@@ -24,7 +24,6 @@ public class SimulationJumperPhysics : MonoBehaviour
         jumperAutoSimulation.SimulationJumperPhysics = this;
 
         Physics.autoSimulation = false;
-        //print($"Time Start - {flightTimeJumper}");
         Vector3 endPosition = Vector3.zero;
         
         float pointNowY = .0f;
