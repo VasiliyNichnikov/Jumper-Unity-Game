@@ -130,7 +130,7 @@ public class CheckCollider : MonoBehaviour
         //print($"Angle Vector - {angleVector}");
         //print("-----------------------------");
         
-        //print($"Название объекта" + gameObject.name);
+        print($"Name Object" + gameObject.name);
         for (int i = 0; i < _normals.Count; i++)
         {
             if (!ClickTracking.GameOverPlayer)
@@ -147,7 +147,7 @@ public class CheckCollider : MonoBehaviour
                 }
             }
         }
-        // print("------------------------------");
+        print("------------------------------");
         
          //Vector3[] arrayPoints = GetLeftRightPositionColliderPoints(collision.collider);
          //print($"arrayPoints - {arrayPoints}");
