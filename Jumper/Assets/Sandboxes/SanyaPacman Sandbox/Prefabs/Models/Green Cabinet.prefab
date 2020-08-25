@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3139371568167476953}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Enemy Object Green Cabinet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 4070774422316251610}
   - component: {fileID: -3202206149013146857}
   - component: {fileID: 5848421212780445851}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Green Cabinet
   m_TagString: Object
   m_Icon: {fileID: 0}
@@ -150,8 +150,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TransformEnemyObject: {fileID: 0}
   _collidersClass: []
-  PrefabSpehere: {fileID: 6614533643343637360, guid: f5dac25f45cffb343ac645eba4a818f2,
-    type: 3}
   GameOverPlayer: {fileID: 0}
 --- !u!65 &5848421212780445851
 BoxCollider:

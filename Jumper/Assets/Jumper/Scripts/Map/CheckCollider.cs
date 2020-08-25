@@ -72,25 +72,100 @@ public class CheckCollider : MonoBehaviour
         }
     }
 
+
+    private List<Vector3> _normals = new List<Vector3>();
+    private List<Vector3> _points = new List<Vector3>();
+    
+    //private void OnCollisionEnter(Collision other)
+    //{
+        // _normals.Add(other.GetContact(0).normal);
+        // _points.Add(other.GetContact(0).point);
+        //
+        // print($"Название объекта" + gameObject.name);
+        // for (int i = 0; i < _normals.Count; i++)
+        // {
+        //     float angleVector = Vector3.Angle(_normals[i], Vector3.right);
+        //     print($"Angle Vector - {angleVector}");
+        //     if (angleVector > 80 && angleVector < 140)
+        //     {
+        //         print("Continue to play");
+        //     }
+        //     else
+        //     {
+        //         print("Gameover Player");
+        //         GameOverPlayer.GameOverPlayerMethod();
+        //     }
+        // }
+        // print("------------------------------");
+
+    //}
+
+    private void OnDrawGizmos()
+    {
+        if (_normals == null)
+            return;
+        
+        for (int i = 0; i < _normals.Count; i++)
+        {
+            Vector3 newVector = _points[i] - -_normals[i];
+            Gizmos.color = Color.cyan;
+            Gizmos.DrawLine(newVector, _points[i]);
+            Gizmos.color = Color.red;
+            Gizmos.DrawLine(_points[i], new Vector3(_points[i].x + 4, _points[i].y, 0));
+        }
+        
+    }
+
+
     public void CheckGameOver(Collision collision)
     {
-         Vector3[] arrayPoints = GetLeftRightPositionColliderPoints(collision.collider);
-         //print($"arrayPoints - {arrayPoints}");
-         Vector3 positionRightCollider = arrayPoints[0];
-         Vector3 positionLeftCollider = arrayPoints[1];
-
-         _positionLandingPlayer = _camera.transform.InverseTransformPoint(collision.GetContact(0).point);
-
-         if (_positionLandingPlayer.x < positionRightCollider.x && // - 0.1f
-             _positionLandingPlayer.x > positionLeftCollider.x) //+ 0.1f // _positionLandingPlayer.y > _positionCenterBounds.y &&
+        // _normals.Add(collision.GetContact(0).normal);
+        // _points.Add(collision.GetContact(0).point);
+        
+        _normals.Add(collision.GetContact(0).normal);
+        _points.Add(collision.GetContact(0).point);
+        
+        //print("Check GameOver");
+        //float angleVector = Vector3.Angle(collision.GetContact(0).normal, Vector3.right);
+        //print($"Angle Vector - {angleVector}");
+        //print("-----------------------------");
+        
+        //print($"Название объекта" + gameObject.name);
+        for (int i = 0; i < _normals.Count; i++)
         {
-            print("Player in the game;");
+            if (!ClickTracking.GameOverPlayer)
+            {
+                float angleVector = Vector3.Angle(_normals[i], Vector3.right);
+                print($"Angle Vector - {angleVector}");
+                if (angleVector > 70 && angleVector < 130)
+                {
+                    print("Continue to play");
+                }
+                else
+                {
+                    GameOverPlayer.GameOverPlayerMethod();
+                }
+            }
         }
-        else
-        {
-            print("Game OVER");
-            GameOverPlayer.GameOverPlayerMethod();
-        } 
+        // print("------------------------------");
+        
+         //Vector3[] arrayPoints = GetLeftRightPositionColliderPoints(collision.collider);
+         //print($"arrayPoints - {arrayPoints}");
+        //  Vector3 positionRightCollider = arrayPoints[0];
+        //  Vector3 positionLeftCollider = arrayPoints[1];
+        //
+        //  _positionLandingPlayer = _camera.transform.InverseTransformPoint(collision.GetContact(0).point);
+        //
+        //  if (_positionLandingPlayer.x < positionRightCollider.x && // - 0.1f
+        //      _positionLandingPlayer.x > positionLeftCollider.x) //+ 0.1f // _positionLandingPlayer.y > _positionCenterBounds.y &&
+        // {
+        //     print("Player in the game;");
+        // }
+        // else
+        // {
+        //     print("Game OVER");
+        //     GameOverPlayer.GameOverPlayerMethod();
+        // } 
     }
 
     // Метод возвращает правую и левую точку коллайдера, на который прилетел джампер

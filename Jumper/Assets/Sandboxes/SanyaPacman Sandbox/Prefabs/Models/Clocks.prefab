@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1569246666398372801}
   - component: {fileID: 1661785044195586850}
   - component: {fileID: 4014502780793029246}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Clocks
   m_TagString: Object
   m_Icon: {fileID: 0}
@@ -120,8 +120,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TransformEnemyObject: {fileID: 0}
   _collidersClass: []
-  PrefabSpehere: {fileID: 6614533643343637360, guid: f5dac25f45cffb343ac645eba4a818f2,
-    type: 3}
   GameOverPlayer: {fileID: 0}
 --- !u!64 &4014502780793029246
 MeshCollider:
@@ -146,7 +144,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1764941784705592593}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Enemy Object Clocks
   m_TagString: Untagged
   m_Icon: {fileID: 0}

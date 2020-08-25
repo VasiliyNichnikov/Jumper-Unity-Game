@@ -104,9 +104,13 @@ public class FlightJumper : MonoBehaviour
         _simulationJumperPhysics = GetComponent<SimulationJumperPhysics>();
         _calculatingAngleHeightJumper = GetComponent<CalculatingAngleHeightJumper>();
         _thisTransform = transform;
-        FreezePositionAndRotation();
+        //FreezePositionAndRotation();
     }
-    
+
+    // private void Update()
+    // {
+    //     Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.down) * 10, Color.yellow);
+    // }
 
     // Добавление скорости джамперу
     public void AddSpeedJumper()
@@ -126,29 +130,45 @@ public class FlightJumper : MonoBehaviour
             _speedRotationJumperFlight = dictionaryDistance["speed_rotation_jumper_flight"];
             if (positionJumperEndAxesY != .0f)
                 _cameraTracking.PositionY = positionJumperEndAxesY;
-            //_rigidbodyJumper.isKinematic = false;
+            _rigidbodyJumper.isKinematic = false;
             //FreezePositionAndRotation();
-            FreezePositionAndRotation();
+            //FreezePositionAndRotation();
             _rigidbodyJumper.AddForce(vectorForce, ForceMode.Impulse);
         }    
     }
 
     
-    // Анимация начала анимации (Во время полета становится перпендикулярно земле)
+    
+    // Анимация, которая выравнивает джампер перпендикулярно земли
     public IEnumerator AnimationStartJumper()
     {
         _rotationEnd = Quaternion.Euler(0, 0, 0);
         _animationStartJumperEnd = false;
         _landingCollider = false;
-        while (_rigidbodyJumper.velocity.y >= 0 && ClickTracking.JumpPlayer)
+        // while (_rigidbodyJumper.velocity.y >= 0 && ClickTracking.JumpPlayer)
+        // {
+        //     _thisTransform.rotation = Quaternion.Lerp(_thisTransform.rotation, _rotationEnd, _speedFlightAnimationJumper * Time.deltaTime);
+        //     yield return null;
+        // }
+        float positionJumperNowY = .0f;
+        bool maxPointYFound = false;
+        while (!maxPointYFound)
         {
             _thisTransform.rotation = Quaternion.Lerp(_thisTransform.rotation, _rotationEnd, _speedFlightAnimationJumper * Time.deltaTime);
+            if (positionJumperNowY > _thisTransform.transform.position.y && ClickTracking.JumpPlayer)
+            {
+                _animationStartJumperEnd = true;
+                maxPointYFound = true;
+                print("End AnimationJump");
+                yield return AnimationSeveralDegreesRelationGround();
+            }
+            else
+            {
+                positionJumperNowY = _thisTransform.transform.position.y;
+            }
+
             yield return null;
         }
-        _animationStartJumperEnd = true;
-        print("End AnimationJump");
-        yield return AnimationSeveralDegreesRelationGround();
-        
     }
     
     // Анимация во время полета. Начинает выстраивать джампер на несколько градусов относительно земли.
@@ -188,7 +208,7 @@ public class FlightJumper : MonoBehaviour
             EndAnimationJumper(other);
     }
     
-    // Нахождение в объекте
+    // Прикосновение к объекту
     private void OnCollisionStay(Collision other)
     {
         if (_animationStartJumperEnd)
@@ -200,18 +220,19 @@ public class FlightJumper : MonoBehaviour
     // Анимация заканчивается
     private void EndAnimationJumper(Collision other)
     {
+        //print($"Animation Start Jumper End - {_animationStartJumperEnd};");
         _landingCollider = true;
         ClickTracking.JumpPlayer = false;
-        //_rigidbodyJumper.isKinematic = true;
+        _rigidbodyJumper.isKinematic = true;
         //FreezePositionAndRotation();
-        FreezePositionAndRotation(true);
+        //FreezePositionAndRotation(true);
         _animationStartJumperEnd = false;
         _calculatingAngleHeightJumper.StartCoroutine(_calculatingAngleHeightJumper.ReturnUpperPartJumper(true));
         // Проверка проиграл игрок или нет
         if (other.collider.tag != "Ground")
         {
-            //CheckCollider _checkCollider = other.gameObject.GetComponent<CheckCollider>();
-            //_checkCollider.CheckGameOver(other);
+            CheckCollider _checkCollider = other.gameObject.GetComponent<CheckCollider>();
+            _checkCollider.CheckGameOver(other);
             if (OnJumperStop != null)
             {
                 OnJumperStop(other);
@@ -233,11 +254,12 @@ public class FlightJumper : MonoBehaviour
     {
         if (freeze)
         {
+            //print("Frezee true");
             _rigidbodyJumper.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
         }
         else
         {
-            print("Frezee false");
+            //print("Frezee false");
             _rigidbodyJumper.constraints &= ~RigidbodyConstraints.FreezePositionX;
         }
 

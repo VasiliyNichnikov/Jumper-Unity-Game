@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7495523221633331649}
   - component: {fileID: 7495523221633331648}
   - component: {fileID: 7495523221633331663}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Stool
   m_TagString: Object
   m_Icon: {fileID: 0}
@@ -116,7 +116,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TransformEnemyObject: {fileID: 0}
   _collidersClass: []
-  PrefabSpehere: {fileID: 0}
   GameOverPlayer: {fileID: 0}
 --- !u!65 &7495523221633331663
 BoxCollider:
@@ -140,7 +139,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7495523221732716308}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Enemy Object Stool
   m_TagString: Untagged
   m_Icon: {fileID: 0}

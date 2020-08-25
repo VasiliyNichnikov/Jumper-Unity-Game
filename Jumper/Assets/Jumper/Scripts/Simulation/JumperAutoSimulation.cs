@@ -7,10 +7,10 @@ using UnityEngine;
 public class JumperAutoSimulation : MonoBehaviour
 {
     // Скрипт симуляции джампера
-    [HideInInspector] public SimulationJumperPhysics SimulationJumperPhysics = null;
+    [HideInInspector] public SimulationJumperPhysics SimulationJumperPhysics;
 
     [HideInInspector]
-    public bool FoundPointMax = false;
+    public bool FoundPointMax;
 
 
     private void OnTriggerEnter(Collider other)
@@ -25,7 +25,11 @@ public class JumperAutoSimulation : MonoBehaviour
 
     private void StopJumper(Collider other)
     {
-        if (other.tag == "Object" && FoundPointMax)
+        if (other.CompareTag("Object") && FoundPointMax)
+        {
+            //print("Other Object Name - " + other.name);
             SimulationJumperPhysics.TransformEmptyObject = other.GetComponent<CheckCollider>().TransformEnemyObject;
+        }
+            
     }
 }

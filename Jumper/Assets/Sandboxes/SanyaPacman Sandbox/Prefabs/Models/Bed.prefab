@@ -15,8 +15,8 @@ GameObject:
   - component: {fileID: 7831284540400192072}
   - component: {fileID: 7831284540400192074}
   - component: {fileID: 7831284540400192075}
-  - component: {fileID: 7831284540400192068}
-  m_Layer: 0
+  - component: {fileID: 896785530334020803}
+  m_Layer: 8
   m_Name: Bed
   m_TagString: Object
   m_Icon: {fileID: 0}
@@ -119,7 +119,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TransformEnemyObject: {fileID: 0}
   _collidersClass: []
-  PrefabSpehere: {fileID: 0}
   GameOverPlayer: {fileID: 0}
 --- !u!65 &7831284540400192074
 BoxCollider:
@@ -147,8 +146,8 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.2357974, y: 2.8639088, z: 3.3622694}
   m_Center: {x: -3.8829887, y: 1.386805, z: 0.1136446}
---- !u!65 &7831284540400192068
-BoxCollider:
+--- !u!64 &896785530334020803
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -157,9 +156,10 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2.1306648, y: 0.55792737, z: 3.3622694}
-  m_Center: {x: -2.676178, y: 1.828941, z: 0.1136446}
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 6163357941915963767, guid: 40a3af1765274434e96b4288911ce3d0, type: 3}
 --- !u!1 &7831284539848502638
 GameObject:
   m_ObjectHideFlags: 0
@@ -169,7 +169,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7831284539848502637}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Enemy Object Bed
   m_TagString: Untagged
   m_Icon: {fileID: 0}

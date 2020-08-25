@@ -116,6 +116,7 @@ public class ClickTracking : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
             _fingerMovement.ShowAndHideLine = false;
             _flightJumper.AddSpeedJumper();
             StartCoroutine(_flightJumper.AnimationStartJumper());
+            print("On Pointer Up");
             StartCoroutine(_calculatingAngleHeightJumper.ReturnUpperPartJumper());
         }
     }

@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2522167483152069821}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Enemy Object Small Cabinet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 5509406071251952693}
   - component: {fileID: -593774574034046102}
   - component: {fileID: 5509406071251952689}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Middle Cabinet
   m_TagString: Object
   m_Icon: {fileID: 0}
@@ -146,8 +146,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TransformEnemyObject: {fileID: 0}
   _collidersClass: []
-  PrefabSpehere: {fileID: 6614533643343637360, guid: f5dac25f45cffb343ac645eba4a818f2,
-    type: 3}
   GameOverPlayer: {fileID: 0}
 --- !u!65 &5509406071251952689
 BoxCollider:

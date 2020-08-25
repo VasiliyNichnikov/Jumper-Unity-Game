@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2444185692806800050}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Enemy Object Table
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 2444185693011786281}
   - component: {fileID: 2444185693011786278}
   - component: {fileID: 2444185693011786280}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: 'Table '
   m_TagString: Object
   m_Icon: {fileID: 0}
@@ -146,7 +146,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TransformEnemyObject: {fileID: 0}
   _collidersClass: []
-  PrefabSpehere: {fileID: 0}
   GameOverPlayer: {fileID: 0}
 --- !u!65 &2444185693011786280
 BoxCollider:

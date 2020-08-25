@@ -15,16 +15,16 @@ public class CameraTracking : MonoBehaviour
     private float _offsetY = .0f;
 
     [SerializeField] [Range(0, 100)] [Header("Скорость движения камеры")]
-    private static float _speedCamera = 45f;
+    private float _speedCamera = 45f;
 
     [SerializeField] [Range(0, 10)] [Header("Скорость движения камеры по оси Y")]
     private float _speedCameraAxesY = .0f;
 
     [Range(-45, 360)] [Header("Угол камеры по оси Y")]
-    private static float _angleY = 220;
+    private float _angleY = 220;
 
     [Range(-45, 360)] [Header("Угол наклона по оси X")]
-    private static float _angleX = .0f;
+    private float _angleX = .0f;
 
     [HideInInspector]
     public float PositionY = .0f;

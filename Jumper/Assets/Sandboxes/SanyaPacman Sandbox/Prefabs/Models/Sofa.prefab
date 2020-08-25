@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4065125248651776125}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Enemy Object Sofa
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,9 +44,8 @@ GameObject:
   - component: {fileID: 5495662020534533429}
   - component: {fileID: 8754585885854729830}
   - component: {fileID: 1528818099722065805}
-  - component: {fileID: 459215479325523423}
-  - component: {fileID: 8179979936900434886}
-  m_Layer: 0
+  - component: {fileID: 2432585011528943030}
+  m_Layer: 8
   m_Name: Sofa
   m_TagString: Object
   m_Icon: {fileID: 0}
@@ -149,8 +148,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TransformEnemyObject: {fileID: 0}
   _collidersClass: []
-  PrefabSpehere: {fileID: 6614533643343637360, guid: f5dac25f45cffb343ac645eba4a818f2,
-    type: 3}
   GameOverPlayer: {fileID: 0}
 --- !u!65 &1528818099722065805
 BoxCollider:
@@ -165,8 +162,8 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 9.813396, y: 1.0100129, z: 3.893947}
   m_Center: {x: 0.0020318031, y: 0.505216, z: -0.36343348}
---- !u!65 &459215479325523423
-BoxCollider:
+--- !u!64 &2432585011528943030
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -175,19 +172,7 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.6005249, y: 1.2314644, z: 3.893947}
-  m_Center: {x: -4.6044044, y: 1.645313, z: -0.36343348}
---- !u!65 &8179979936900434886
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5495662020534565779}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.5747986, y: 1.2321229, z: 3.893947}
-  m_Center: {x: 4.621331, y: 1.6713774, z: -0.36343348}
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 57a97bae2cd38ce4ab7d11b9ad2d17af, type: 3}
