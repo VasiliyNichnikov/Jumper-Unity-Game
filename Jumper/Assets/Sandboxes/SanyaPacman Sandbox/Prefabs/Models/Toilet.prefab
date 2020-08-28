@@ -43,8 +43,8 @@ GameObject:
   - component: {fileID: 8270535778021429454}
   - component: {fileID: 8270535778019526823}
   - component: {fileID: 7000206960887458936}
+  - component: {fileID: 4237900736616214924}
   - component: {fileID: 2111231688695196843}
-  - component: {fileID: 4677423938455755090}
   m_Layer: 8
   m_Name: Toilet
   m_TagString: Object
@@ -149,6 +149,20 @@ MonoBehaviour:
   TransformEnemyObject: {fileID: 0}
   _collidersClass: []
   GameOverPlayer: {fileID: 0}
+--- !u!64 &4237900736616214924
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8270535778019495438}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 5db2755198513ac4789548ed8e93943c, type: 3}
 --- !u!65 &2111231688695196843
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -162,16 +176,3 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.6546097, y: 1.5535381, z: 1.708609}
   m_Center: {x: -0.33784485, y: 0.792276, z: -0.027045429}
---- !u!65 &4677423938455755090
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8270535778019495438}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.60105896, y: 1.88475, z: 1.708609}
-  m_Center: {x: -1.3646202, y: 2.5038388, z: -0.027045429}

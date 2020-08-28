@@ -15,6 +15,8 @@ public class Generation : MonoBehaviour
 
   [Header("Префаб обоев и пола (блок)")] public GameObject PrefabWallpaperBlockFloor = null;
 
+  [Header("Mesh Transform пола")] public Transform MapTransformMesh = null;
+  
   [Header("Минимальное расстояние от игрока до последнего фона")]
   [Range(0, 100)]
   public float MinimumDistanceFromPlayer;
@@ -89,6 +91,7 @@ public class Generation : MonoBehaviour
     if (distanceBackgroundToPlayer > MinimumDistanceFromPlayer)
     {
       Destroy(ParentPrefabWallpaperBlockFloorObjects.GetChild(0).gameObject);
+      MapTransformMesh.position = new Vector3(MapTransformMesh.position.x - 8, MapTransformMesh.position.y, MapTransformMesh.position.z);
       GenerationOneBackground();
     }
   }
