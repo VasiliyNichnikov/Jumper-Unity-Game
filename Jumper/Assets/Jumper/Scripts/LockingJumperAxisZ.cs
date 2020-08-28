@@ -20,7 +20,7 @@ public class LockingJumperAxisZ : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         // Блокировка по оси Z
-        if (other.tag == "Object    " && !ClickTracking.JumpPlayer)
+        if (other.CompareTag("Object") && !ClickTracking.JumpPlayer)
         {
             _calculatingAngleHeightJumper.LockingUnlockJumperAngle();
         }

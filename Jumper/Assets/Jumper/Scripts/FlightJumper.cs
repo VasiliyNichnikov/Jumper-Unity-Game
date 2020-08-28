@@ -104,7 +104,7 @@ public class FlightJumper : MonoBehaviour
         _simulationJumperPhysics = GetComponent<SimulationJumperPhysics>();
         _calculatingAngleHeightJumper = GetComponent<CalculatingAngleHeightJumper>();
         _thisTransform = transform;
-        //FreezePositionAndRotation();
+        FreezePositionAndRotation();
     }
 
     // private void Update()
@@ -130,9 +130,8 @@ public class FlightJumper : MonoBehaviour
             _speedRotationJumperFlight = dictionaryDistance["speed_rotation_jumper_flight"];
             if (positionJumperEndAxesY != .0f)
                 _cameraTracking.PositionY = positionJumperEndAxesY;
-            _rigidbodyJumper.isKinematic = false;
-            //FreezePositionAndRotation();
-            //FreezePositionAndRotation();
+            //_rigidbodyJumper.isKinematic = false;
+            FreezePositionAndRotation();
             _rigidbodyJumper.AddForce(vectorForce, ForceMode.Impulse);
         }    
     }
@@ -181,7 +180,7 @@ public class FlightJumper : MonoBehaviour
         while (!_landingCollider && ClickTracking.JumpPlayer)
         {
             _thisTransform.rotation = Quaternion.Lerp(_thisTransform.rotation, _rotationEnd,
-                _speedRotationJumperFlight / 1.35f * Time.deltaTime);
+                _speedRotationJumperFlight / 1.1f * Time.deltaTime);
             yield return null;
         }
         
@@ -200,6 +199,19 @@ public class FlightJumper : MonoBehaviour
             yield return null;
         }
         print("End ReturnRotationJumper");
+    }
+
+    //private delegate bool _delegateCheckCollider(Collision collision);
+    
+    // Проверка угла джампера при приземление
+    private IEnumerator CheckAngleJumper(Collision collision)
+    {
+        CheckCollider checkCollider = collision.gameObject.GetComponent<CheckCollider>();
+        while (!checkCollider.CheckJumpPlayer(collision))
+        {
+            yield return null;
+        }
+        ClickTracking.JumpPlayer = false;
     }
     
     // Прикосновение к объекту
@@ -220,24 +232,35 @@ public class FlightJumper : MonoBehaviour
     // Анимация заканчивается
     private void EndAnimationJumper(Collision other)
     {
-        //print($"Animation Start Jumper End - {_animationStartJumperEnd};");
         _landingCollider = true;
-        ClickTracking.JumpPlayer = false;
-        _rigidbodyJumper.isKinematic = true;
-        //FreezePositionAndRotation();
-        //FreezePositionAndRotation(true);
         _animationStartJumperEnd = false;
+        FreezePositionAndRotation(true);
         _calculatingAngleHeightJumper.StartCoroutine(_calculatingAngleHeightJumper.ReturnUpperPartJumper(true));
-        // Проверка проиграл игрок или нет
-        if (other.collider.tag != "Ground")
+        
+        if (other.collider.CompareTag("Object"))
         {
-            CheckCollider _checkCollider = other.gameObject.GetComponent<CheckCollider>();
-            _checkCollider.CheckGameOver(other);
+            StartCoroutine(CheckAngleJumper(other));
+            
+            //_delegateCheckCollider = checkCollider.CheckJumpPlayer(other);
+            //print("Other - " + other.gameObject.name);
+            
+            // if (_checkCollider.CheckJumpPlayer(other))
+            // {
+            //     ClickTracking.JumpPlayer = false;
+            //     //_rigidbodyJumper.isKinematic = true;
+            //     
+            // }
+
             if (OnJumperStop != null)
             {
                 OnJumperStop(other);
             }
         }
+        
+        //print($"Animation Start Jumper End - {_animationStartJumperEnd};");
+        
+        // Проверка проиграл игрок или нет
+        
         
         print("Animation End, start now");
     }
@@ -255,12 +278,17 @@ public class FlightJumper : MonoBehaviour
         if (freeze)
         {
             //print("Frezee true");
-            _rigidbodyJumper.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
+            _rigidbodyJumper.constraints |= RigidbodyConstraints.FreezePositionX;
+            //_rigidbodyJumper.constraints |= RigidbodyConstraints.FreezePositionY;
+            //_rigidbodyJumper.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezePositionY;
         }
         else
         {
-            //print("Frezee false");
             _rigidbodyJumper.constraints &= ~RigidbodyConstraints.FreezePositionX;
+            //_rigidbodyJumper.constraints |= RigidbodyConstraints.FreezePositionX;
+            //_rigidbodyJumper.constraints |= RigidbodyConstraints.FreezePositionY;
+            //print("Frezee false");
+            //_rigidbodyJumper.constraints &= ~RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY;
         }
 
         _rigidbodyJumper.freezeRotation = true;
