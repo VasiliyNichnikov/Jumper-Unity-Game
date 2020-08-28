@@ -211,7 +211,34 @@ public class FlightJumper : MonoBehaviour
         {
             yield return null;
         }
-        ClickTracking.JumpPlayer = false;
+        //ClickTracking.JumpPlayer = false;
+        
+    }
+    
+    // Проверка расстояния от джампера до ближайшего объекта
+    private IEnumerator CheckHeightFromJumperToObject(Collision collision)
+    {
+        
+        RaycastHit hit;
+        Vector3 startPosition = Vector3.zero;;
+        while (ClickTracking.JumpPlayer)
+        {
+            print("Work");
+            startPosition = new Vector3(_thisTransform.position.x, _thisTransform.position.y + 2, _thisTransform.position.z);
+            if (Physics.SphereCast(startPosition, 0.07427804f, _thisTransform.TransformDirection(Vector3.down), out hit,
+                10))
+            {
+                Debug.DrawRay(startPosition, _thisTransform.TransformDirection(Vector3.down) * hit.distance, Color.yellow);
+                print($"Object - {hit.collider.name}; Distance - {hit.distance}");
+                if (hit.collider.CompareTag("Object") && hit.distance <= 2f)
+                {
+                    //ClickTracking.JumpPlayer = false;
+                    
+                }
+            }
+            yield return null;
+        }
+        
     }
     
     // Прикосновение к объекту
@@ -234,12 +261,19 @@ public class FlightJumper : MonoBehaviour
     {
         _landingCollider = true;
         _animationStartJumperEnd = false;
+        
         FreezePositionAndRotation(true);
-        _calculatingAngleHeightJumper.StartCoroutine(_calculatingAngleHeightJumper.ReturnUpperPartJumper(true));
+        StartCoroutine(_calculatingAngleHeightJumper.ReturnUpperPartJumper(true));
+        
         
         if (other.collider.CompareTag("Object"))
         {
-            StartCoroutine(CheckAngleJumper(other));
+            CheckCollider checkCollider = other.collider.GetComponent<CheckCollider>();
+            checkCollider.CheckGameOver(other);
+            
+            
+            //StartCoroutine(CheckHeightFromJumperToObject(other));
+            //StartCoroutine(CheckAngleJumper(other));
             
             //_delegateCheckCollider = checkCollider.CheckJumpPlayer(other);
             //print("Other - " + other.gameObject.name);

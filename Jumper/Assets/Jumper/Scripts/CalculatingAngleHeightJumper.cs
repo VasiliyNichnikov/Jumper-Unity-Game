@@ -133,10 +133,10 @@ public class CalculatingAngleHeightJumper : MonoBehaviour
             _transformUpperPartJumper.localPosition.z);
         if (returnHeightJumper)
         {
-            heightJumper = new Vector3(_transformUpperPartJumper.localPosition.x, _maximumHeightJumper - 0, 
+            heightJumper = new Vector3(_transformUpperPartJumper.localPosition.x, _maximumHeightJumper, 
                 _transformUpperPartJumper.localPosition.z);
         }
-        while (_transformUpperPartJumper.localPosition.y != heightJumper.y && !ClickTracking.FingerInputScreen)
+        while (_transformUpperPartJumper.localPosition.y != heightJumper.y)
         {
             _transformUpperPartJumper.localPosition = Vector3.MoveTowards(_transformUpperPartJumper.localPosition, heightJumper,
                 _speedDecompressedJumper * Time.deltaTime);
