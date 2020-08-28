@@ -93,9 +93,9 @@ public class CheckCollider : MonoBehaviour
         if (!ClickTracking.GameOverPlayer)
         {
             float angleVector = Vector3.Angle(normal, Vector3.right);
-            //print($"Angle - {angleVector}");
+            print($"Angle - {angleVector}");
             // Нужно выбрать угол 
-            if (angleVector > 20 && angleVector < 140)
+            if (angleVector > 20 && angleVector < 150)
             {
                 return true;
             }
