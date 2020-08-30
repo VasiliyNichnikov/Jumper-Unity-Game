@@ -30,13 +30,13 @@ public class CheckCollider : MonoBehaviour
     private Collider[] _colliders = null;
 
     // Точка куда приземлился джампер
-    // private Vector3 _positionLandingPlayer = Vector3.zero;
+    private Vector3 _positionLandingPlayer = Vector3.zero;
     
     // Камера
     // private Camera _camera = null;
     
-    //[Header("Префаб шарика, который создается по краям")]
-    //public GameObject PrefabSpehere = null;
+    [Header("Префаб шарика, который создается по краям")]
+    public GameObject PrefabSpehere = null;
 
     [HideInInspector] public GameOverPlayer GameOverPlayer = null;
     
@@ -59,6 +59,12 @@ public class CheckCollider : MonoBehaviour
 
             colliderClass.PositionRightCollider = positionRightCollider;
             colliderClass.PositionLeftCollider = positionLeftCollider;
+
+            GameObject rightSphere = Instantiate(PrefabSpehere, transform, false);
+            rightSphere.transform.position = positionRightCollider;
+            
+            GameObject leftSphere = Instantiate(PrefabSpehere, transform, false);
+            leftSphere.transform.position = positionLeftCollider;
             
             _collidersClass.Add(colliderClass);
         }
@@ -93,9 +99,9 @@ public class CheckCollider : MonoBehaviour
         if (!ClickTracking.GameOverPlayer)
         {
             float angleVector = Vector3.Angle(normal, Vector3.right);
-            print($"Angle - {angleVector}");
+            // print($"Angle - {angleVector}");
             // Нужно выбрать угол 
-            if (angleVector > 20 && angleVector < 150)
+            if (angleVector > 40 && angleVector < 140)
             {
                 return true;
             }
@@ -106,44 +112,59 @@ public class CheckCollider : MonoBehaviour
 
     public void CheckGameOver(Collision collision)
     {
-        _normals.Add(collision.GetContact(0).normal);
-        _points.Add(collision.GetContact(0).point);
-       
+
+        _positionLandingPlayer = collision.GetContact(0).point;
         
-        // print($"Name Object" + gameObject.name);
-        for (int i = 0; i < _normals.Count; i++)
+        GameObject playerSphere = Instantiate(PrefabSpehere, transform, false);
+        playerSphere.transform.position = _positionLandingPlayer;
+
+        (Vector3, Vector3) pointsLeftRight = GetLeftRightPositionColliderPoints(collision.collider);
+        Vector3 rightPoint = pointsLeftRight.Item1;
+        Vector3 leftPoint = pointsLeftRight.Item2;
+
+        if (_positionLandingPlayer.x < rightPoint.x && _positionLandingPlayer.x > leftPoint.x)
         {
-            if (!ClickTracking.GameOverPlayer)
-            {
-                float angleVector = Vector3.Angle(_normals[i], Vector3.right);
-                // print($"Angle Vector - {angleVector}");
-                if (angleVector > 70 && angleVector < 130)
-                {
-                    print("Continue to play");
-                }
-                else
-                {
-                    //GameOverPlayer.GameOverPlayerMethod();
-                }
-            }
+            ClickTracking.JumpPlayer = false;
         }
+        
+        //_normals.Add(collision.GetContact(0).normal);
+        //_points.Add(collision.GetContact(0).point);
+
+
+        // print($"Name Object" + gameObject.name);
+        // for (int i = 0; i < _normals.Count; i++)
+        // {
+        //     if (!ClickTracking.GameOverPlayer)
+        //     {
+        //         float angleVector = Vector3.Angle(_normals[i], Vector3.right);
+        //         // print($"Angle Vector - {angleVector}");
+        //         if (angleVector > 70 && angleVector < 130)
+        //         {
+        //             print("Continue to play");
+        //         }
+        //         else
+        //         {
+        //             //GameOverPlayer.GameOverPlayerMethod();
+        //         }
+        //     }
+        // }
         // print("------------------------------");
     }
 
     // Метод возвращает правую и левую точку коллайдера, на который прилетел джампер
-    // private Vector3[] GetLeftRightPositionColliderPoints(Collider colliderLanding)
-    // {
-    //     Vector3[] arrayPoints = new Vector3[2];
-    //     for (int i = 0; i < _collidersClass.Count; i++)
-    //     {
-    //         if (_collidersClass[i].Collider == colliderLanding)
-    //         {
-    //             arrayPoints[0] = _collidersClass[i].PositionRightCollider;
-    //             arrayPoints[1] = _collidersClass[i].PositionLeftCollider;
-    //             return arrayPoints;
-    //         }
-    //     }
-    //
-    //     return null;
-    // }
+    private (Vector3, Vector3) GetLeftRightPositionColliderPoints(Collider colliderLanding)
+    {
+        (Vector3, Vector3) tupleRightLeftPoints = (Vector3.zero, Vector3.zero);
+        for (int i = 0; i < _collidersClass.Count; i++)
+        {
+            if (_collidersClass[i].Collider == colliderLanding)
+            {
+                tupleRightLeftPoints.Item1 = _collidersClass[i].PositionRightCollider;
+                tupleRightLeftPoints.Item2 = _collidersClass[i].PositionLeftCollider;
+                return tupleRightLeftPoints;
+            }
+        }
+    
+        return tupleRightLeftPoints;
+    }
 }
