@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 7831284540400192074}
   - component: {fileID: 7831284540400192075}
   - component: {fileID: 896785530334020803}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Bed
   m_TagString: Object
   m_Icon: {fileID: 0}
@@ -119,6 +119,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TransformEnemyObject: {fileID: 0}
   _collidersClass: []
+  PrefabSpehere: {fileID: 0}
   GameOverPlayer: {fileID: 0}
 --- !u!65 &7831284540400192074
 BoxCollider:
@@ -169,7 +170,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7831284539848502637}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Enemy Object Bed
   m_TagString: Untagged
   m_Icon: {fileID: 0}

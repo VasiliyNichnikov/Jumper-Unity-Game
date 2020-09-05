@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5186384665649722339}
   - component: {fileID: 4107883267553069005}
   - component: {fileID: 3515340291892177824}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Bath
   m_TagString: Object
   m_Icon: {fileID: 0}
@@ -119,6 +119,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TransformEnemyObject: {fileID: 0}
   _collidersClass: []
+  PrefabSpehere: {fileID: 0}
   GameOverPlayer: {fileID: 0}
 --- !u!64 &4107883267553069005
 MeshCollider:
@@ -156,7 +157,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6901130258742571613}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Enemy Object Bath
   m_TagString: Untagged
   m_Icon: {fileID: 0}

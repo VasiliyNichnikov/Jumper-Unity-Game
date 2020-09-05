@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5557233797270270500}
   - component: {fileID: 8265725513121708969}
   - component: {fileID: 5557233797270270501}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Gas Stove
   m_TagString: Object
   m_Icon: {fileID: 0}
@@ -120,6 +120,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TransformEnemyObject: {fileID: 0}
   _collidersClass: []
+  PrefabSpehere: {fileID: 0}
   GameOverPlayer: {fileID: 0}
 --- !u!65 &5557233797270270501
 BoxCollider:
@@ -143,7 +144,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5557233797448076932}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Enemy Object Gas Stove
   m_TagString: Untagged
   m_Icon: {fileID: 0}
