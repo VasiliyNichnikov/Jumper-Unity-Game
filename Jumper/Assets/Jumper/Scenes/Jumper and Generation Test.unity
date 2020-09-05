@@ -259,10 +259,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.053050697
-  m_Height: 2.8656135
+  m_Radius: 0.05460252
+  m_Height: 2.8889916
   m_Direction: 1
-  m_Center: {x: 0.00030583143, y: 1.446193, z: -3.4219535e-13}
+  m_Center: {x: -0.0012459758, y: 1.4345047, z: 0}
 --- !u!54 &45210834
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -8779,7 +8779,7 @@ GameObject:
   - component: {fileID: 2088439852}
   - component: {fileID: 2088439853}
   - component: {fileID: 2088439854}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Ground
   m_TagString: Ground
   m_Icon: {fileID: 0}

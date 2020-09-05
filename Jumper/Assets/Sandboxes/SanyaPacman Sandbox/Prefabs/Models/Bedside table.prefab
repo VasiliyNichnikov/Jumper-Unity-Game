@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4255627441893250923}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Enemy Object Bedside table
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 8927846147675234589}
   - component: {fileID: 8234797097049890561}
   - component: {fileID: 8927846147675234591}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Bedside table
   m_TagString: Object
   m_Icon: {fileID: 0}
@@ -147,6 +147,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TransformEnemyObject: {fileID: 0}
   _collidersClass: []
+  PrefabSpehere: {fileID: 0}
   GameOverPlayer: {fileID: 0}
 --- !u!65 &8927846147675234591
 BoxCollider:

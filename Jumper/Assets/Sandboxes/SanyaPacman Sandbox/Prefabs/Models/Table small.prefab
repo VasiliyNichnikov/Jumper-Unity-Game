@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1468229806015747290}
   - component: {fileID: 1468229806015747291}
   - component: {fileID: -315446822018680117}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Table small
   m_TagString: Object
   m_Icon: {fileID: 0}
@@ -158,6 +158,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TransformEnemyObject: {fileID: 0}
   _collidersClass: []
+  PrefabSpehere: {fileID: 0}
   GameOverPlayer: {fileID: 0}
 --- !u!1 &8790099259752278273
 GameObject:
@@ -168,7 +169,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 905351212536165225}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Enemy Object
   m_TagString: Untagged
   m_Icon: {fileID: 0}

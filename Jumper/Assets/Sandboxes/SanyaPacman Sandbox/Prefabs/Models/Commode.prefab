@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 3007636608727061840}
   - component: {fileID: 3007636608727061852}
   - component: {fileID: 8879577755921706493}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Commode
   m_TagString: Object
   m_Icon: {fileID: 0}
@@ -158,8 +158,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TransformEnemyObject: {fileID: 0}
   _collidersClass: []
-  PrefabSpehere: {fileID: 6614533643343637360, guid: f5dac25f45cffb343ac645eba4a818f2,
-    type: 3}
+  PrefabSpehere: {fileID: 0}
   GameOverPlayer: {fileID: 0}
 --- !u!1 &5416480873126673023
 GameObject:
@@ -170,7 +169,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1996449515583225912}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Enemy Object
   m_TagString: Untagged
   m_Icon: {fileID: 0}

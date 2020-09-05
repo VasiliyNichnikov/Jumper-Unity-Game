@@ -55,4 +55,5 @@ public class AnimationGameOverJumper : MonoBehaviour
         _rigidbodyUpperPartJumper.interpolation = RigidbodyInterpolation.Interpolate;
         //_rigidbodyBottomPartJumper.interpolation = RigidbodyInterpolation.Interpolate;
     }
+
 }

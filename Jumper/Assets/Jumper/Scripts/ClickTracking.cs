@@ -52,6 +52,9 @@ public class ClickTracking : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
 
     // Двигал пользователь палец или нет
     private bool _playerDragFinger;
+    
+    // Игрок нажал на экран
+    private bool _playerDownFinger;
 
     // Настройки джампера (Начало)
     public float ChangeSensitivityJumper
@@ -78,6 +81,8 @@ public class ClickTracking : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     {
         if (!JumpPlayer && !GameOverPlayer)
         {
+            print("Down");
+            _playerDownFinger = true;
             _startPositionFinger = new Vector2(_mainCamera.ScreenToViewportPoint(Input.mousePosition).x,
                 _mainCamera.ScreenToViewportPoint(Input.mousePosition).y);
             FingerInputScreen = true;
@@ -88,11 +93,12 @@ public class ClickTracking : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     // Движение пальца по экрану
     public void OnDrag(PointerEventData eventData)
     {
-        if (!JumpPlayer && !GameOverPlayer)
+        if (!JumpPlayer && !GameOverPlayer && _playerDownFinger)
         {
+            print("Drag");
             FingerInputScreen = true;
             _playerDragFinger = true;
-            
+
             _nowPositionFinger = new Vector2(_mainCamera.ScreenToViewportPoint(Input.mousePosition).x,
                 _mainCamera.ScreenToViewportPoint(Input.mousePosition).y);
 
@@ -111,7 +117,9 @@ public class ClickTracking : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     {
         if (!JumpPlayer && !GameOverPlayer && _playerDragFinger)
         {
+            print("Up");
             FingerInputScreen = false;
+            _playerDownFinger = false;
             _playerDragFinger = false;
             _fingerMovement.ShowAndHideLine = false;
             _flightJumper.AddSpeedJumper();

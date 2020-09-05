@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 75235665881394737}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Enemy Object Gas Stove
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 75235667272354521}
   - component: {fileID: 75235667272354527}
   - component: {fileID: 75235667272354520}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Glass cabinet
   m_TagString: Object
   m_Icon: {fileID: 0}
@@ -149,6 +149,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TransformEnemyObject: {fileID: 0}
   _collidersClass: []
+  PrefabSpehere: {fileID: 0}
   GameOverPlayer: {fileID: 0}
 --- !u!65 &75235667272354520
 BoxCollider:

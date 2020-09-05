@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 482960296332697876}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Enemy Object Boxes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 482960297201022503}
   - component: {fileID: 482960297201022496}
   - component: {fileID: 482960297201022497}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Boxes
   m_TagString: Object
   m_Icon: {fileID: 0}
@@ -149,6 +149,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TransformEnemyObject: {fileID: 0}
   _collidersClass: []
+  PrefabSpehere: {fileID: 0}
   GameOverPlayer: {fileID: 0}
 --- !u!65 &482960297201022497
 BoxCollider:
@@ -161,5 +162,5 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.231166, y: 1.7186773, z: 1.5013099}
-  m_Center: {x: 0.08325797, y: 0.77418125, z: 0.12786034}
+  m_Size: {x: 3.1026647, y: 1.7186773, z: 1.5013099}
+  m_Center: {x: 0.09459627, y: 0.77418125, z: 0.12786031}

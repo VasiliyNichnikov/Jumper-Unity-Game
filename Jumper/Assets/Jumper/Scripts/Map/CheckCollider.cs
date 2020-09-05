@@ -57,14 +57,14 @@ public class CheckCollider : MonoBehaviour
             var positionRightCollider = _colliders[i].bounds.ClosestPoint(new Vector3(Mathf.Infinity, positionCenterBounds.y, positionCenterBounds.z));
             var positionLeftCollider = _colliders[i].bounds.ClosestPoint(new Vector3(-Mathf.Infinity, positionCenterBounds.y, positionCenterBounds.z));
 
-            colliderClass.PositionRightCollider = positionRightCollider;
-            colliderClass.PositionLeftCollider = positionLeftCollider;
+            colliderClass.PositionRightCollider = new Vector3(positionRightCollider.x + 0.05f, positionRightCollider.y, positionRightCollider.z);
+            colliderClass.PositionLeftCollider = new Vector3(positionLeftCollider.x - 0.05f, positionLeftCollider.y, positionLeftCollider.z);;
 
-            GameObject rightSphere = Instantiate(PrefabSpehere, transform, false);
-            rightSphere.transform.position = positionRightCollider;
-            
-            GameObject leftSphere = Instantiate(PrefabSpehere, transform, false);
-            leftSphere.transform.position = positionLeftCollider;
+            // GameObject rightSphere = Instantiate(PrefabSpehere, transform, false);
+            // rightSphere.transform.position = positionRightCollider;
+            //
+            // GameObject leftSphere = Instantiate(PrefabSpehere, transform, false);
+            // leftSphere.transform.position = positionLeftCollider;
             
             _collidersClass.Add(colliderClass);
         }
@@ -115,8 +115,8 @@ public class CheckCollider : MonoBehaviour
 
         _positionLandingPlayer = collision.GetContact(0).point;
         
-        GameObject playerSphere = Instantiate(PrefabSpehere, transform, false);
-        playerSphere.transform.position = _positionLandingPlayer;
+        // GameObject playerSphere = Instantiate(PrefabSpehere, transform, false);
+        // playerSphere.transform.position = _positionLandingPlayer;
 
         (Vector3, Vector3) pointsLeftRight = GetLeftRightPositionColliderPoints(collision.collider);
         Vector3 rightPoint = pointsLeftRight.Item1;
@@ -124,9 +124,15 @@ public class CheckCollider : MonoBehaviour
 
         if (_positionLandingPlayer.x < rightPoint.x && _positionLandingPlayer.x > leftPoint.x)
         {
+            print("Продолжаем игру");
             ClickTracking.JumpPlayer = false;
         }
-        
+
+        else
+        {
+            print("Заканчиваем игру");
+        }
+
         //_normals.Add(collision.GetContact(0).normal);
         //_points.Add(collision.GetContact(0).point);
 
@@ -167,4 +173,5 @@ public class CheckCollider : MonoBehaviour
     
         return tupleRightLeftPoints;
     }
+
 }
