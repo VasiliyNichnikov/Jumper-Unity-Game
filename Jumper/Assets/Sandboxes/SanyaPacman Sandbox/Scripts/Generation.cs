@@ -26,7 +26,7 @@ public class Generation : MonoBehaviour
   public ObjectInfo[] prefabs;
   public int CountlastPrefabs;
   public float distantionSpawn = 20;
-  private float MAX_JAMPER_VELOCITY = 7.6f;
+  private float MAX_JAMPER_VELOCITY = 7f;
   [Header("Difficulty")]
   public float maxDifficultyByDistance;
   public float minDistance;
