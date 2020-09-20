@@ -327,10 +327,10 @@ public class FlightJumper : MonoBehaviour
         StartCoroutine(_calculatingAngleHeightJumper.ReturnUpperPartJumper(true));
         StartCoroutine(ContinuationGame());
         
-        // if (OnJumperStop != null)
-        // {
-        //     OnJumperStop(other);
-        // }
+        if (OnJumperStop != null)
+        {
+            OnJumperStop(other);
+        }
         
         //else
         //     _animationGameOverJumper.StartAnimationGameOver();
