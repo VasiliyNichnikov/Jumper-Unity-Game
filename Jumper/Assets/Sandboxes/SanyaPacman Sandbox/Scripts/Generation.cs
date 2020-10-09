@@ -26,7 +26,7 @@ public class Generation : MonoBehaviour
   public ObjectInfo[] prefabs;
   public int CountlastPrefabs;
   public float distantionSpawn = 20;
-  private float MAX_JAMPER_VELOCITY = 7.6f;
+  private float MAX_JAMPER_VELOCITY = 7f;
   [Header("Difficulty")]
   public float maxDifficultyByDistance;
   public float minDistance;
@@ -80,10 +80,6 @@ public class Generation : MonoBehaviour
     if (Mathf.Abs(last_pref.transform.position.x - player.transform.position.x) < distantionSpawn)
     {
       Spawn();
-      if (transform.childCount > _maxAmountSpawnedObjects)
-      {
-        Destroy(transform.GetChild(0).gameObject);
-      }
     }
     var distanceBackgroundToPlayer =
       Vector3.Distance(ParentPrefabWallpaperBlockFloorObjects.GetChild(0).transform.position, player.transform.position);
@@ -92,6 +88,7 @@ public class Generation : MonoBehaviour
     {
       Destroy(ParentPrefabWallpaperBlockFloorObjects.GetChild(0).gameObject);
       MapTransformMesh.position = new Vector3(MapTransformMesh.position.x - 8, MapTransformMesh.position.y, MapTransformMesh.position.z);
+      Destroy(transform.GetChild(0).gameObject);
       GenerationOneBackground();
     }
   }

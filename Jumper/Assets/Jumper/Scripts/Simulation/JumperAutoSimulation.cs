@@ -27,7 +27,6 @@ public class JumperAutoSimulation : MonoBehaviour
     {
         if (other.CompareTag("Object") && FoundPointMax)
         {
-            //print("Other Object Name - " + other.name);
             SimulationJumperPhysics.TransformEmptyObject = other.GetComponent<CheckCollider>().TransformEnemyObject;
         }
             

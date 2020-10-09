@@ -3,7 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CheckCollider : MonoBehaviour
-{
+{    
+    public enum TypeCollider
+    {
+        None = 0,
+        Continuation = 1,
+        Defeat = 2
+    }
+
+
     [Serializable]    
     public class ColliderClass
     {
@@ -11,6 +19,9 @@ public class CheckCollider : MonoBehaviour
         public string NameCollider = "None";
         [Header("Коллайдер")]
         public Collider Collider = null;
+
+        [Header("Тип коллайдера")] public TypeCollider TypeCollider = TypeCollider.None; 
+        
         [Header("Позиция правой точки коллайдера")]
         public Vector3 PositionRightCollider = Vector3.zero;
         [Header("Позиция левой точки коллайдера")]
@@ -26,7 +37,7 @@ public class CheckCollider : MonoBehaviour
     [SerializeField] [Header("Коллайдеры, которые есть на объекте")]
     private List<ColliderClass> _collidersClass = new List<ColliderClass>();
 
-    // Все boxColliders, которые есть на объекте
+    // Все Colliders, которые есть на объекте
     private Collider[] _colliders = null;
 
     // Точка куда приземлился джампер
@@ -42,32 +53,32 @@ public class CheckCollider : MonoBehaviour
     
     private void Start()
     {
-        _colliders = GetComponents<Collider>();
-        // Получение точки, которая является ребенком объекта
+        // _colliders = GetComponents<Collider>();
+        // // Получение точки, которая является ребенком объекта
         TransformEnemyObject = transform.GetChild(0).transform;
-        // _camera = Camera.main;;
-        for (int i = 0; i < _colliders.Length; i++)
-        {
-            ColliderClass colliderClass = new ColliderClass();
-            
-            colliderClass.NameCollider = $"Collider - {i}";
-            colliderClass.Collider = _colliders[i];
-            var positionCenterBounds = _colliders[i].bounds.center;
-
-            var positionRightCollider = _colliders[i].bounds.ClosestPoint(new Vector3(Mathf.Infinity, positionCenterBounds.y, positionCenterBounds.z));
-            var positionLeftCollider = _colliders[i].bounds.ClosestPoint(new Vector3(-Mathf.Infinity, positionCenterBounds.y, positionCenterBounds.z));
-
-            colliderClass.PositionRightCollider = new Vector3(positionRightCollider.x + 0.05f, positionRightCollider.y, positionRightCollider.z);
-            colliderClass.PositionLeftCollider = new Vector3(positionLeftCollider.x - 0.05f, positionLeftCollider.y, positionLeftCollider.z);;
-
-            // GameObject rightSphere = Instantiate(PrefabSpehere, transform, false);
-            // rightSphere.transform.position = positionRightCollider;
-            //
-            // GameObject leftSphere = Instantiate(PrefabSpehere, transform, false);
-            // leftSphere.transform.position = positionLeftCollider;
-            
-            _collidersClass.Add(colliderClass);
-        }
+        // // _camera = Camera.main;;
+        // for (int i = 0; i < _colliders.Length; i++)
+        // {
+        //     ColliderClass colliderClass = new ColliderClass();
+        //     
+        //     colliderClass.NameCollider = $"Collider - {i}";
+        //     colliderClass.Collider = _colliders[i];
+        //     var positionCenterBounds = _colliders[i].bounds.center;
+        //
+        //     var positionRightCollider = _colliders[i].bounds.ClosestPoint(new Vector3(Mathf.Infinity, positionCenterBounds.y, positionCenterBounds.z));
+        //     var positionLeftCollider = _colliders[i].bounds.ClosestPoint(new Vector3(-Mathf.Infinity, positionCenterBounds.y, positionCenterBounds.z));
+        //
+        //     colliderClass.PositionRightCollider = new Vector3(positionRightCollider.x + 0.05f, positionRightCollider.y, positionRightCollider.z);
+        //     colliderClass.PositionLeftCollider = new Vector3(positionLeftCollider.x - 0.05f, positionLeftCollider.y, positionLeftCollider.z);;
+        //
+        //     // GameObject rightSphere = Instantiate(PrefabSpehere, transform, false);
+        //     // rightSphere.transform.position = positionRightCollider;
+        //     //
+        //     // GameObject leftSphere = Instantiate(PrefabSpehere, transform, false);
+        //     // leftSphere.transform.position = positionLeftCollider;
+        //     
+        //     _collidersClass.Add(colliderClass);
+        // }
     }
 
 
@@ -108,6 +119,20 @@ public class CheckCollider : MonoBehaviour
         }
         return false;
     }
+
+
+    public bool OnOffClickTrackingJumpPlayer(Collision collision)
+    {
+        for (int i = 0; i < _collidersClass.Count; i++)
+        {
+            if (collision.collider == _collidersClass[i].Collider)
+            {
+                if (_collidersClass[i].TypeCollider == TypeCollider.Defeat)
+                    return false;
+            }
+        }
+        return true;
+    }
     
 
     public void CheckGameOver(Collision collision)
@@ -118,20 +143,20 @@ public class CheckCollider : MonoBehaviour
         // GameObject playerSphere = Instantiate(PrefabSpehere, transform, false);
         // playerSphere.transform.position = _positionLandingPlayer;
 
-        (Vector3, Vector3) pointsLeftRight = GetLeftRightPositionColliderPoints(collision.collider);
-        Vector3 rightPoint = pointsLeftRight.Item1;
-        Vector3 leftPoint = pointsLeftRight.Item2;
-
-        if (_positionLandingPlayer.x < rightPoint.x && _positionLandingPlayer.x > leftPoint.x)
-        {
-            print("Продолжаем игру");
-            ClickTracking.JumpPlayer = false;
-        }
-
-        else
-        {
-            print("Заканчиваем игру");
-        }
+        // (Vector3, Vector3) pointsLeftRight = GetLeftRightPositionColliderPoints(collision.collider);
+        // Vector3 rightPoint = pointsLeftRight.Item1;
+        // Vector3 leftPoint = pointsLeftRight.Item2;
+        //
+        // if (_positionLandingPlayer.x < rightPoint.x && _positionLandingPlayer.x > leftPoint.x)
+        // {
+        //     print("Продолжаем игру");
+        //     ClickTracking.JumpPlayer = false;
+        // }
+        //
+        // else
+        // {
+        //     print("Заканчиваем игру");
+        // }
 
         //_normals.Add(collision.GetContact(0).normal);
         //_points.Add(collision.GetContact(0).point);
@@ -173,5 +198,14 @@ public class CheckCollider : MonoBehaviour
     
         return tupleRightLeftPoints;
     }
+
+    public void OffAllColliders()
+    {
+        foreach (var colliderClass in _collidersClass)
+        {
+            colliderClass.Collider.enabled = false;
+        }
+    }
+    
 
 }

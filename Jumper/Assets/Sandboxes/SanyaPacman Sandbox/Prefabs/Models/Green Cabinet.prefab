@@ -73,7 +73,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8566841184214509134}
-  m_Mesh: {fileID: 4300000, guid: 5c96786e0e736ea469ff0038b3ec371d, type: 3}
+  m_Mesh: {fileID: 4493585093827132993, guid: cdb5053f4de56d343a856085b968c6f0, type: 3}
 --- !u!23 &8566841184216447118
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -92,10 +92,6 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: bde9411c1fb6f294aa95f47b37787f33, type: 2}
-  - {fileID: 2100000, guid: bde9411c1fb6f294aa95f47b37787f33, type: 2}
-  - {fileID: 2100000, guid: bde9411c1fb6f294aa95f47b37787f33, type: 2}
-  - {fileID: 2100000, guid: bde9411c1fb6f294aa95f47b37787f33, type: 2}
   - {fileID: 2100000, guid: bde9411c1fb6f294aa95f47b37787f33, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -131,9 +127,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Green Cabinet
   BLB_Point: {x: -2.4531171, y: -0.015731335, z: -0.8224854}
-  TRF_Point: {x: 2.4812596, y: 5.1792254, z: 0.79887444}
+  TRF_Point: {x: 2.4812596, y: 5.1792254, z: 0.7988742}
   sizeX: 4.9343767
-  sizeZ: 1.6213598
+  sizeZ: 1.6213596
   sizeY: 5.194957
   center: {x: 0, y: 0, z: 0}
 --- !u!114 &-3202206149013146857
@@ -163,5 +159,5 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 4.9343767, y: 5.194957, z: 1.6213596}
-  m_Center: {x: 0.014071226, y: 2.581747, z: -0.011805594}
+  m_Size: {x: 5.0046754, y: 5.1536922, z: 1.7697992}
+  m_Center: {x: -0.008051634, y: 2.5768461, z: 0.038398504}

@@ -17,13 +17,13 @@ public class LockingJumperAxisZ : MonoBehaviour
         _calculatingAngleHeightJumper = GetComponentInParent<CalculatingAngleHeightJumper>();
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        // Блокировка по оси Z
-        if (other.CompareTag("Object") && !ClickTracking.JumpPlayer)
-        {
-            _calculatingAngleHeightJumper.LockingUnlockJumperAngle();
-        }
-    }
+    // private void OnTriggerEnter(Collider other)
+    // {
+    //     // Блокировка по оси Z
+    //     if (other.CompareTag("Object") && !ClickTracking.JumpPlayer)
+    //     {
+    //         _calculatingAngleHeightJumper.LockingUnlockJumperAngle();
+    //     }
+    // }
     
 }

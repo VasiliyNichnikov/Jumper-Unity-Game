@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 7903512567604063379}
   - component: {fileID: 482960297201022503}
   - component: {fileID: 482960297201022496}
-  - component: {fileID: 482960297201022497}
+  - component: {fileID: 6077301175796788779}
   m_Layer: 9
   m_Name: Boxes
   m_TagString: Object
@@ -73,7 +73,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8471900655247824975}
-  m_Mesh: {fileID: 4300000, guid: 68d0b13bc86cabf4b9b6bb7b13e5d7bf, type: 3}
+  m_Mesh: {fileID: 4493585093827132993, guid: 27d5c8bde94532446ae52d92ef5c2042, type: 3}
 --- !u!23 &7903512567604063379
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -92,10 +92,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b3a8f3eb7680a6548a34a40534d33a0b, type: 2}
-  - {fileID: 2100000, guid: fafc928675add084d91f0f5ef5b8ca01, type: 2}
-  - {fileID: 2100000, guid: 219beee6779b32a40850828d390c8cb2, type: 2}
-  - {fileID: 2100000, guid: 7328e5def16a9934984bb4753096e370, type: 2}
+  - {fileID: 2100000, guid: 5d76e5f7570981d4aa1b36c109035d89, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -151,8 +148,8 @@ MonoBehaviour:
   _collidersClass: []
   PrefabSpehere: {fileID: 0}
   GameOverPlayer: {fileID: 0}
---- !u!65 &482960297201022497
-BoxCollider:
+--- !u!64 &6077301175796788779
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -161,6 +158,7 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 3.1026647, y: 1.7186773, z: 1.5013099}
-  m_Center: {x: 0.09459627, y: 0.77418125, z: 0.12786031}
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4493585093827132993, guid: 27d5c8bde94532446ae52d92ef5c2042, type: 3}

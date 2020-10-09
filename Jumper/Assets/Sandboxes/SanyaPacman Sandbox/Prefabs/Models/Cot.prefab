@@ -43,9 +43,8 @@ GameObject:
   - component: {fileID: 5716156011268731237}
   - component: {fileID: 5716156011266566397}
   - component: {fileID: 5365336021426668636}
-  - component: {fileID: 5716156011266566399}
-  - component: {fileID: 5716156011266566392}
-  - component: {fileID: 5716156011266566395}
+  - component: {fileID: 775102837264341126}
+  - component: {fileID: 4591115350007195034}
   m_Layer: 9
   m_Name: Cot
   m_TagString: Object
@@ -75,7 +74,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5716156011266469797}
-  m_Mesh: {fileID: 4300000, guid: 50bd8d593fb1cd242a3decdf563b92f0, type: 3}
+  m_Mesh: {fileID: -2477511411847689622, guid: 7e8165c65c7288646a3e50104e5e1a1f, type: 3}
 --- !u!23 &5716156011268731237
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -94,10 +93,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 50bd8d593fb1cd242a3decdf563b92f0, type: 3}
-  - {fileID: 2100002, guid: 50bd8d593fb1cd242a3decdf563b92f0, type: 3}
-  - {fileID: 2100004, guid: 50bd8d593fb1cd242a3decdf563b92f0, type: 3}
-  - {fileID: 2100006, guid: 50bd8d593fb1cd242a3decdf563b92f0, type: 3}
+  - {fileID: 2100000, guid: de9aaf9c0f0c47c46bc268cce6c4c49b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -109,7 +105,7 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
+  m_StitchLightmapSeams: 1
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -131,11 +127,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Cot
-  BLB_Point: {x: -3.822589, y: 0.012259483, z: -1.5311658}
-  TRF_Point: {x: 3.8381042, y: 3.33, z: 1.4533403}
-  sizeX: 7.660693
-  sizeZ: 2.9845061
-  sizeY: 3.3177404
+  BLB_Point: {x: -3.810841, y: 1.1551828, z: -1.5114155}
+  TRF_Point: {x: 3.8223672, y: 3.3120089, z: 1.4362388}
+  sizeX: 7.6332083
+  sizeZ: 2.9476542
+  sizeY: 2.156826
   center: {x: 0, y: 0, z: 0}
 --- !u!114 &5365336021426668636
 MonoBehaviour:
@@ -153,8 +149,8 @@ MonoBehaviour:
   _collidersClass: []
   PrefabSpehere: {fileID: 0}
   GameOverPlayer: {fileID: 0}
---- !u!65 &5716156011266566399
-BoxCollider:
+--- !u!64 &775102837264341126
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -163,11 +159,12 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 7.660693, y: 2.0010016, z: 2.9845061}
-  m_Center: {x: 0.0077576637, y: 1.0127603, z: -0.038912773}
---- !u!65 &5716156011266566392
-BoxCollider:
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 5089570055860363880, guid: b9803c3fafa19284fa83024f33aa1005, type: 3}
+--- !u!64 &4591115350007195034
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -176,19 +173,7 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.21009111, y: 3.174669, z: 2.9845061}
-  m_Center: {x: 3.7780473, y: 1.599594, z: -0.038912773}
---- !u!65 &5716156011266566395
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5716156011266469797}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.19322515, y: 3.174669, z: 2.9845061}
-  m_Center: {x: -3.7696137, y: 1.599594, z: -0.038912773}
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4215672176217978051, guid: fd74ef4193bbe6e4fb4047a9d94d2c69, type: 3}

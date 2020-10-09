@@ -81,7 +81,7 @@ public class ClickTracking : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     {
         if (!JumpPlayer && !GameOverPlayer)
         {
-            print("Down");
+            //print("Down");
             _playerDownFinger = true;
             _startPositionFinger = new Vector2(_mainCamera.ScreenToViewportPoint(Input.mousePosition).x,
                 _mainCamera.ScreenToViewportPoint(Input.mousePosition).y);
@@ -95,7 +95,7 @@ public class ClickTracking : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     {
         if (!JumpPlayer && !GameOverPlayer && _playerDownFinger)
         {
-            print("Drag");
+            //print("Drag");
             FingerInputScreen = true;
             _playerDragFinger = true;
 
@@ -117,7 +117,7 @@ public class ClickTracking : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     {
         if (!JumpPlayer && !GameOverPlayer && _playerDragFinger)
         {
-            print("Up");
+            //print("Up");
             FingerInputScreen = false;
             _playerDownFinger = false;
             _playerDragFinger = false;

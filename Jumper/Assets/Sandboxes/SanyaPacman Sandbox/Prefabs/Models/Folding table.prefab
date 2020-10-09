@@ -73,7 +73,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8389400679145176585}
-  m_Mesh: {fileID: 4300000, guid: 419fd9c67b7e8f2459e31279eda536ba, type: 3}
+  m_Mesh: {fileID: 2212009239438826721, guid: 9434751a9475bbe46b48592e6eead55a, type: 3}
 --- !u!23 &7805289539102853845
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -92,7 +92,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5c6933909fd47a54aa5cbc8a865c3155, type: 2}
+  - {fileID: 2100000, guid: 24a16fb51dd21df419be9d6dc508786e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -126,11 +126,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Folding table
-  BLB_Point: {x: -2.7957, y: -0.0025458336, z: -1.8317505}
-  TRF_Point: {x: 2.7939758, y: 2.5908213, z: 1.8317538}
-  sizeX: 5.589676
+  BLB_Point: {x: -2.7957053, y: -0.0025458336, z: -1.8317505}
+  TRF_Point: {x: 2.7939782, y: 2.590821, z: 1.8317538}
+  sizeX: 5.5896835
   sizeZ: 3.6635044
-  sizeY: 2.593367
+  sizeY: 2.5933669
   center: {x: 0, y: 0, z: 0}
 --- !u!114 &526022175721580119
 MonoBehaviour:
@@ -160,4 +160,4 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 5.5896835, y: 2.5933669, z: 3.6635044}
-  m_Center: {x: -0.0008634329, y: 1.2941376, z: 0.00000166893}
+  m_Center: {x: -0.0008634329, y: 1.281624, z: 0.00000166893}

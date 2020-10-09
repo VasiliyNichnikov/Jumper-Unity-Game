@@ -43,10 +43,7 @@ public class FlightJumper : MonoBehaviour
     
     // Скрипт, который управляет симуляцией джампера
     private SimulationJumperPhysics _simulationJumperPhysics;
-    
-    // Скрипт отвечает за поражение игрока
-    private AnimationGameOverJumper _animationGameOverJumper;
-    
+
     // Переменная, которая хранит скорость поворота во время полета по оси Z
     private float _speedRotationJumperFlight;
     
@@ -60,6 +57,7 @@ public class FlightJumper : MonoBehaviour
     private Quaternion _rotationEnd = Quaternion.identity;
     private bool _animationStartJumperEnd;
     private bool _landingCollider;
+    
     public event Action<Collision> OnJumperStop;
     
     // Для настроек джампера(Начало)
@@ -107,22 +105,13 @@ public class FlightJumper : MonoBehaviour
     private void Start()
     {
         _rigidbodyJumper = GetComponent<Rigidbody>();
-        _animationGameOverJumper = GetComponent<AnimationGameOverJumper>();
         _simulationJumperPhysics = GetComponent<SimulationJumperPhysics>();
         _calculatingAngleHeightJumper = GetComponent<CalculatingAngleHeightJumper>();
         _radiusCollider = GetComponent<CapsuleCollider>().radius;
         _thisTransform = transform;
-        FreezePositionAndRotation();
+        // FreezePositionAndRotation();
     }
 
-    // private void Update()
-    // {
-    //     Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.down) * 10, Color.yellow);
-    // }
-    
-    // Скорость джампера
-    //private Vector3 _vectorForceJumper = Vector3.zero;
-    
     // Добавление скорости джамперу
     public void AddSpeedJumper()
     {
@@ -135,14 +124,14 @@ public class FlightJumper : MonoBehaviour
             Vector3 vectorDifference = _vector3TransformHeightAngle.position - _thisTransform.position;
             Vector3 vectorForce =
                 new Vector3(-vectorDifference.x * speedX, Mathf.Abs(vectorDifference.y * speedY), vectorDifference.z);
-            Dictionary<string, float> dictionaryDistance =
-                _simulationJumperPhysics.SimulationJumper(transform.position, vectorForce);
+             Dictionary<string, float> dictionaryDistance =
+                 _simulationJumperPhysics.SimulationJumper(transform.position, vectorForce);
             float positionJumperEndAxesY = dictionaryDistance["finite_distance_axes_y"];
             _speedRotationJumperFlight = dictionaryDistance["speed_rotation_jumper_flight"];
+            _rigidbodyJumper.isKinematic = false;
             if (positionJumperEndAxesY != .0f)
                 _cameraTracking.PositionY = positionJumperEndAxesY;
-            //_rigidbodyJumper.isKinematic = false;
-            FreezePositionAndRotation();
+            //FreezePositionAndRotation();
             _rigidbodyJumper.AddForce(vectorForce, ForceMode.Impulse);
         }    
     }
@@ -155,11 +144,7 @@ public class FlightJumper : MonoBehaviour
         _rotationEnd = Quaternion.Euler(0, 0, 0);
         _animationStartJumperEnd = false;
         _landingCollider = false;
-        // while (_rigidbodyJumper.velocity.y >= 0 && ClickTracking.JumpPlayer)
-        // {
-        //     _thisTransform.rotation = Quaternion.Lerp(_thisTransform.rotation, _rotationEnd, _speedFlightAnimationJumper * Time.deltaTime);
-        //     yield return null;
-        // }
+        
         float positionJumperNowY = .0f;
         bool maxPointYFound = false;
         while (!maxPointYFound)
@@ -212,84 +197,41 @@ public class FlightJumper : MonoBehaviour
         }
         print("End ReturnRotationJumper");
     }
-
-    //private delegate bool _delegateCheckCollider(Collision collision);
     
-    // Проверка угла джампера при приземление
-    private IEnumerator CheckAngleJumper(Collision collision)
-    {
-        CheckCollider checkCollider = collision.gameObject.GetComponent<CheckCollider>();
-        while (!checkCollider.CheckJumpPlayer(collision))
-        {
-            yield return null;
-        }
-        //ClickTracking.JumpPlayer = false;
-        
-    }
+    private float _savePositionY;
     
-    // Проверка расстояния от джампера до ближайшего объекта
-    //private IEnumerator CheckHeightFromJumperToObject(Collision collision)
-    //{
-        //
-        // RaycastHit hit;
-        // Vector3 startPosition = Vector3.zero;;
-        // while (ClickTracking.JumpPlayer)
-        // {
-        //     print("Work");
-        //     startPosition = new Vector3(_thisTransform.position.x, _thisTransform.position.y + 1, _thisTransform.position.z);
-        //     if (Physics.SphereCast(startPosition, 0.07427804f, _thisTransform.TransformDirection(Vector3.down), out hit,
-        //         10))
-        //     {
-        //         Debug.DrawRay(startPosition, _thisTransform.TransformDirection(Vector3.down) * hit.distance, Color.yellow);
-        //         print($"Object - {hit.collider.name}; Distance - {hit.distance}");
-        //         if (hit.collider.CompareTag("Object") && hit.distance <= 2f)
-        //         {
-        //             //ClickTracking.JumpPlayer = false;
-        //             
-        //         }
-        //     }
-        //     yield return null;
-        // }
-        //
-    //}
-
-    // Проверяем есть ли под джампером земля
+    // Проверяем есть ли под джампером земля (Доделать)
     private bool CheckGroundDown()
     {
+        bool checkRaycast = false;
+        bool checkVelocity = false;
+        
         RaycastHit hit;
         int layerMask = 1 << 9;
+        
         Vector3 startPosition = new Vector3(_thisTransform.position.x, _thisTransform.position.y + 1, _thisTransform.position.z);
-        // if (Physics.Raycast(startPosition, Vector3.down, out hit, Mathf.Infinity, layerMask))
-        // {
-        //     
-        //     if (hit.collider.CompareTag("Ground"))
-        //     {
-        //         print($"Object Name - {hit.collider.name}");
-        //         return true;
-        //     }
-        //     // if (hit.collider.CompareTag("Ground"))
-        //     // {
-        //     //     print("Ground");
-        //     //     return true;
-        //     // }
-        // }
         
         if(Physics.SphereCast(startPosition, _radiusCollider, Vector3.down,  out hit, Mathf.Infinity, layerMask))
         {
-            if (hit.collider.CompareTag("Ground") || (hit.collider.CompareTag("Object") && hit.distance > 1))
+            if (hit.collider.CompareTag("Ground") || (hit.collider.CompareTag("Object") && hit.distance > 1)) // || (hit.collider.CompareTag("Object") && hit.distance > 1)
             {
-                print($"Object Name - {hit.collider.name}");
-                print($"Distance to object - {hit.distance}");
-                return true;
+                checkRaycast = true;
             }
         }
+        if (_rigidbodyJumper.velocity.y < -0.1f || _rigidbodyJumper.velocity.y > 0.1f)
+            checkVelocity = true;
+    
+        
+        print($"Check raycast - {checkRaycast}");
+        print($"Check velocity - {checkVelocity}");
+        if (checkRaycast && checkVelocity)
+        {
+            print("While");
+            return true;
+        }
+
         return false;
     }
-
-    // private void Update()
-    // {
-    //     Debug.DrawRay(new Vector3(_thisTransform.position.x, _thisTransform.position.y + 1, _thisTransform.position.z), Vector3.down * 100, Color.yellow);
-    // }
 
 
     // Прикосновение к объекту
@@ -298,81 +240,58 @@ public class FlightJumper : MonoBehaviour
             EndAnimationJumper(other);
     }
     
-    // Прикосновение к объекту
+    // Нахождение на объекте
     private void OnCollisionStay(Collision other)
     {
         if (_animationStartJumperEnd)
             EndAnimationJumper(other);
     }
 
-    // Данная куротина проверяет нужно или нет продолжать игру
+    // Данная куротина проверяет нужно или нет продолжать игру (Доработать)
     private IEnumerator ContinuationGame()
     {
         while (CheckGroundDown())
         {
             yield return null;
         }
-        
-        if(!ClickTracking.GameOverPlayer)
+
+        if (!ClickTracking.GameOverPlayer)
+        {
             ClickTracking.JumpPlayer = false;
+            _rigidbodyJumper.isKinematic = true;
+            //FreezePositionAndRotation(true);
+        }
     }
     
+
+
     // Анимация заканчивается
-    private void EndAnimationJumper(Collision other)
+    private void EndAnimationJumper(Collision collision)
     {
         _landingCollider = true;
         _animationStartJumperEnd = false;
-        
-        FreezePositionAndRotation(true);
         StartCoroutine(_calculatingAngleHeightJumper.ReturnUpperPartJumper(true));
         StartCoroutine(ContinuationGame());
-        
-        // if (OnJumperStop != null)
+
+        // if (collision.collider.CompareTag("Object"))
         // {
-        //     OnJumperStop(other);
-        // }
-        
-        //else
-        //     _animationGameOverJumper.StartAnimationGameOver();
-        // Нужно переделать
-        // else if (other.collider.CompareTag("Object"))
-        // {
-        //     CheckCollider checkCollider = other.collider.GetComponent<CheckCollider>();
-        //     checkCollider.CheckGameOver(other);
-        //
-        //     //StartCoroutine(CheckHeightFromJumperToObject(other));
-        //     //StartCoroutine(CheckAngleJumper(other));
-        //     
-        //     //_delegateCheckCollider = checkCollider.CheckJumpPlayer(other);
-        //     //print("Other - " + other.gameObject.name);
-        //     
-        //     // if (_checkCollider.CheckJumpPlayer(other))
-        //     // {
-        //     //     ClickTracking.JumpPlayer = false;
-        //     //     //_rigidbodyJumper.isKinematic = true;
-        //     //     
-        //     // }
-        //
-        //     if (OnJumperStop != null)
+        //     CheckCollider colliderObject =  collision.collider.GetComponent<CheckCollider>();
+        //     if (colliderObject.OnOffClickTrackingJumpPlayer(collision))
         //     {
-        //         OnJumperStop(other);
+        //         StartCoroutine(ContinuationGame());
         //     }
         // }
         
-        //print($"Animation Start Jumper End - {_animationStartJumperEnd};");
-        
-        // Проверка проиграл игрок или нет
-        
-        
+        //ClickTracking.JumpPlayer = false;
+        //_rigidbodyJumper.isKinematic = true;
+        // if (CheckGroundDown())
+        //     _rigidbodyJumper.isKinematic = false;
+        // else 
+        //     _rigidbodyJumper.isKinematic = true;
+  
+            
         print("Animation End, start now");
     }
-
-    // private void OnDrawGizmosSelected()
-    // {
-    //     Gizmos.color = Color.blue;
-    //     Vector3 newVector = new Vector3(transform.position.x, transform.position.y + 0.05f, transform.position.z);
-    //     Gizmos.DrawSphere(newVector, 0.05f);
-    // }
 
     // Заморозка позиции и поворота
     private void FreezePositionAndRotation(bool freeze=false)

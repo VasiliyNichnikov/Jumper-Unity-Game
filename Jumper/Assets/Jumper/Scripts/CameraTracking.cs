@@ -108,6 +108,7 @@ public class CameraTracking : MonoBehaviour
         }
 
         _thisTransform.position = _positionPlayerMovement;
+        
         // _mainCamera.transform.position = new Vector3(_player.position.x - _offsetX, _player.position.y + _offsetY, _mainCamera.position.z);
         
         // _mainCamera.position = Vector3.MoveTowards(_mainCamera.position,

@@ -73,7 +73,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6855986776901010122}
-  m_Mesh: {fileID: 4300000, guid: 4fe096ed309c4e34ca459fd1c4e449d2, type: 3}
+  m_Mesh: {fileID: -5053925668127403250, guid: bd1f8b76dcab0fd499c030de7f899c25, type: 3}
 --- !u!23 &5123281814817338902
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -92,8 +92,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a9137171c787097489d9d277198abb2e, type: 2}
-  - {fileID: 2100000, guid: 95b25aa5cce6ec2478255a2e53b19c4e, type: 2}
+  - {fileID: 2100000, guid: 43f382977c9ae6c489f6a8a6f37fde63, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -127,10 +126,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Bedside table 1
-  BLB_Point: {x: -0.7186699, y: -0.039063215, z: -0.8094898}
-  TRF_Point: {x: 0.7186699, y: 2.8323636, z: 0.80948967}
-  sizeX: 1.4373398
-  sizeZ: 1.6189795
+  BLB_Point: {x: -0.71866965, y: -0.039063215, z: -0.8094898}
+  TRF_Point: {x: 0.71866965, y: 2.8323636, z: 0.80948955}
+  sizeX: 1.4373393
+  sizeZ: 1.6189793
   sizeY: 2.8714268
   center: {x: 0, y: 0, z: 0}
 --- !u!114 &3171860906022663637
@@ -160,5 +159,5 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.4373393, y: 2.8714268, z: 1.6189793}
-  m_Center: {x: 0, y: 1.3966502, z: -0.00000011920929}
+  m_Size: {x: 1.4334551, y: 2.738127, z: 1.6402504}
+  m_Center: {x: -0.0053414106, y: 1.3700763, z: -0.008637309}

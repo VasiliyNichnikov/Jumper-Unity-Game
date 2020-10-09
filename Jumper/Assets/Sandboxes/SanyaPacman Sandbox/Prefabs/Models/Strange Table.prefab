@@ -73,7 +73,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5287042238585099581}
-  m_Mesh: {fileID: 4300000, guid: 91c55b8a2b4f97c4fb1f2270d43b1c11, type: 3}
+  m_Mesh: {fileID: -2746142260806068395, guid: e24261cddbaf8bb408001db2c46913c7, type: 3}
 --- !u!23 &5287042238587292669
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -104,7 +104,7 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
+  m_StitchLightmapSeams: 1
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -126,11 +126,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Strange Table
-  BLB_Point: {x: -1.5641356, y: 0.0017809868, z: -1.0172104}
-  TRF_Point: {x: 1.5641356, y: 2.398498, z: 1.0172101}
-  sizeX: 3.128271
+  BLB_Point: {x: -1.6141143, y: 0.0002810955, z: -1.0172104}
+  TRF_Point: {x: 1.5970712, y: 2.398498, z: 1.0172101}
+  sizeX: 3.2111855
   sizeZ: 2.0344205
-  sizeY: 2.396717
+  sizeY: 2.398217
   center: {x: 0, y: 0, z: 0}
 --- !u!114 &4290567387419157215
 MonoBehaviour:
@@ -159,5 +159,5 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.2111855, y: 2.398217, z: 2.0344205}
-  m_Center: {x: -0.008521557, y: 1.1993896, z: -0.00000011920929}
+  m_Size: {x: 3.128271, y: 2.3982172, z: 2.0344205}
+  m_Center: {x: 0, y: 1.1974056, z: -0.00000011920929}

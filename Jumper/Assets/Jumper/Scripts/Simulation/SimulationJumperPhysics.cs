@@ -6,14 +6,14 @@ public class SimulationJumperPhysics : MonoBehaviour
 {
     [SerializeField] [Header("Префаб джампера")]
     private GameObject _prefabJumper = null;
-
+    
     [HideInInspector]
     public Transform TransformEmptyObject = null;
-    
+
     public Dictionary<string, float> SimulationJumper(Vector3 origin, Vector3 speed)
     {
         Dictionary<string, float> dictionaryDifferenceAndDistance = new Dictionary<string, float>();
-
+        
         GameObject newJumper = Instantiate(_prefabJumper, origin, Quaternion.identity);
 
         var endPositionJumper = Vector3.zero;
@@ -39,7 +39,6 @@ public class SimulationJumperPhysics : MonoBehaviour
             
             if (TransformEmptyObject != null)
             {
-                //print($"Time End - {flightTimeJumper}");
                 endPosition = TransformEmptyObject.position;
                 break;
             } 
@@ -50,7 +49,6 @@ public class SimulationJumperPhysics : MonoBehaviour
         Destroy(newJumper.gameObject);
         TransformEmptyObject = null;
         
-        //print($"Speed Jumper - {Mathf.Abs(endPositionJumper.x - origin.x) / flightTimeJumper}");
         dictionaryDifferenceAndDistance["speed_rotation_jumper_flight"] =
             Mathf.Abs(endPositionJumper.x - origin.x) / flightTimeJumper;
         dictionaryDifferenceAndDistance["difference_distance_axes_x"] = Mathf.Abs(endPositionJumper.x - origin.x);

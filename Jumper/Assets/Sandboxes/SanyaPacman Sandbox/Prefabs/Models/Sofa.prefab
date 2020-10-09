@@ -74,7 +74,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5495662020534565779}
-  m_Mesh: {fileID: 4300000, guid: 57a97bae2cd38ce4ab7d11b9ad2d17af, type: 3}
+  m_Mesh: {fileID: -5053925668127403250, guid: 2fbc20580cd67ae4495682aef19508c8, type: 3}
 --- !u!23 &5495662020536821075
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -93,8 +93,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 57a97bae2cd38ce4ab7d11b9ad2d17af, type: 3}
-  - {fileID: 2100002, guid: 57a97bae2cd38ce4ab7d11b9ad2d17af, type: 3}
+  - {fileID: 2100000, guid: 9ce361d09c96fc84380efd30e045f89f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -106,7 +105,7 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
+  m_StitchLightmapSeams: 1
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -161,8 +160,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 9.813396, y: 1.0100129, z: 3.893947}
-  m_Center: {x: 0.0020318031, y: 0.505216, z: -0.36343348}
+  m_Size: {x: 8.788801, y: 0.9784448, z: 3.5707593}
+  m_Center: {x: -0.00044441223, y: 0.48776734, z: -0.25125837}
 --- !u!64 &2432585011528943030
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -176,4 +175,4 @@ MeshCollider:
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: 57a97bae2cd38ce4ab7d11b9ad2d17af, type: 3}
+  m_Mesh: {fileID: -5053925668127403250, guid: 2fbc20580cd67ae4495682aef19508c8, type: 3}

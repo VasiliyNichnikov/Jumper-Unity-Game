@@ -52,8 +52,8 @@ public class AnimationGameOverJumper : MonoBehaviour
         _rigidbodyUpperPartJumper.AddForce(new Vector3(x, y, z) * Random.Range(1f, 5f), ForceMode.Impulse);
         _rigidbodyBottomPartJumper.AddForce(new Vector3(-x, -y, -z) * Random.Range(1f, 5f), ForceMode.Impulse);
         
-        _rigidbodyUpperPartJumper.interpolation = RigidbodyInterpolation.Interpolate;
-        //_rigidbodyBottomPartJumper.interpolation = RigidbodyInterpolation.Interpolate;
+        // _rigidbodyUpperPartJumper.interpolation = RigidbodyInterpolation.Interpolate;
+        // _rigidbodyBottomPartJumper.interpolation = RigidbodyInterpolation.Interpolate;
     }
 
 }

@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 229796207395231187}
   - component: {fileID: 1569246666398372801}
   - component: {fileID: 1661785044195586850}
-  - component: {fileID: 4014502780793029246}
+  - component: {fileID: 7726108235247638380}
+  - component: {fileID: 2636382700283696844}
   m_Layer: 9
   m_Name: Clocks
   m_TagString: Object
@@ -43,7 +44,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 229796207397227283}
-  m_Mesh: {fileID: 4300000, guid: 91f46c54f7d36ce4abf0bd4d927b7017, type: 3}
+  m_Mesh: {fileID: -5495902117074765545, guid: 0790b14bd26c69142b61913236508757, type: 3}
 --- !u!23 &229796207395231187
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -62,11 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 32b6d29772bd4f64f8757827012941d5, type: 2}
-  - {fileID: 2100002, guid: 91f46c54f7d36ce4abf0bd4d927b7017, type: 3}
-  - {fileID: 2100004, guid: 91f46c54f7d36ce4abf0bd4d927b7017, type: 3}
-  - {fileID: 2100006, guid: 91f46c54f7d36ce4abf0bd4d927b7017, type: 3}
-  - {fileID: 2100008, guid: 91f46c54f7d36ce4abf0bd4d927b7017, type: 3}
+  - {fileID: 2100000, guid: 05dd616e1cfab944d99adfdf3288a917, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -78,7 +75,7 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
+  m_StitchLightmapSeams: 1
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -100,11 +97,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Clocks
-  BLB_Point: {x: -0.74151564, y: -0.014548302, z: -0.7370603}
-  TRF_Point: {x: 0.73540926, y: 5.16, z: 0.7498691}
-  sizeX: 1.4769249
-  sizeZ: 1.4869294
-  sizeY: 5.174548
+  BLB_Point: {x: -0.6444458, y: 0, z: -0.64236635}
+  TRF_Point: {x: 0.6444458, y: 4.846707, z: 0.57860714}
+  sizeX: 1.2888916
+  sizeZ: 1.2209735
+  sizeY: 4.846707
   center: {x: 0, y: 0, z: 0}
 --- !u!114 &1661785044195586850
 MonoBehaviour:
@@ -122,7 +119,7 @@ MonoBehaviour:
   _collidersClass: []
   PrefabSpehere: {fileID: 0}
   GameOverPlayer: {fileID: 0}
---- !u!64 &4014502780793029246
+--- !u!64 &7726108235247638380
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -135,7 +132,21 @@ MeshCollider:
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: 91f46c54f7d36ce4abf0bd4d927b7017, type: 3}
+  m_Mesh: {fileID: 3225524662229659057, guid: 57e6f3289cab5fe43aca24353e638fcd, type: 3}
+--- !u!64 &2636382700283696844
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 229796207397227283}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 2131612980490818283, guid: 1d9eb43162d9cdd488728f653b234493, type: 3}
 --- !u!1 &1887587045046758605
 GameObject:
   m_ObjectHideFlags: 0
@@ -160,7 +171,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1887587045046758605}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 5.44, z: 0}
+  m_LocalPosition: {x: 0, y: 4.858, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 229796207397132083}
