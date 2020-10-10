@@ -96,7 +96,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.16113746, y: 2.6591933, z: 1.0095832}
+  m_Size: {x: 0.05460252, y: 2.6591933, z: 1.0095832}
   m_Center: {x: 0.000579603, y: -0.19690025, z: 0.0015325844}
 --- !u!114 &7243850380887544161
 MonoBehaviour:
@@ -110,4 +110,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4767b27aeb5c3d44971a2301a178c8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _calculatingAngleHeightJumper: {fileID: 0}

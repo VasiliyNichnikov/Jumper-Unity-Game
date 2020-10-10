@@ -222,11 +222,11 @@ public class FlightJumper : MonoBehaviour
             checkVelocity = true;
     
         
-        print($"Check raycast - {checkRaycast}");
-        print($"Check velocity - {checkVelocity}");
-        if (checkRaycast && checkVelocity)
+        //print($"Check raycast - {checkRaycast}");
+        //print($"Check velocity - {checkVelocity}");
+        if (checkRaycast || checkVelocity)
         {
-            print("While");
+            //print("While");
             return true;
         }
 
@@ -247,9 +247,10 @@ public class FlightJumper : MonoBehaviour
             EndAnimationJumper(other);
     }
 
-    // Данная куротина проверяет нужно или нет продолжать игру (Доработать)
+    // Данная куротина проверяет нужно или нет продолжать игру 
     private IEnumerator ContinuationGame()
     {
+        _rigidbodyJumper.isKinematic = false;
         while (CheckGroundDown())
         {
             yield return null;
@@ -270,6 +271,7 @@ public class FlightJumper : MonoBehaviour
     {
         _landingCollider = true;
         _animationStartJumperEnd = false;
+        _rigidbodyJumper.isKinematic = true;
         StartCoroutine(_calculatingAngleHeightJumper.ReturnUpperPartJumper(true));
         StartCoroutine(ContinuationGame());
 
