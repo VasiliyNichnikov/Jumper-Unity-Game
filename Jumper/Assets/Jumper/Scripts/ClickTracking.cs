@@ -41,7 +41,7 @@ public class ClickTracking : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     // Прыгает пользователь или нет
     public static bool JumpPlayer;
     
-    // Проиграл пользователь или нет (Для теста)
+    // Проиграл пользователь или нет
     public static bool GameOverPlayer;
 
     // Переменная хранит начальную позицию пальца при нажатии на экран
@@ -127,18 +127,17 @@ public class ClickTracking : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
             StartCoroutine(_calculatingAngleHeightJumper.ReturnUpperPartJumper());
         }
     }
-    
-    // Перезагрузка игры
-    public void RestartGame()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
-    
+
     // Смена чувствительности
     private float ChangingSensitivityPercentage()
     {
         return _sensitivityJumper * _maximumPercentScreenForMaximumSpeedJumper / 100;
     }
     
+    // Перезагрузка игры
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
     
 }

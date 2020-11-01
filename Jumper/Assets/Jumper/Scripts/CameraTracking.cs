@@ -13,6 +13,9 @@ public class CameraTracking : MonoBehaviour
 
     [SerializeField] [Range(-50, 50)] [Header("Расстояние по оси Y")]
     private float _offsetY = .0f;
+    
+    [SerializeField] [Range(-50, 50)] [Header("Расстояние по оси Z")]
+    private float _offsetZ = .0f;
 
     [SerializeField] [Range(0, 100)] [Header("Скорость движения камеры")]
     private float _speedCamera = 45f;
@@ -25,6 +28,9 @@ public class CameraTracking : MonoBehaviour
 
     [Range(-45, 360)] [Header("Угол наклона по оси X")]
     private float _angleX = .0f;
+    
+    [Range(-45, 360)] [Header("Угол наклона по оси Z")]
+    private float _angleZ = .0f;
 
     [HideInInspector]
     public float PositionY = .0f;
@@ -53,22 +59,22 @@ public class CameraTracking : MonoBehaviour
             _offsetY = value;
         }
     }
+    
+    // Получение и изменение расстояние между камерой и игроком по оси Z
+    public float ChangeGetOffsetZ
+    {
+        get { return _offsetZ; }
+        set
+        { 
+            _offsetZ = value;
+        }
+    }
 
     // Получение и изменение скорости камеры
     public float ChangeGetSpeed
     {
         get { return _speedCamera; }
         set { _speedCamera = value; }
-    }
-    
-    // Получение и изменение поворота камеры по оси Y
-    public float ChangeAngleRotationY
-    {
-        get { return _angleY; }
-        set
-        { 
-            _angleY = value;
-        }
     }
     
     // Получение и изменение поворота камеры по оси X
@@ -81,6 +87,26 @@ public class CameraTracking : MonoBehaviour
         }
     }
     
+    // Получение и изменение поворота камеры по оси Y
+    public float ChangeAngleRotationY
+    {
+        get { return _angleY; }
+        set
+        { 
+            _angleY = value;
+        }
+    }
+    
+    // Получение и изменение поворота камеры по оси Z
+    public float ChangeAngleRotationZ
+    {
+        get { return _angleZ; }
+        set
+        { 
+            _angleZ = value;
+        }
+    }
+
     // PositionY, когда будет генерация, нужно добавить первый объект, который создался
     private void Start()
     {
@@ -90,7 +116,7 @@ public class CameraTracking : MonoBehaviour
     
     private void Update()
     {
-        _mainCamera.rotation = Quaternion.Euler(_angleX, _angleY, _mainCamera.eulerAngles.z);
+        _mainCamera.rotation = Quaternion.Euler(_angleX, _angleY, _angleZ);
 
         if (ClickTracking.GameOverPlayer)
         {
@@ -104,7 +130,7 @@ public class CameraTracking : MonoBehaviour
         {
             _positionPlayerMovement = new Vector3(Mathf.MoveTowards(_thisTransform.position.x, _player.position.x - _offsetX, _speedCamera * Time.deltaTime),
                 Mathf.MoveTowards(_thisTransform.position.y, PositionY + _offsetY, _speedCameraAxesY * Time.deltaTime),
-                _thisTransform.position.z);
+                Mathf.MoveTowards(_thisTransform.position.z, _player.position.z - _offsetZ, _speedCamera * Time.deltaTime));
         }
 
         _thisTransform.position = _positionPlayerMovement;

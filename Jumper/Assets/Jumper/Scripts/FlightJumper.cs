@@ -109,7 +109,6 @@ public class FlightJumper : MonoBehaviour
         _calculatingAngleHeightJumper = GetComponent<CalculatingAngleHeightJumper>();
         _radiusCollider = GetComponent<CapsuleCollider>().radius;
         _thisTransform = transform;
-        // FreezePositionAndRotation();
     }
 
     // Добавление скорости джамперу
@@ -117,7 +116,6 @@ public class FlightJumper : MonoBehaviour
     {
         var speedX = GetSpeedJumper(_calculatingAngleHeightJumper.GetPercentAngleJumper, _maximumSpeedFlightJumper);
         var speedY = GetSpeedJumper(_calculatingAngleHeightJumper.GerPercentHeightJumper, _maximumSpeedFlightJumper);
-        _calculatingAngleHeightJumper.LockingUnlockJumperAngle(true);
         if (speedY > 0)
         {
             ClickTracking.JumpPlayer = true;
@@ -126,12 +124,13 @@ public class FlightJumper : MonoBehaviour
                 new Vector3(-vectorDifference.x * speedX, Mathf.Abs(vectorDifference.y * speedY), vectorDifference.z);
              Dictionary<string, float> dictionaryDistance =
                  _simulationJumperPhysics.SimulationJumper(transform.position, vectorForce);
+             
             float positionJumperEndAxesY = dictionaryDistance["finite_distance_axes_y"];
             _speedRotationJumperFlight = dictionaryDistance["speed_rotation_jumper_flight"];
             _rigidbodyJumper.isKinematic = false;
+            
             if (positionJumperEndAxesY != .0f)
                 _cameraTracking.PositionY = positionJumperEndAxesY;
-            //FreezePositionAndRotation();
             _rigidbodyJumper.AddForce(vectorForce, ForceMode.Impulse);
         }    
     }
@@ -237,14 +236,14 @@ public class FlightJumper : MonoBehaviour
     // Прикосновение к объекту
     private void OnCollisionEnter(Collision other){
         if (_animationStartJumperEnd)
-            EndAnimationJumper(other);
+            EndAnimationJumper();
     }
     
     // Нахождение на объекте
     private void OnCollisionStay(Collision other)
     {
         if (_animationStartJumperEnd)
-            EndAnimationJumper(other);
+            EndAnimationJumper();
     }
 
     // Данная куротина проверяет нужно или нет продолжать игру 
@@ -267,12 +266,12 @@ public class FlightJumper : MonoBehaviour
 
 
     // Анимация заканчивается
-    private void EndAnimationJumper(Collision collision)
+    private void EndAnimationJumper()
     {
         _landingCollider = true;
         _animationStartJumperEnd = false;
         _rigidbodyJumper.isKinematic = true;
-        StartCoroutine(_calculatingAngleHeightJumper.ReturnUpperPartJumper(true));
+        //StartCoroutine(_calculatingAngleHeightJumper.ReturnUpperPartJumper(true));
         StartCoroutine(ContinuationGame());
 
         // if (collision.collider.CompareTag("Object"))
@@ -296,26 +295,26 @@ public class FlightJumper : MonoBehaviour
     }
 
     // Заморозка позиции и поворота
-    private void FreezePositionAndRotation(bool freeze=false)
-    {
-        if (freeze)
-        {
-            //print("Frezee true");
-            _rigidbodyJumper.constraints |= RigidbodyConstraints.FreezePositionX;
-            //_rigidbodyJumper.constraints |= RigidbodyConstraints.FreezePositionY;
-            //_rigidbodyJumper.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezePositionY;
-        }
-        else
-        {
-            _rigidbodyJumper.constraints &= ~RigidbodyConstraints.FreezePositionX;
-            //_rigidbodyJumper.constraints |= RigidbodyConstraints.FreezePositionX;
-            //_rigidbodyJumper.constraints |= RigidbodyConstraints.FreezePositionY;
-            //print("Frezee false");
-            //_rigidbodyJumper.constraints &= ~RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY;
-        }
-
-        _rigidbodyJumper.freezeRotation = true;
-    }
+    // private void FreezePositionAndRotation(bool freeze=false)
+    // {
+    //     if (freeze)
+    //     {
+    //         //print("Frezee true");
+    //         _rigidbodyJumper.constraints |= RigidbodyConstraints.FreezePositionX;
+    //         //_rigidbodyJumper.constraints |= RigidbodyConstraints.FreezePositionY;
+    //         //_rigidbodyJumper.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezePositionY;
+    //     }
+    //     else
+    //     {
+    //         _rigidbodyJumper.constraints &= ~RigidbodyConstraints.FreezePositionX;
+    //         //_rigidbodyJumper.constraints |= RigidbodyConstraints.FreezePositionX;
+    //         //_rigidbodyJumper.constraints |= RigidbodyConstraints.FreezePositionY;
+    //         //print("Frezee false");
+    //         //_rigidbodyJumper.constraints &= ~RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY;
+    //     }
+    //
+    //     _rigidbodyJumper.freezeRotation = true;
+    // }
     
     
     // Получение скорости джампера

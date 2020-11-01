@@ -46,7 +46,7 @@ public class CreateJumperStart : MonoBehaviour
     private void CreateNewJumper()
     {
         // Выбор джампера из класса
-        Jumper jumper = _jumpers[UnityEngine.Random.Range(1, _jumpers.Length)];
+        Jumper jumper = _jumpers[UnityEngine.Random.Range(0, _jumpers.Length)];
 
         // Получение скрипта CalculatingAngleHeightJumper
         CalculatingAngleHeightJumper calculatingAngleHeightJumper =
