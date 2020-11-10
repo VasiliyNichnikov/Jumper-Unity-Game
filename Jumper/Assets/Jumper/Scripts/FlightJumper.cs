@@ -27,6 +27,7 @@ public class FlightJumper : MonoBehaviour
 
     [Header("Скрипт, который настраивает отвечает за движение камеры")] [SerializeField]
     private CameraTracking _cameraTracking;
+    
 
     /// <summary>
     /// Переменные, которые скрыты в инспекторе 
@@ -44,6 +45,9 @@ public class FlightJumper : MonoBehaviour
     // Скрипт, который управляет симуляцией джампера
     private SimulationJumperPhysics _simulationJumperPhysics;
 
+    // Скрипт, который блокирует поворот джампера по оси Z
+    private LockingJumperAxisZ _lockingJumperAxisZ;
+    
     // Переменная, которая хранит скорость поворота во время полета по оси Z
     private float _speedRotationJumperFlight;
     
@@ -106,6 +110,7 @@ public class FlightJumper : MonoBehaviour
     {
         _rigidbodyJumper = GetComponent<Rigidbody>();
         _simulationJumperPhysics = GetComponent<SimulationJumperPhysics>();
+        _lockingJumperAxisZ = GetComponent<LockingJumperAxisZ>();
         _calculatingAngleHeightJumper = GetComponent<CalculatingAngleHeightJumper>();
         _radiusCollider = GetComponent<CapsuleCollider>().radius;
         _thisTransform = transform;
@@ -220,9 +225,6 @@ public class FlightJumper : MonoBehaviour
         if (_rigidbodyJumper.velocity.y < -0.1f || _rigidbodyJumper.velocity.y > 0.1f)
             checkVelocity = true;
     
-        
-        //print($"Check raycast - {checkRaycast}");
-        //print($"Check velocity - {checkVelocity}");
         if (checkRaycast || checkVelocity)
         {
             //print("While");
@@ -236,14 +238,14 @@ public class FlightJumper : MonoBehaviour
     // Прикосновение к объекту
     private void OnCollisionEnter(Collision other){
         if (_animationStartJumperEnd)
-            EndAnimationJumper();
+            EndAnimationJumper(other);
     }
     
     // Нахождение на объекте
     private void OnCollisionStay(Collision other)
     {
         if (_animationStartJumperEnd)
-            EndAnimationJumper();
+            EndAnimationJumper(other);
     }
 
     // Данная куротина проверяет нужно или нет продолжать игру 
@@ -259,21 +261,25 @@ public class FlightJumper : MonoBehaviour
         {
             ClickTracking.JumpPlayer = false;
             _rigidbodyJumper.isKinematic = true;
-            //FreezePositionAndRotation(true);
+            _lockingJumperAxisZ.CheckAngle();
         }
     }
     
 
 
     // Анимация заканчивается
-    private void EndAnimationJumper()
+    private void EndAnimationJumper(Collision other)
     {
         _landingCollider = true;
         _animationStartJumperEnd = false;
         _rigidbodyJumper.isKinematic = true;
-        //StartCoroutine(_calculatingAngleHeightJumper.ReturnUpperPartJumper(true));
         StartCoroutine(ContinuationGame());
-
+        
+        if (OnJumperStop != null)
+        {
+            OnJumperStop(other);
+        }
+    
         // if (collision.collider.CompareTag("Object"))
         // {
         //     CheckCollider colliderObject =  collision.collider.GetComponent<CheckCollider>();
@@ -293,28 +299,6 @@ public class FlightJumper : MonoBehaviour
             
         print("Animation End, start now");
     }
-
-    // Заморозка позиции и поворота
-    // private void FreezePositionAndRotation(bool freeze=false)
-    // {
-    //     if (freeze)
-    //     {
-    //         //print("Frezee true");
-    //         _rigidbodyJumper.constraints |= RigidbodyConstraints.FreezePositionX;
-    //         //_rigidbodyJumper.constraints |= RigidbodyConstraints.FreezePositionY;
-    //         //_rigidbodyJumper.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezePositionY;
-    //     }
-    //     else
-    //     {
-    //         _rigidbodyJumper.constraints &= ~RigidbodyConstraints.FreezePositionX;
-    //         //_rigidbodyJumper.constraints |= RigidbodyConstraints.FreezePositionX;
-    //         //_rigidbodyJumper.constraints |= RigidbodyConstraints.FreezePositionY;
-    //         //print("Frezee false");
-    //         //_rigidbodyJumper.constraints &= ~RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY;
-    //     }
-    //
-    //     _rigidbodyJumper.freezeRotation = true;
-    // }
     
     
     // Получение скорости джампера

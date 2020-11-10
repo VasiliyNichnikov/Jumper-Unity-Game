@@ -12,9 +12,8 @@ GameObject:
   - component: {fileID: 2637975253733961639}
   - component: {fileID: 8621985283100808030}
   - component: {fileID: 2070049398385278600}
-  - component: {fileID: 2070049398385278599}
   m_Layer: 0
-  m_Name: Jumper the upper part #2
+  m_Name: Jumper the upper part
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -94,15 +93,3 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.05460252, y: 3.053103, z: 1.1843197}
   m_Center: {x: -0.0019572638, y: 1.5277064, z: -0.010478228}
---- !u!114 &2070049398385278599
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8042206156158707586}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4767b27aeb5c3d44971a2301a178c8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

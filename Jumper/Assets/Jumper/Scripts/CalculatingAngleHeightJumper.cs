@@ -123,6 +123,7 @@ public class CalculatingAngleHeightJumper : MonoBehaviour
         var percentageScreenWidth = -ConversionValuesPercent(differenceDistance, sensitivityJumper);
         _percentAngleJumper = Mathf.Clamp(Mathf.Abs(percentageScreenWidth), 0, 100);    
         var angleInclination = InterestValue(percentageScreenWidth, _minimumAngleInclinationAxesZ, _maximumAngleInclinationAxesZ);
+        // print($"Angle - {angleInclination}");
         return angleInclination;
     }
     
@@ -146,21 +147,21 @@ public class CalculatingAngleHeightJumper : MonoBehaviour
 
 
     // Метод блокирует/разблокирует угол наклона джампера
-    public void LockingUnlockJumperAngle(bool lockUnlock = false)
-    {
-        if (!lockUnlock)
-        {
-            if (_thisTransform.localRotation.eulerAngles.z > 180)
-                _minimumAngleInclinationAxesZ = -(360 - _thisTransform.localRotation.eulerAngles.z);
-            else
-                _maximumAngleInclinationAxesZ = _thisTransform.localRotation.eulerAngles.z;
-        }
-        else
-        {
-            _maximumAngleInclinationAxesZ = _maximumAngleInclination;
-            _minimumAngleInclinationAxesZ = -_maximumAngleInclination;
-        }
-    }
+    // public void LockingUnlockJumperAngle(bool lockUnlock = false)
+    // {
+    //     if (!lockUnlock)
+    //     {
+    //         if (_thisTransform.localRotation.eulerAngles.z > 180)
+    //             _minimumAngleInclinationAxesZ = -(360 - _thisTransform.localRotation.eulerAngles.z);
+    //         else
+    //             _maximumAngleInclinationAxesZ = _thisTransform.localRotation.eulerAngles.z;
+    //     }
+    //     else
+    //     {
+    //         _maximumAngleInclinationAxesZ = _maximumAngleInclination;
+    //         _minimumAngleInclinationAxesZ = -_maximumAngleInclination;
+    //     }
+    // }
     
     // Данный метод вычисляет проценты от 0 до 100
     private float ConversionValuesPercent(float nowValue, float maximum, bool onClamp=false)

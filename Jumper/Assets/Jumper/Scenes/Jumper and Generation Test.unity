@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 45210835}
   - component: {fileID: 45210838}
   - component: {fileID: 45210839}
+  - component: {fileID: 45210840}
   - component: {fileID: 45210834}
   - component: {fileID: 45210833}
   m_Layer: 0
@@ -248,6 +249,20 @@ MonoBehaviour:
   _prefabJumper: {fileID: 8285805113919487889, guid: 113d36d79cc8cde4ab86f478350a53a0,
     type: 3}
   TransformEmptyObject: {fileID: 0}
+--- !u!114 &45210840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 45210832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4767b27aeb5c3d44971a2301a178c8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _angle: 2
+  _maximuDistance: 1
 --- !u!1 &153311253
 GameObject:
   m_ObjectHideFlags: 0
@@ -633,7 +648,6 @@ MonoBehaviour:
   - {fileID: 8363537974850569335, guid: 6c2ff1d6aa995bb4385e1ab1c834ef83, type: 3}
   - {fileID: 5557233797270270500, guid: 8c49964c83a5b4c45a1894ffda7f349f, type: 3}
   - {fileID: 4070774422316251610, guid: 4f5b9599eb5a78e4da78eb56e4f9bf7d, type: 3}
-  - {fileID: 8983270777391411862, guid: 453521c6a34bcac49824188012ba4200, type: 3}
   - {fileID: 5495662020534533429, guid: f90f78bfb0d43c040b9dcd42c90b23cd, type: 3}
   - {fileID: 5287042238585000848, guid: 1f9fb26e3dae7a64a9d1b698d9688a2a, type: 3}
   - {fileID: 8261000097070746586, guid: ae3c3347b46cfc041b9578494fb5679b, type: 3}
