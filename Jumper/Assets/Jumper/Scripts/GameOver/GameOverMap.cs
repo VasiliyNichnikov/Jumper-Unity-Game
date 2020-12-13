@@ -10,7 +10,7 @@ public class GameOverMap : MonoBehaviour
     
     private void OnCollisionEnter(Collision other)
     {
-        if (other.collider.tag == "Player" && !ClickTracking.GameOverPlayer)
+        if (other.collider.CompareTag("Player") && !ClickTracking.GameOverPlayer)
         {
             _gameOverPlayer.GameOverPlayerMethod();
         }

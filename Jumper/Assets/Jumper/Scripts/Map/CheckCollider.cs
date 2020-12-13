@@ -41,7 +41,7 @@ public class CheckCollider : MonoBehaviour
     private Collider[] _colliders = null;
 
     // Точка куда приземлился джампер
-    private Vector3 _positionLandingPlayer = Vector3.zero;
+    // private Vector3 _positionLandingPlayer = Vector3.zero;
     
     // Камера
     // private Camera _camera = null;
@@ -138,7 +138,7 @@ public class CheckCollider : MonoBehaviour
     public void CheckGameOver(Collision collision)
     {
 
-        _positionLandingPlayer = collision.GetContact(0).point;
+        //_positionLandingPlayer = collision.GetContact(0).point;
         
         // GameObject playerSphere = Instantiate(PrefabSpehere, transform, false);
         // playerSphere.transform.position = _positionLandingPlayer;

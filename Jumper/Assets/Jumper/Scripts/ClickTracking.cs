@@ -43,6 +43,10 @@ public class ClickTracking : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     
     // Проиграл пользователь или нет
     public static bool GameOverPlayer;
+    
+    // Переменная хранит, попал джампер на динамический объект или нет
+    public static bool DynamicObjectActive;
+
 
     // Переменная хранит начальную позицию пальца при нажатии на экран
     private Vector2 _startPositionFinger = Vector2.zero;
@@ -66,10 +70,11 @@ public class ClickTracking : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
 
     private void Start()
     {
-        JumpPlayer = false;
+        JumpPlayer = true;
         GameOverPlayer = false;
         _playerDragFinger = false;
         FingerInputScreen = false;
+        DynamicObjectActive = false;
     }
 
     // Позиции пальца без переводов в экранные разрешения
@@ -79,9 +84,10 @@ public class ClickTracking : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     // Нажатие на экран
     public void OnPointerDown(PointerEventData eventData)
     {
-        if (!JumpPlayer && !GameOverPlayer)
+        if (!JumpPlayer && !GameOverPlayer && !DynamicObjectActive)
         {
             //print("Down");
+            _fingerMovement.ShowAndHideLine = false;
             _playerDownFinger = true;
             _startPositionFinger = new Vector2(_mainCamera.ScreenToViewportPoint(Input.mousePosition).x,
                 _mainCamera.ScreenToViewportPoint(Input.mousePosition).y);
@@ -93,8 +99,8 @@ public class ClickTracking : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     // Движение пальца по экрану
     public void OnDrag(PointerEventData eventData)
     {
-        if (!JumpPlayer && !GameOverPlayer && _playerDownFinger)
-        {
+        if (!JumpPlayer && !GameOverPlayer && _playerDownFinger && !DynamicObjectActive)
+        { 
             //print("Drag");
             FingerInputScreen = true;
             _playerDragFinger = true;
@@ -115,7 +121,7 @@ public class ClickTracking : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     // Отпуск пальца
     public void OnPointerUp(PointerEventData eventData)
     {
-        if (!JumpPlayer && !GameOverPlayer && _playerDragFinger)
+        if (!JumpPlayer && !GameOverPlayer && _playerDragFinger && !DynamicObjectActive)
         {
             //print("Up");
             FingerInputScreen = false;

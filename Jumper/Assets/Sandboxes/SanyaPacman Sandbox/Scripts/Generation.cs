@@ -25,7 +25,7 @@ public class Generation : MonoBehaviour
   public GameObject player;
   public ObjectInfo[] prefabs;
   public int CountlastPrefabs;
-  public float distantionSpawn = 20;
+  public float distantionSpawn = 40;
   private float MAX_JAMPER_VELOCITY = 7f;
   [Header("Difficulty")]
   public float maxDifficultyByDistance;
@@ -42,7 +42,7 @@ public class Generation : MonoBehaviour
 
   
   private int _positionXWallpaperBlockFloor = 0;
-  void Start()
+  void Awake()
   {
     _positionXWallpaperBlockFloor = 16;
     last_objects = new List<GameObject>();

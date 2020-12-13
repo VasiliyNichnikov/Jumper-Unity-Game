@@ -46,6 +46,7 @@ public class SimulationJumperPhysics : MonoBehaviour
         }
         Physics.autoSimulation = true;
         endPositionJumper = newJumper.transform.position;
+        print($"End position jumper - {endPositionJumper}");
         Destroy(newJumper.gameObject);
         TransformEmptyObject = null;
         

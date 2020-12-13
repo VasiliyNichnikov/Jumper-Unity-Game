@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 5716156011268731237}
   - component: {fileID: 5716156011266566397}
   - component: {fileID: 5365336021426668636}
+  - component: {fileID: 1976988765742741464}
   - component: {fileID: 7099287611755188496}
   - component: {fileID: 4159143450747933297}
   - component: {fileID: 8495410416896057361}
@@ -150,6 +151,21 @@ MonoBehaviour:
   _collidersClass: []
   PrefabSpehere: {fileID: 0}
   GameOverPlayer: {fileID: 0}
+--- !u!114 &1976988765742741464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5716156011266469797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f6fa67a09725a345bfec88bf3d39664, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PositionCenter: {x: 0, y: 2, z: 0}
+  ArrayObjectsCenter:
+  - {fileID: 5757461006690425838, guid: 025a67eb879e7234abbb0514943352d5, type: 3}
 --- !u!65 &7099287611755188496
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -653,6 +653,8 @@ MonoBehaviour:
   - {fileID: 8261000097070746586, guid: ae3c3347b46cfc041b9578494fb5679b, type: 3}
   - {fileID: 67327560663728970, guid: 1af7d3ec437e38d48b3cd1decb1e22e3, type: 3}
   - {fileID: 8270535778019526823, guid: 4645951b5e4256f4ba8a173a4a86ecc2, type: 3}
+  - {fileID: 6063777718092799029, guid: 8e1eeaeaa2beec84aabadbb822f5660b, type: 3}
+  - {fileID: 6663079079403026146, guid: 901ce7cfd60652a4e9d784e2570b2181, type: 3}
   CountlastPrefabs: 2
   distantionSpawn: 20
   maxDifficultyByDistance: 100

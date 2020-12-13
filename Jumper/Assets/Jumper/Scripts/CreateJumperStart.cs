@@ -12,6 +12,9 @@ public class CreateJumperStart : MonoBehaviour
     {
         [Header("Название джампера")] public string NameJumper = "None";
 
+        [Header("Создавать данный джампер или нет")]
+        public bool CreateJumper = false;
+        
         [Header("Префаб верхней части джампера")]
         public GameObject PrefabUpperPartJumper = null;
 
@@ -46,7 +49,15 @@ public class CreateJumperStart : MonoBehaviour
     private void CreateNewJumper()
     {
         // Выбор джампера из класса
-        Jumper jumper = _jumpers[UnityEngine.Random.Range(0, _jumpers.Length)];
+        Jumper jumper = _jumpers[0];
+        for (int i = 0; i < _jumpers.Length; i++)
+        {
+            if (_jumpers[i].CreateJumper)
+            {
+                jumper = _jumpers[i];
+                break;
+            }
+        }
 
         // Получение скрипта CalculatingAngleHeightJumper
         CalculatingAngleHeightJumper calculatingAngleHeightJumper =
