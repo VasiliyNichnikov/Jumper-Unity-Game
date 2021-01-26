@@ -27,6 +27,8 @@ public class CreateLazer : MonoBehaviour
    [Header("Максимальная позиция по оси X")]
    public float MaxPositionLazerY;
    
+   // Скрипт, который отвечает за информацию о блоке
+   private ObjectInfo _objectInfo;
    
    // Проверка, можем/не можем создать объект по центру
    private bool CheckCreateLazer()
@@ -39,8 +41,9 @@ public class CreateLazer : MonoBehaviour
    
    private void Start()
    {
+      _objectInfo = GetComponent<ObjectInfo>();
       var positionLazer = new Vector3(Random.Range(MinPositionLazerX, MaxPositionLazerX), Random.Range(MinPositionLazerY, MaxPositionLazerY), PositionLazerZ);
-      if (CheckCreateLazer())
+      if (CheckCreateLazer() && !_objectInfo.StartObject)
       {
          GameObject newObject = Instantiate(PrefabLazer, transform, false);
          newObject.transform.localPosition = positionLazer;
