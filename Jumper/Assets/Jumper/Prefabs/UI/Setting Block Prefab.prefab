@@ -361,7 +361,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 180, y: 0}
+  m_AnchoredPosition: {x: 150, y: 0}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &255032467811090657
@@ -682,6 +682,8 @@ MonoBehaviour:
   NameSetting: {fileID: 2961268595063760958}
   InputValue: {fileID: 6527254102239359486}
   SliderSetting: {fileID: 4980449968129394752}
+  ParameterSettings: 0
+  KeyPlayerPrefs: 
 --- !u!1 &5673623833598031881
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,14 +8,19 @@ public class DynamicStove : MonoBehaviour
 
     // Компонент, который за акцивацию динамического блока
     private bool _activeBlock = false;
-
+    
+    // Скрипт, который отвечает за информацию о блоке
+    private ObjectInfo _objectInfo;
+    
     private SpriteRenderer[] _spriteRenderersLights;
 
     void Start()
     {
         _gameOverPlayer = FindObjectOfType<GameOverPlayer>();
+        _objectInfo = GetComponentInParent<ObjectInfo>();
         _spriteRenderersLights = GetComponentsInChildren<SpriteRenderer>();
-        StartCoroutine(StartDynamicBlock());
+        if(!_objectInfo.StartObject)
+            StartCoroutine(StartDynamicBlock());
     }
 
     private void ChangeMeshRenderedEnabled(bool condition)
@@ -42,7 +47,7 @@ public class DynamicStove : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("Bottom Part") && !ClickTracking.GameOverPlayer && _activeBlock)
+        if (other.CompareTag("Bottom Part") && !ClickTracking.GameOverPlayer && _activeBlock && !_objectInfo.StartObject)
             _gameOverPlayer.GameOverPlayerMethod();
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 /// <summary>
 /// Данный скрипт создает игрока с случайным скином при старте (Случайный скин для теста)
@@ -49,7 +50,7 @@ public class CreateJumperStart : MonoBehaviour
     private void CreateNewJumper()
     {
         // Выбор джампера из класса
-        Jumper jumper = _jumpers[0];
+        Jumper jumper = _jumpers[Random.Range(0, _jumpers.Length - 1)];
         for (int i = 0; i < _jumpers.Length; i++)
         {
             if (_jumpers[i].CreateJumper)
@@ -93,6 +94,22 @@ public class CreateJumperStart : MonoBehaviour
         
         // Передача параметров в AnimationGameOverJumper
         animationGameOverJumper.ChangeUpperAndBottomPartsJumper(newUpperPartJumper, newBottomPartJumper);
+        // Vector3 posPlayer = _playerObject.transform.position;
+        // _playerObject.transform.position = new Vector3(posPlayer.x, Generation.GetCheckColliderFirst.transform.GetChild(0).position.y, posPlayer.z);
+        
+        RaycastHit hit;
+        var layerMask = 1 << 9;
+        
+        if (Physics.Raycast(_playerObject.transform.position, _playerObject.transform.TransformDirection(Vector3.down), out hit, Mathf.Infinity, layerMask))
+        {
+            Vector3 posPlayerObject = _playerObject.transform.position;
+            _playerObject.transform.position = new Vector3(posPlayerObject.x, hit.point.y, posPlayerObject.z);
+        }
+        else
+        {
+            Debug.Log("Ошибка при приземление");
+        }
+
+        ClickTracking.JumpPlayer = false;
     }
-    
 }

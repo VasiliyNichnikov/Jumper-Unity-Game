@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4379032103190122903}
   - component: {fileID: 4379032103180722037}
   m_Layer: 0
-  m_Name: CubeProjector
+  m_Name: ModeProjector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46,7 +46,7 @@ Projector:
   m_AspectRatio: 1
   m_Orthographic: 1
   m_OrthographicSize: 1.5
-  m_Material: {fileID: 2100000, guid: 61ea7f067fe287643a741eb0ca6d107a, type: 2}
+  m_Material: {fileID: 2100000, guid: 1c17d7f796d4d434793ea273981589fb, type: 2}
   m_IgnoreLayers:
     serializedVersion: 2
     m_Bits: 512

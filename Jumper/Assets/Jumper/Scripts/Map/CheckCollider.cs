@@ -51,7 +51,7 @@ public class CheckCollider : MonoBehaviour
 
     [HideInInspector] public GameOverPlayer GameOverPlayer = null;
     
-    private void Start()
+    private void Awake()
     {
         // _colliders = GetComponents<Collider>();
         // // Получение точки, которая является ребенком объекта

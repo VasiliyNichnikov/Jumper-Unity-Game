@@ -70,7 +70,7 @@ public class ClickTracking : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
 
     private void Start()
     {
-        JumpPlayer = true;
+        // JumpPlayer = true;
         GameOverPlayer = false;
         _playerDragFinger = false;
         FingerInputScreen = false;
@@ -86,7 +86,6 @@ public class ClickTracking : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     {
         if (!JumpPlayer && !GameOverPlayer && !DynamicObjectActive)
         {
-            //print("Down");
             _fingerMovement.ShowAndHideLine = false;
             _playerDownFinger = true;
             _startPositionFinger = new Vector2(_mainCamera.ScreenToViewportPoint(Input.mousePosition).x,

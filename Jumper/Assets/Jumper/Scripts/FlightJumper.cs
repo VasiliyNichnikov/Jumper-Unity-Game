@@ -112,7 +112,10 @@ public class FlightJumper : MonoBehaviour
         _radiusCollider = GetComponent<CapsuleCollider>().radius;
         _thisTransform = transform;
 
-        EndAnimationJumper(null);
+        // _landingCollider = true;
+        // _animationStartJumperEnd = false;
+        ClickTracking.JumpPlayer = false;
+        // _rigidbodyJumper.isKinematic = true;
     }
     
     /*
@@ -311,14 +314,14 @@ public class FlightJumper : MonoBehaviour
     private void OnCollisionEnter(Collision other)
     {
         if (_animationStartJumperEnd)
-            EndAnimationJumper(other);
+            EndAnimationJumper();
     }
 
     // Нахождение на объекте
     private void OnCollisionStay(Collision other)
     {
         if (_animationStartJumperEnd)
-            EndAnimationJumper(other);
+            EndAnimationJumper();
     }
 
     // Данная куротина проверяет нужно или нет продолжать игру 
@@ -340,7 +343,7 @@ public class FlightJumper : MonoBehaviour
     }
 
     // Анимация заканчивается
-    private void EndAnimationJumper(Collision other)
+    private void EndAnimationJumper()
     {
         _landingCollider = true;
         _animationStartJumperEnd = false;

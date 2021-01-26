@@ -1,6 +1,6 @@
 ﻿using System;    
 using System.Collections;
-using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class GameOverPanel : MonoBehaviour
@@ -26,5 +26,11 @@ public class GameOverPanel : MonoBehaviour
             yield return null;
         }
     }
+
+    public void ReloadScene()
+    {
+        SceneManager.LoadScene("Jumper and Generation Test");
+    }
+    
     
 }

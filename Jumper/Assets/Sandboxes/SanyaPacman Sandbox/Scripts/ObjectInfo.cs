@@ -1,4 +1,4 @@
-﻿    using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,7 +14,7 @@ public class ObjectInfo: MonoBehaviour
     /// TopRightForward. Граничная точка 1 самая верхняя, правая, передняя точка
     /// </summary>
     [Header("Граничная точка 2")] [SerializeField] public Vector3 TRF_Point;
-
+    
     /// <summary>
     /// размер объекта по Х
     /// </summary>
@@ -35,6 +35,10 @@ public class ObjectInfo: MonoBehaviour
     /// </summary>
     [HideInInspector] [SerializeField]
     public Vector3 center;
+    
+    // Является ли данный объект стартовым или нет (Костыль)
+     public bool StartObject = false;
+    
     public void AutoSize()
     {
         Name = gameObject.name;
@@ -59,7 +63,13 @@ public class ObjectInfo: MonoBehaviour
         sizeZ = Mathf.Abs(size.z);        
     }
 
-
+    // Получение максимальной точки по оси Y
+    // public float GetPositionYObject()
+    // {
+    //     Bounds bounds = GetComponent<Collider>().bounds;
+    //     return bounds.ClosestPoint(new Vector3(0, Mathf.Infinity, 0)).y;
+    // }
+    
     void OnDrawGizmosSelected()
     {
         Gizmos.color = new Color(255f, 255f, 255f);

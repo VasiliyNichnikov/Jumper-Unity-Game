@@ -103,9 +103,10 @@ public class CameraTracking : MonoBehaviour
     private void Start()
     {
         _thisTransform = transform;
-        StartCoroutine(AnimationCameraStart());
-        PositionY = StartTransformPoint.position.y;
-        //PositionY = _listModelsTest.GetSelectObject(_player).position.y;
+        // StartCoroutine(AnimationCameraStart());
+        PositionY = _player.position.y;
+        _loadingScene = true;
+        // PositionY = _listModelsTest.GetSelectObject(_player).position.y;
     }
 
     private bool _loadingScene = false;
